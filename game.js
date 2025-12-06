@@ -30,7 +30,7 @@ function playSound(soundId) {
 const gameData = {
     harry: [
         {
-            title: "🎂 생일의 소년",
+            title: "🎂 해리의 생일",
             story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
             choices: [
@@ -40,7 +40,7 @@ const gameData = {
             ]
         },
         {
-            title: "🪄 지팡이 선택의 소년",
+            title: "🪄 지팡이 선택",
             story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
             choices: [
@@ -50,7 +50,7 @@ const gameData = {
             ]
         },
         {
-            title: "🚂 승강장의 소년",
+            title: "🚂 9와 4분의 3 승강장",
             story: "킹스 크로스 역 9와 4분의 3 승강장에 도착했다. 벽을 향해 뛰어들어야 한다는 말을 들었지만 무섭다. 론 위즐리 가족이 지나가는 것을 보았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
@@ -60,7 +60,7 @@ const gameData = {
             ]
         },
         {
-            title: "🚂 열차의 소년",
+            title: "🚂 호그와트 특급 열차",
             story: "호그와트 특급 열차에서 론과 헤르미온느를 만났다. 론은 마법을 보여주려 했지만 실패했다. 헤르미온느는 모든 것을 알고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
@@ -70,7 +70,7 @@ const gameData = {
             ]
         },
         {
-            title: "🎩 기숙사 선택의 소년",
+            title: "🎩 기숙사 배정",
             story: "기숙사 배정 모자 앞에 섰다. 모자는 내가 슬리데린에 적합하다고 말했다. 하지만 해그리드는 그리핀도르를 추천했다. 어느 기숙사를 선택할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
@@ -80,7 +80,7 @@ const gameData = {
             ]
         },
         {
-            title: "📚 첫 수업의 소년",
+            title: "📚 첫 마법 수업",
             story: "첫 마법 수업 시간이었다. 플리트윅 교수는 깃털을 띄우는 마법을 가르쳤다. 헤르미온느는 이미 성공했지만 나는 아직 실패했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
@@ -90,7 +90,7 @@ const gameData = {
             ]
         },
         {
-            title: "👹 트롤의 소년",
+            title: "👹 할로윈의 트롤",
             story: "할로윈 밤, 트롤이 학교에 침입했다는 소식이 들렸다. 헤르미온느가 화장실에 숨어있다는 것을 알았다. 론과 함께 그녀를 구하러 가야 한다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -100,7 +100,7 @@ const gameData = {
             ]
         },
         {
-            title: "🏑 퀴디치의 소년",
+            title: "🏑 첫 퀴디치 경기",
             story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
@@ -110,7 +110,7 @@ const gameData = {
             ]
         },
         {
-            title: "🪞 거울의 소년",
+            title: "🪞 미러 오브 에리세드",
             story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
             choices: [
@@ -120,7 +120,7 @@ const gameData = {
             ]
         },
         {
-            title: "💎 마법사의 돌의 소년",
+            title: "💎 마법사의 돌",
             story: "마법사의 돌을 지키기 위해 마지막 방에 도착했다. 퀴렐 교수가 볼드모트와 함께 있었다. 그들은 마법사의 돌을 원했다. 나는 그들을 막아야 한다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
             choices: [
@@ -132,7 +132,7 @@ const gameData = {
     ],
     ron: [
         {
-            title: "🚂 승강장의 소년",
+            title: "🚂 킹스 크로스 역",
             story: "킹스 크로스 역에서 해리를 처음 만났다. 그는 9와 4분의 3 승강장을 찾지 못하고 있었다. 나는 그에게 도움을 줄 수 있었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
@@ -142,7 +142,7 @@ const gameData = {
             ]
         },
         {
-            title: "🚂 열차의 소년",
+            title: "🚂 호그와트 특급 열차",
             story: "호그와트 특급 열차에서 해리와 함께 앉았다. 나는 마법을 보여주려고 했지만 실패했다. 부끄러웠지만 해리는 웃지 않았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
@@ -152,7 +152,7 @@ const gameData = {
             ]
         },
         {
-            title: "🏠 기숙사의 소년",
+            title: "🏠 그리핀도르 기숙사",
             story: "기숙사 배정을 받았다. 나는 당연히 그리핀도르에 배정되었다. 해리도 그리핀도르에 배정되었고, 우리는 같은 방을 쓰게 되었다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
@@ -162,7 +162,7 @@ const gameData = {
             ]
         },
         {
-            title: "📚 첫 수업의 소년",
+            title: "📚 첫 마법 수업",
             story: "첫 마법 수업에서 나는 실패했다. 해리와 헤르미온느는 성공했지만 나는 깃털을 움직이지 못했다. 좌절감이 들었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
@@ -172,7 +172,7 @@ const gameData = {
             ]
         },
         {
-            title: "👹 트롤의 소년",
+            title: "👹 할로윈의 트롤",
             story: "할로윈 밤, 헤르미온느가 트롤 때문에 위험에 빠졌다는 소식을 들었다. 해리와 함께 그녀를 구하러 가야 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -182,7 +182,7 @@ const gameData = {
             ]
         },
         {
-            title: "♟️ 체스의 소년",
+            title: "♟️ 마법 체스",
             story: "체스 클럽에 가입했다. 나는 체스를 잘한다. 하지만 마법 체스는 조금 달랐다. 큰 체스 말들이 실제로 움직였다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
@@ -192,7 +192,7 @@ const gameData = {
             ]
         },
         {
-            title: "🏑 퀴디치 관전의 소년",
+            title: "🏑 해리의 퀴디치 경기",
             story: "해리의 첫 퀴디치 경기를 보러 갔다. 해리의 빗자리가 이상하게 흔들리고 있었다. 누군가 해리에게 저주를 걸고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
@@ -202,7 +202,7 @@ const gameData = {
             ]
         },
         {
-            title: "🎁 크리스마스의 소년",
+            title: "🎁 크리스마스 선물",
             story: "크리스마스에 엄마가 보낸 털실 스웨터를 받았다. 형들의 것과 달리 내 것은 마음에 들지 않았다. 하지만 엄마의 마음은 따뜻했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&q=80",
             choices: [
@@ -212,7 +212,7 @@ const gameData = {
             ]
         },
         {
-            title: "💎 모험의 소년",
+            title: "💎 마법사의 돌 모험",
             story: "해리와 헤르미온느가 마법사의 돌을 찾으러 간다는 것을 알았다. 나도 함께 가고 싶었다. 하지만 위험할 수 있었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
@@ -222,7 +222,7 @@ const gameData = {
             ]
         },
         {
-            title: "♟️ 체스 게임의 소년",
+            title: "♟️ 마지막 체스 게임",
             story: "마법사의 돌을 지키는 마지막 방에 도착했다. 거대한 마법 체스판이 있었다. 나는 체스를 잘하지만 이번에는 실제로 위험했다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
@@ -234,7 +234,7 @@ const gameData = {
     ],
     hermione: [
         {
-            title: "🚂 열차의 마법사",
+            title: "🚂 호그와트 특급 열차",
             story: "호그와트 특급 열차에서 해리와 론을 처음 만났다. 나는 이미 모든 교과서를 읽었고, 모든 마법을 알고 싶었다. 그들에게 이것을 말하고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
@@ -244,7 +244,7 @@ const gameData = {
             ]
         },
         {
-            title: "🏠 기숙사의 마법사",
+            title: "🏠 그리핀도르 기숙사",
             story: "기숙사에 배정되었다. 나는 그리핀도르에 배정되었고, 해리와 론과 같은 기숙사였다. 하지만 나는 공부에 집중하고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
@@ -254,7 +254,7 @@ const gameData = {
             ]
         },
         {
-            title: "📚 첫 수업의 마법사",
+            title: "📚 첫 마법 수업",
             story: "첫 마법 수업에서 나는 유일하게 성공했다. 플리트윅 교수는 나를 칭찬했다. 하지만 다른 학생들은 나를 이상하게 봤다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
@@ -264,7 +264,7 @@ const gameData = {
             ]
         },
         {
-            title: "👹 트롤의 마법사",
+            title: "👹 할로윈의 트롤",
             story: "할로윈 밤, 화장실에서 울고 있었다. 론이 내 마법을 비웃었다고 생각했다. 그때 트롤이 학교에 침입했다는 소식이 들렸다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -274,7 +274,7 @@ const gameData = {
             ]
         },
         {
-            title: "💝 우정의 마법사",
+            title: "💝 진짜 친구들",
             story: "해리와 론이 나를 구해주었다. 그들은 트롤과 맞서 싸웠다. 나는 그들에게 고마웠고, 진짜 친구가 되었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -284,7 +284,7 @@ const gameData = {
             ]
         },
         {
-            title: "🏑 퀴디치 관전의 마법사",
+            title: "🏑 해리의 퀴디치 경기",
             story: "해리의 퀴디치 경기 날이었다. 해리의 빗자리가 이상하게 흔들리고 있었다. 나는 이것이 저주라는 것을 알았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
@@ -294,7 +294,7 @@ const gameData = {
             ]
         },
         {
-            title: "🔍 조사의 마법사",
+            title: "🔍 저주 조사",
             story: "스네이프 교수가 해리에게 저주를 걸고 있다는 것을 발견했다! 나는 스네이프의 로브에 불을 지폈다. 하지만 나중에 알고 보니 진짜 범인은 퀴렐이었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
@@ -304,7 +304,7 @@ const gameData = {
             ]
         },
         {
-            title: "📖 도서관의 마법사",
+            title: "📖 마법사의 돌 연구",
             story: "크리스마스에 도서관에서 마법사의 돌에 대한 책을 읽고 있었다. 니콜라스 플라멜과 마법사의 돌에 대해 알게 되었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
@@ -314,7 +314,7 @@ const gameData = {
             ]
         },
         {
-            title: "💎 모험의 마법사",
+            title: "💎 마법사의 돌 모험",
             story: "해리와 론이 마법사의 돌을 찾으러 가려고 했다. 나는 이것이 위험하다는 것을 알고 있었다. 하지만 친구들을 혼자 두고 싶지 않았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
@@ -324,7 +324,7 @@ const gameData = {
             ]
         },
         {
-            title: "🧩 퍼즐의 마법사",
+            title: "🧩 논리 퍼즐",
             story: "마법사의 돌을 지키는 마지막 방에 도착했다. 논리 퍼즐이 있었다. 나는 이것을 풀 수 있었다. 하지만 해리가 혼자 볼드모트와 맞서야 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
