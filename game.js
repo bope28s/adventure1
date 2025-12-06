@@ -540,23 +540,76 @@ function makeChoice(choice) {
     showChoiceConfirm(choice);
 }
 
+// 통계 그래프 표시 함수
+function showStatsGraph() {
+    const statsContainer = document.getElementById('stats-graph-container');
+    const friendshipBar = document.getElementById('friendship-bar');
+    const courageBar = document.getElementById('courage-bar');
+    const knowledgeBar = document.getElementById('knowledge-bar');
+    const friendshipValue = document.getElementById('friendship-value');
+    const courageValue = document.getElementById('courage-value');
+    const knowledgeValue = document.getElementById('knowledge-value');
+
+    if (!statsContainer || !friendshipBar || !courageBar || !knowledgeBar) {
+        console.error('통계 그래프 요소를 찾을 수 없습니다.');
+        return;
+    }
+
+    // 값 설정
+    if (friendshipValue) friendshipValue.textContent = gameState.friendship;
+    if (courageValue) courageValue.textContent = gameState.courage;
+    if (knowledgeValue) knowledgeValue.textContent = gameState.knowledge;
+
+    // 그래프 표시
+    statsContainer.style.display = 'block';
+    statsContainer.style.opacity = '0';
+    statsContainer.style.transform = 'translateY(20px)';
+
+    setTimeout(function() {
+        statsContainer.style.transition = 'all 0.5s ease';
+        statsContainer.style.opacity = '1';
+        statsContainer.style.transform = 'translateY(0)';
+
+        // 애니메이션으로 바 채우기
+        setTimeout(function() {
+            friendshipBar.style.transition = 'width 1s ease';
+            friendshipBar.style.width = gameState.friendship + '%';
+        }, 200);
+
+        setTimeout(function() {
+            courageBar.style.transition = 'width 1s ease';
+            courageBar.style.width = gameState.courage + '%';
+        }, 400);
+
+        setTimeout(function() {
+            knowledgeBar.style.transition = 'width 1s ease';
+            knowledgeBar.style.width = gameState.knowledge + '%';
+        }, 600);
+    }, 100);
+}
+
 // 결말 표시 함수
 function showEnding(endingType) {
     const storyText = document.getElementById('story-text');
     const choicesContainer = document.getElementById('choices-container');
     const restartBtn = document.getElementById('restart-btn');
     const storyContainer = document.getElementById('story-container');
+    const confirmScreen = document.getElementById('choice-confirm-screen');
 
     if (!storyText || !choicesContainer || !restartBtn) {
         console.error('DOM 요소를 찾을 수 없습니다.');
         return;
     }
 
+    // 선택 확인 화면이 열려있으면 닫기
+    if (confirmScreen && confirmScreen.classList.contains('active')) {
+        confirmScreen.style.display = 'none';
+        confirmScreen.classList.remove('active');
+    }
+
     const endingText = endings[endingType] && endings[endingType][currentCharacter] 
         ? endings[endingType][currentCharacter] 
         : '게임이 끝났습니다.';
-    
-    const statsText = '\n\n최종 수치:\n우정: ' + gameState.friendship + '\n용기: ' + gameState.courage + '\n지식: ' + gameState.knowledge;
 
     // 페이드 인 애니메이션
     if (storyContainer) {
@@ -564,8 +617,11 @@ function showEnding(endingType) {
         storyContainer.style.transform = 'translateY(20px)';
     }
 
-    storyText.textContent = endingText + statsText;
+    storyText.textContent = endingText;
     choicesContainer.innerHTML = '';
+    
+    // 통계 그래프 표시
+    showStatsGraph();
     
     setTimeout(function() {
         if (storyContainer) {
@@ -583,12 +639,46 @@ function showEnding(endingType) {
         }, 200);
     }, 100);
     
+    // 다시 시작하기 버튼 이벤트 (기존 이벤트 제거 후 새로 등록)
+    restartBtn.onclick = null; // 기존 이벤트 제거
     restartBtn.onclick = function() {
         playSound('clickSound');
-        document.getElementById('game-screen').classList.remove('active');
-        document.getElementById('character-selection').classList.add('active');
-        document.getElementById('game-screen').style.display = 'none';
-        document.getElementById('character-selection').style.display = 'block';
+        
+        // 선택 확인 화면 닫기
+        if (confirmScreen) {
+            confirmScreen.style.display = 'none';
+            confirmScreen.classList.remove('active');
+        }
+        
+        // 게임 화면 닫기
+        const gameScreen = document.getElementById('game-screen');
+        if (gameScreen) {
+            gameScreen.style.transition = 'opacity 0.5s ease';
+            gameScreen.style.opacity = '0';
+        }
+        
+        setTimeout(function() {
+            const selectionScreen = document.getElementById('character-selection');
+            if (gameScreen) {
+                gameScreen.classList.remove('active');
+                gameScreen.style.display = 'none';
+            }
+            if (selectionScreen) {
+                selectionScreen.classList.add('active');
+                selectionScreen.style.display = 'block';
+                selectionScreen.style.opacity = '0';
+                setTimeout(function() {
+                    selectionScreen.style.transition = 'opacity 0.5s ease';
+                    selectionScreen.style.opacity = '1';
+                }, 50);
+            }
+            
+            // 통계 그래프 숨기기
+            const statsContainer = document.getElementById('stats-graph-container');
+            if (statsContainer) {
+                statsContainer.style.display = 'none';
+            }
+        }, 500);
     };
 }
 
@@ -655,6 +745,12 @@ window.startGame = function(character) {
         const restartBtn = document.getElementById('restart-btn');
         if (restartBtn) {
             restartBtn.style.display = 'none';
+        }
+        
+        // 통계 그래프 숨기기
+        const statsContainer = document.getElementById('stats-graph-container');
+        if (statsContainer) {
+            statsContainer.style.display = 'none';
         }
         
         showEvent();
