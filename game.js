@@ -26,6 +26,16 @@ function playSound(soundId) {
     }
 }
 
+// 배열 셔플 함수 (Fisher-Yates 알고리즘)
+function shuffleArray(array) {
+    const shuffled = array.slice(); // 원본 배열 복사
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
 // 게임 데이터 - 각 주인공별 10개 이벤트 (중간 결말 포함, 질문 형태로 마무리)
 const gameData = {
     harry: [
@@ -632,7 +642,11 @@ function showEvent() {
     }
 
     choicesContainer.innerHTML = '';
-    event.choices.forEach(function(choice, index) {
+    
+    // 선택지 순서를 랜덤하게 섞기
+    const shuffledChoices = shuffleArray(event.choices);
+    
+    shuffledChoices.forEach(function(choice, index) {
         const button = document.createElement('button');
         button.className = 'choice-btn';
         button.textContent = (index + 1) + '. ' + choice.text;
