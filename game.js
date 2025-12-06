@@ -344,10 +344,11 @@ window.addEventListener('load', function() {
     }
 });
 
-// 게임 시작 함수
-function startGame(character) {
+// 게임 시작 함수 (즉시 전역에 노출)
+window.startGame = function(character) {
     if (!character) {
         console.error('캐릭터가 지정되지 않았습니다.');
+        alert('캐릭터를 선택해주세요.');
         return;
     }
     console.log('게임 시작:', character);
@@ -365,6 +366,7 @@ function startGame(character) {
     
     if (!selectionScreen || !gameScreen) {
         console.error('화면 요소를 찾을 수 없습니다.');
+        alert('게임 화면을 찾을 수 없습니다. 페이지를 새로고침해주세요.');
         return;
     }
     
@@ -382,6 +384,11 @@ function startGame(character) {
     }
     
     showEvent();
+};
+
+// 함수 참조도 유지 (내부에서 사용)
+function startGame(character) {
+    window.startGame(character);
 }
 
 // 이벤트 표시
@@ -474,6 +481,5 @@ function showEnding(endingType) {
     };
 }
 
-// 전역 스코프에 startGame 함수 노출 (인라인 onclick을 위해)
-window.startGame = startGame;
+// startGame은 이미 window.startGame으로 정의됨
 
