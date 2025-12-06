@@ -283,113 +283,7 @@ const endings = {
     }
 };
 
-// 이벤트 리스너 초기화 함수
-function initEventListeners() {
-    console.log('게임 초기화 시작');
-    
-    // 캐릭터 카드에 이벤트 리스너 추가
-    const characterCards = document.querySelectorAll('.character-card');
-    console.log('찾은 캐릭터 카드 개수:', characterCards.length);
-    
-    if (characterCards.length === 0) {
-        console.error('캐릭터 카드를 찾을 수 없습니다!');
-        return;
-    }
-    
-    characterCards.forEach(function(card) {
-        // 기존 이벤트 리스너 제거 후 새로 추가
-        const newCard = card.cloneNode(true);
-        card.parentNode.replaceChild(newCard, card);
-        
-        newCard.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const character = this.getAttribute('data-character');
-            console.log('클릭된 캐릭터:', character);
-            if (character) {
-                startGame(character);
-            } else {
-                console.error('캐릭터 속성을 찾을 수 없습니다!');
-            }
-        });
-        
-        // 호버 효과를 위한 스타일 확인
-        newCard.style.cursor = 'pointer';
-        newCard.style.userSelect = 'none';
-    });
-}
-
-// DOM이 로드된 후 실행 (여러 방법 시도)
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initEventListeners);
-} else {
-    // DOM이 이미 로드된 경우
-    initEventListeners();
-}
-
-// 추가 안전장치: window.onload
-window.addEventListener('load', function() {
-    // 이미 초기화되었는지 확인
-    const cards = document.querySelectorAll('.character-card');
-    let hasListeners = false;
-    cards.forEach(function(card) {
-        if (card.onclick || card.getAttribute('data-initialized')) {
-            hasListeners = true;
-        }
-    });
-    
-    if (!hasListeners && cards.length > 0) {
-        console.log('window.onload에서 이벤트 리스너 재초기화');
-        initEventListeners();
-    }
-});
-
-// 게임 시작 함수 (즉시 전역에 노출하여 onclick에서 사용 가능하도록)
-window.startGame = function(character) {
-    if (!character) {
-        console.error('캐릭터가 지정되지 않았습니다.');
-        alert('캐릭터를 선택해주세요.');
-        return;
-    }
-    console.log('게임 시작:', character);
-    
-    currentCharacter = character;
-    currentEvent = 0;
-    gameState = {
-        friendship: 50,
-        courage: 50,
-        knowledge: 50
-    };
-
-    const selectionScreen = document.getElementById('character-selection');
-    const gameScreen = document.getElementById('game-screen');
-    
-    if (!selectionScreen || !gameScreen) {
-        console.error('화면 요소를 찾을 수 없습니다.');
-        alert('게임 화면을 찾을 수 없습니다. 페이지를 새로고침해주세요.');
-        return;
-    }
-    
-    selectionScreen.classList.remove('active');
-    gameScreen.classList.add('active');
-    
-    const characterNameElement = document.getElementById('current-character-name');
-    if (characterNameElement) {
-        characterNameElement.textContent = characterNames[character];
-    }
-    
-    const restartBtn = document.getElementById('restart-btn');
-    if (restartBtn) {
-        restartBtn.style.display = 'none';
-    }
-    
-    showEvent();
-};
-
-// 함수 참조도 유지 (내부 코드 호환성을 위해)
-var startGame = window.startGame;
-
-// 이벤트 표시
+// 이벤트 표시 함수
 function showEvent() {
     if (!currentCharacter || !gameData[currentCharacter]) {
         console.error('캐릭터 데이터를 찾을 수 없습니다.');
@@ -426,7 +320,7 @@ function showEvent() {
     });
 }
 
-// 선택 처리
+// 선택 처리 함수
 function makeChoice(choice) {
     // 상태 업데이트
     if (choice.effects) {
@@ -456,7 +350,7 @@ function makeChoice(choice) {
     }
 }
 
-// 결말 표시
+// 결말 표시 함수
 function showEnding(endingType) {
     const storyText = document.getElementById('story-text');
     const choicesContainer = document.getElementById('choices-container');
@@ -479,5 +373,42 @@ function showEnding(endingType) {
     };
 }
 
-// startGame은 이미 window.startGame으로 정의됨
+// 게임 시작 함수 (전역에 즉시 노출)
+window.startGame = function(character) {
+    if (!character) {
+        console.error('캐릭터가 지정되지 않았습니다.');
+        return;
+    }
+    console.log('게임 시작:', character);
+    
+    currentCharacter = character;
+    currentEvent = 0;
+    gameState = {
+        friendship: 50,
+        courage: 50,
+        knowledge: 50
+    };
 
+    const selectionScreen = document.getElementById('character-selection');
+    const gameScreen = document.getElementById('game-screen');
+    
+    if (!selectionScreen || !gameScreen) {
+        console.error('화면 요소를 찾을 수 없습니다.');
+        return;
+    }
+    
+    selectionScreen.classList.remove('active');
+    gameScreen.classList.add('active');
+    
+    const characterNameElement = document.getElementById('current-character-name');
+    if (characterNameElement) {
+        characterNameElement.textContent = characterNames[character];
+    }
+    
+    const restartBtn = document.getElementById('restart-btn');
+    if (restartBtn) {
+        restartBtn.style.display = 'none';
+    }
+    
+    showEvent();
+};
