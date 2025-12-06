@@ -27,8 +27,8 @@
 <body>
     <div class="container">
         <div id="character-selection" class="screen active" style="display: block !important;">
-            <h1>🪄 해리포터 모험 게임 🪄</h1>
-            <h2>마법사의 돌</h2>
+            <h1>해리포터 모험 게임</h1>
+            <h2>제 1편 : 마법사의 돌</h2>
             <p class="intro">모험을 시작할 주인공을 선택하세요!</p>
             <div class="character-cards">
                 <button class="character-card" data-character="harry" onclick="startGame('harry')" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border: 3px solid #ffd700; border-radius: 15px; padding: 20px; cursor: pointer; min-width: 200px; max-width: 250px; color: white; font-family: inherit;">
@@ -64,6 +64,7 @@
         <div id="game-screen" class="screen" style="display: none !important;">
             <div class="game-header">
                 <div class="character-info">
+                    <img id="current-character-icon" src="" alt="" style="width: 40px; height: 40px; object-fit: contain; margin-right: 10px; display: none;">
                     <span id="current-character-name"></span>
                     <span class="event-counter">이벤트 <span id="event-number">1</span>/10</span>
                 </div>

@@ -184,6 +184,7 @@ button.character-card {
 
 .character-info {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     align-items: center;
     font-size: 1.2em;

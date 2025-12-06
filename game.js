@@ -899,8 +899,25 @@ window.startGame = function(character) {
         }, 50);
         
         const characterNameElement = document.getElementById('current-character-name');
+        const characterIconElement = document.getElementById('current-character-icon');
         if (characterNameElement) {
             characterNameElement.textContent = characterNames[character];
+        }
+        
+        // 캐릭터 아이콘 설정
+        if (characterIconElement) {
+            const iconPaths = {
+                harry: 'image/Harry.png',
+                ron: 'image/Ron.png',
+                hermione: 'image/Hermione.png'
+            };
+            if (iconPaths[character]) {
+                characterIconElement.src = iconPaths[character];
+                characterIconElement.alt = characterNames[character];
+                characterIconElement.style.display = 'block';
+            } else {
+                characterIconElement.style.display = 'none';
+            }
         }
         
         const restartBtn = document.getElementById('restart-btn');
