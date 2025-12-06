@@ -19,6 +19,7 @@ const gameData = {
     harry: [
         {
             story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다!",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Harry Potter cupboard under stairs" 또는 "Harry Potter 11th birthday"
             choices: [
                 { text: "해그리드와 함께 호그와트로 가기로 결정한다", effects: { courage: 10 }, next: 1 },
                 { text: "더즐리 가족과 함께 있기로 한다", effects: { courage: -20 }, ending: "early_quit" },
@@ -27,6 +28,7 @@ const gameData = {
         },
         {
             story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다.",
+            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80", // 검색: "Diagon Alley" 또는 "Ollivanders wand shop"
             choices: [
                 { text: "첫 번째 지팡이를 무작정 선택한다", effects: { knowledge: -10 }, ending: "wrong_wand" },
                 { text: "여러 지팡이를 차례로 시도해본다", effects: { knowledge: 10 }, next: 2 },
@@ -35,6 +37,7 @@ const gameData = {
         },
         {
             story: "킹스 크로스 역 9와 4분의 3 승강장에 도착했다. 벽을 향해 뛰어들어야 한다는 말을 들었지만 무섭다. 론 위즐리 가족이 지나가는 것을 보았다.",
+            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80", // 검색: "King's Cross station platform 9 3/4"
             choices: [
                 { text: "용기를 내어 벽을 향해 뛴다", effects: { courage: 15 }, next: 3 },
                 { text: "론의 어머니에게 도움을 요청한다", effects: { friendship: 10 }, next: 3 },
@@ -43,6 +46,7 @@ const gameData = {
         },
         {
             story: "호그와트 특급 열차에서 론과 헤르미온느를 만났다. 론은 마법을 보여주려 했지만 실패했다. 헤르미온느는 모든 것을 알고 있는 것 같았다.",
+            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80", // 검색: "Hogwarts Express train" 또는 "Harry Potter train compartment"
             choices: [
                 { text: "론을 격려하고 친구가 되자고 한다", effects: { friendship: 15 }, next: 4 },
                 { text: "헤르미온느와 대화를 나눈다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
@@ -51,6 +55,7 @@ const gameData = {
         },
         {
             story: "기숙사 배정 모자 앞에 섰다. 모자는 내가 슬리데린에 적합하다고 말했다. 하지만 해그리드는 그리핀도르를 추천했다. 어느 기숙사를 선택할까?",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Sorting Hat ceremony" 또는 "Harry Potter sorting hat"
             choices: [
                 { text: "그리핀도르를 선택한다", effects: { courage: 15, friendship: 10 }, next: 5 },
                 { text: "슬리데린을 선택한다", effects: { courage: -10, knowledge: 10 }, ending: "slytherin_path" },
@@ -59,6 +64,7 @@ const gameData = {
         },
         {
             story: "첫 마법 수업 시간이었다. 플리트윅 교수는 깃털을 띄우는 마법을 가르쳤다. 헤르미온느는 이미 성공했지만 나는 아직 실패했다.",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hogwarts classroom" 또는 "Harry Potter magic class"
             choices: [
                 { text: "집중해서 다시 시도한다", effects: { knowledge: 15, courage: 5 }, next: 6 },
                 { text: "헤르미온느에게 도움을 요청한다", effects: { friendship: 10, knowledge: 5 }, next: 6 },
@@ -67,6 +73,7 @@ const gameData = {
         },
         {
             story: "할로윈 밤, 트롤이 학교에 침입했다는 소식이 들렸다. 헤르미온느가 화장실에 숨어있다는 것을 알았다. 론과 함께 그녀를 구하러 가야 한다.",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Harry Potter troll scene" 또는 "Hogwarts bathroom troll"
             choices: [
                 { text: "용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 15 }, next: 7 },
                 { text: "교사들에게 도움을 요청한다", effects: { knowledge: 10, courage: -5 }, next: 7 },
@@ -75,6 +82,7 @@ const gameData = {
         },
         {
             story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다.",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Quidditch match" 또는 "Harry Potter quidditch"
             choices: [
                 { text: "빗자리를 붙잡고 버틴다", effects: { courage: 20 }, next: 8 },
                 { text: "경기를 포기하고 내린다", effects: { courage: -15, friendship: -10 }, ending: "quit_quidditch" },
@@ -83,6 +91,7 @@ const gameData = {
         },
         {
             story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다.",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Mirror of Erised" 또는 "Harry Potter mirror"
             choices: [
                 { text: "거울 앞에 매일 서서 부모님을 본다", effects: { courage: -10, knowledge: -5 }, ending: "mirror_addiction" },
                 { text: "덤블도어 교수의 조언을 듣고 거울을 떠난다", effects: { knowledge: 15, courage: 10 }, next: 9 },
@@ -91,6 +100,7 @@ const gameData = {
         },
         {
             story: "마법사의 돌을 지키기 위해 마지막 방에 도착했다. 퀴렐 교수가 볼드모트와 함께 있었다. 그들은 마법사의 돌을 원했다. 나는 그들을 막아야 한다!",
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Philosopher's Stone final scene" 또는 "Harry Potter Quirrell Voldemort"
             choices: [
                 { text: "용감하게 퀴렐과 맞선다", effects: { courage: 25 }, ending: "courage" },
                 { text: "마법사의 돌을 파괴한다", effects: { knowledge: 20, courage: 15 }, ending: "wisdom" },
@@ -369,6 +379,7 @@ function showEvent() {
     const storyText = document.getElementById('story-text');
     const choicesContainer = document.getElementById('choices-container');
     const eventNumber = document.getElementById('event-number');
+    const storyImageContainer = document.getElementById('story-image-container');
 
     if (!storyText || !choicesContainer || !eventNumber) {
         console.error('DOM 요소를 찾을 수 없습니다.');
@@ -377,6 +388,14 @@ function showEvent() {
 
     eventNumber.textContent = currentEvent + 1;
     storyText.textContent = event.story;
+
+    // 배경 이미지 설정
+    if (storyImageContainer && event.image) {
+        storyImageContainer.style.backgroundImage = 'url(' + event.image + ')';
+        storyImageContainer.style.display = 'block';
+    } else if (storyImageContainer) {
+        storyImageContainer.style.display = 'none';
+    }
 
     choicesContainer.innerHTML = '';
     event.choices.forEach(function(choice, index) {
