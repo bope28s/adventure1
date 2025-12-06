@@ -589,11 +589,6 @@ function showEnding(endingType) {
         document.getElementById('character-selection').classList.add('active');
         document.getElementById('game-screen').style.display = 'none';
         document.getElementById('character-selection').style.display = 'block';
-        const bgm = document.getElementById('bgm');
-        if (bgm) {
-            bgm.pause();
-            bgm.currentTime = 0;
-        }
     };
 }
 
