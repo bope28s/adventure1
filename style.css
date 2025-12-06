@@ -66,13 +66,12 @@ button.character-card {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
     border: 3px solid #ffd700 !important;
     border-radius: 15px !important;
-    padding: 30px !important;
-    text-align: center !important;
+    padding: 20px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
     flex: 1 1 200px !important;
     min-width: 200px !important;
-    max-width: 250px !important;
+    max-width: 300px !important;
     width: 100% !important;
     position: relative !important;
     z-index: 1 !important;
@@ -81,7 +80,10 @@ button.character-card {
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
     -ms-user-select: none !important;
-    display: block !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
     margin: 0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     font-family: inherit !important;
@@ -93,13 +95,12 @@ button.character-card {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
     border: 3px solid #ffd700 !important;
     border-radius: 15px !important;
-    padding: 30px !important;
-    text-align: center !important;
+    padding: 20px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
     flex: 1 1 200px !important;
     min-width: 200px !important;
-    max-width: 250px !important;
+    max-width: 300px !important;
     width: 100% !important;
     position: relative !important;
     z-index: 1 !important;
@@ -108,7 +109,10 @@ button.character-card {
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
     -ms-user-select: none !important;
-    display: block !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
     margin: 0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     box-sizing: border-box !important;
@@ -126,8 +130,7 @@ button.character-card {
 }
 
 .character-icon {
-    font-size: 4em;
-    margin-bottom: 15px;
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,18 +138,42 @@ button.character-card {
 
 .character-icon img {
     display: block;
-    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
 }
 
-.character-card h3 {
+.character-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-width: 0;
+}
+
+.character-info-text h3 {
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+.character-info-text p {
+    margin-bottom: 0;
+    margin-top: auto;
+}
+
+.character-card h3,
+.character-info-text h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
     color: #ffd700;
+    text-align: left;
 }
 
-.character-card p {
+.character-card p,
+.character-info-text p {
     font-size: 1em;
     color: #b0b0b0;
+    text-align: left;
 }
 
 .game-header {
@@ -548,6 +575,22 @@ button.character-card {
         min-width: 200px !important;
         flex: 0 0 auto !important;
         box-sizing: border-box !important;
+        flex-direction: row !important;
+        gap: 10px !important;
+        padding: 15px !important;
+    }
+    
+    .character-icon img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .character-info-text h3 {
+        font-size: 1.3em !important;
+    }
+    
+    .character-info-text p {
+        font-size: 0.9em !important;
     }
     
     .story-text {
