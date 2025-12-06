@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffd700;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #c0c0c0;
+}
+
+.intro {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #e0e0e0;
+}
+
+.character-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.character-card {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    border: 3px solid #ffd700;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
+}
+
+.character-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    border-color: #ffed4e;
+}
+
+.character-icon {
+    font-size: 4em;
+    margin-bottom: 15px;
+}
+
+.character-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #ffd700;
+}
+
+.character-card p {
+    font-size: 1em;
+    color: #b0b0b0;
+}
+
+.game-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ffd700;
+}
+
+.character-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+#current-character-name {
+    font-weight: bold;
+    color: #ffd700;
+    font-size: 1.3em;
+}
+
+.event-counter {
+    color: #c0c0c0;
+    font-size: 1em;
+}
+
+.story-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    min-height: 200px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.story-text {
+    font-size: 1.3em;
+    line-height: 1.8;
+    color: #fff;
+    text-align: justify;
+}
+
+.choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.choice-btn {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    border: 2px solid #ffd700;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 1.2em;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-family: inherit;
+}
+
+.choice-btn:hover {
+    background: linear-gradient(135deg, #5a6578 0%, #3d4758 100%);
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    border-color: #ffed4e;
+}
+
+.choice-btn:active {
+    transform: translateX(5px);
+}
+
+.restart-btn {
+    margin-top: 30px;
+    width: 100%;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    border: 2px solid #fff;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 1.3em;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.restart-btn:hover {
+    background: linear-gradient(135deg, #f74c3c 0%, #d0392b 100%);
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    .character-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .character-card {
+        max-width: 100%;
+    }
+    
+    .story-text {
+        font-size: 1.1em;
+    }
+    
+    .choice-btn {
+        font-size: 1em;
+        padding: 15px;
+    }
+}
+

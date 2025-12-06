@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해리포터 모험 게임 - 마법사의 돌</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="character-selection" class="screen active">
+            <h1>🪄 해리포터 모험 게임 🪄</h1>
+            <h2>마법사의 돌</h2>
+            <p class="intro">모험을 시작할 주인공을 선택하세요!</p>
+            <div class="character-cards">
+                <div class="character-card" data-character="harry">
+                    <div class="character-icon">👓</div>
+                    <h3>해리 포터</h3>
+                    <p>유명한 소년 마법사</p>
+                </div>
+                <div class="character-card" data-character="ron">
+                    <div class="character-icon">🧡</div>
+                    <h3>론 위즐리</h3>
+                    <p>충실한 친구</p>
+                </div>
+                <div class="character-card" data-character="hermione">
+                    <div class="character-icon">📚</div>
+                    <h3>헤르미온느 그레인저</h3>
+                    <p>똑똑한 마녀</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="character-info">
+                    <span id="current-character-name"></span>
+                    <span class="event-counter">이벤트 <span id="event-number">1</span>/10</span>
+                </div>
+            </div>
+            <div class="story-container">
+                <div id="story-text" class="story-text"></div>
+            </div>
+            <div id="choices-container" class="choices-container"></div>
+            <button id="restart-btn" class="restart-btn" style="display: none;">다시 시작하기</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
+
