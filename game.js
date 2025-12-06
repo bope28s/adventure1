@@ -6,6 +6,7 @@ let gameState = {
     courage: 50,
     knowledge: 50
 };
+let pendingChoice = null; // 선택 확인을 위한 변수
 
 // 캐릭터 이름 매핑
 const characterNames = {
@@ -14,11 +15,33 @@ const characterNames = {
     hermione: '헤르미온느 그레인저'
 };
 
-// 게임 데이터 - 각 주인공별 10개 이벤트 (중간 결말 포함)
+// 사운드 재생 함수
+function playSound(soundId) {
+    const sound = document.getElementById(soundId);
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(function(err) {
+            console.log('사운드 재생 실패:', err);
+        });
+    }
+}
+
+// 배경음악 재생
+function playBGM() {
+    const bgm = document.getElementById('bgm');
+    if (bgm) {
+        bgm.volume = 0.3;
+        bgm.play().catch(function(err) {
+            console.log('배경음악 재생 실패:', err);
+        });
+    }
+}
+
+// 게임 데이터 - 각 주인공별 10개 이벤트 (중간 결말 포함, 질문 형태로 마무리)
 const gameData = {
     harry: [
         {
-            story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다!",
+            story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
             choices: [
                 { text: "해그리드와 함께 호그와트로 가기로 결정한다", effects: { courage: 10 }, next: 1 },
@@ -27,7 +50,7 @@ const gameData = {
             ]
         },
         {
-            story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다.",
+            story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
             choices: [
                 { text: "첫 번째 지팡이를 무작정 선택한다", effects: { knowledge: -10 }, ending: "wrong_wand" },
@@ -36,7 +59,7 @@ const gameData = {
             ]
         },
         {
-            story: "킹스 크로스 역 9와 4분의 3 승강장에 도착했다. 벽을 향해 뛰어들어야 한다는 말을 들었지만 무섭다. 론 위즐리 가족이 지나가는 것을 보았다.",
+            story: "킹스 크로스 역 9와 4분의 3 승강장에 도착했다. 벽을 향해 뛰어들어야 한다는 말을 들었지만 무섭다. 론 위즐리 가족이 지나가는 것을 보았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
                 { text: "용기를 내어 벽을 향해 뛴다", effects: { courage: 15 }, next: 3 },
@@ -45,7 +68,7 @@ const gameData = {
             ]
         },
         {
-            story: "호그와트 특급 열차에서 론과 헤르미온느를 만났다. 론은 마법을 보여주려 했지만 실패했다. 헤르미온느는 모든 것을 알고 있는 것 같았다.",
+            story: "호그와트 특급 열차에서 론과 헤르미온느를 만났다. 론은 마법을 보여주려 했지만 실패했다. 헤르미온느는 모든 것을 알고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
                 { text: "론을 격려하고 친구가 되자고 한다", effects: { friendship: 15 }, next: 4 },
@@ -63,7 +86,7 @@ const gameData = {
             ]
         },
         {
-            story: "첫 마법 수업 시간이었다. 플리트윅 교수는 깃털을 띄우는 마법을 가르쳤다. 헤르미온느는 이미 성공했지만 나는 아직 실패했다.",
+            story: "첫 마법 수업 시간이었다. 플리트윅 교수는 깃털을 띄우는 마법을 가르쳤다. 헤르미온느는 이미 성공했지만 나는 아직 실패했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
                 { text: "집중해서 다시 시도한다", effects: { knowledge: 15, courage: 5 }, next: 6 },
@@ -72,7 +95,7 @@ const gameData = {
             ]
         },
         {
-            story: "할로윈 밤, 트롤이 학교에 침입했다는 소식이 들렸다. 헤르미온느가 화장실에 숨어있다는 것을 알았다. 론과 함께 그녀를 구하러 가야 한다.",
+            story: "할로윈 밤, 트롤이 학교에 침입했다는 소식이 들렸다. 헤르미온느가 화장실에 숨어있다는 것을 알았다. 론과 함께 그녀를 구하러 가야 한다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 15 }, next: 7 },
@@ -81,7 +104,7 @@ const gameData = {
             ]
         },
         {
-            story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다.",
+            story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
                 { text: "빗자리를 붙잡고 버틴다", effects: { courage: 20 }, next: 8 },
@@ -90,7 +113,7 @@ const gameData = {
             ]
         },
         {
-            story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다.",
+            story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
             choices: [
                 { text: "거울 앞에 매일 서서 부모님을 본다", effects: { courage: -10, knowledge: -5 }, ending: "mirror_addiction" },
@@ -99,7 +122,7 @@ const gameData = {
             ]
         },
         {
-            story: "마법사의 돌을 지키기 위해 마지막 방에 도착했다. 퀴렐 교수가 볼드모트와 함께 있었다. 그들은 마법사의 돌을 원했다. 나는 그들을 막아야 한다!",
+            story: "마법사의 돌을 지키기 위해 마지막 방에 도착했다. 퀴렐 교수가 볼드모트와 함께 있었다. 그들은 마법사의 돌을 원했다. 나는 그들을 막아야 한다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
             choices: [
                 { text: "용감하게 퀴렐과 맞선다", effects: { courage: 25 }, ending: "courage" },
@@ -110,8 +133,8 @@ const gameData = {
     ],
     ron: [
         {
-            story: "킹스 크로스 역에서 해리를 처음 만났다. 그는 9와 4분의 3 승강장을 찾지 못하고 있었다. 나는 그에게 도움을 줄 수 있었다.",
-            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80", // 검색: "Ron Weasley King's Cross" 또는 "Harry Ron first meeting"
+            story: "킹스 크로스 역에서 해리를 처음 만났다. 그는 9와 4분의 3 승강장을 찾지 못하고 있었다. 나는 그에게 도움을 줄 수 있었다. 어떻게 할까?",
+            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
                 { text: "해리에게 승강장을 찾는 방법을 알려준다", effects: { friendship: 15, courage: 5 }, next: 1 },
                 { text: "엄마에게 해리를 소개시켜준다", effects: { friendship: 20 }, next: 1 },
@@ -119,8 +142,8 @@ const gameData = {
             ]
         },
         {
-            story: "호그와트 특급 열차에서 해리와 함께 앉았다. 나는 마법을 보여주려고 했지만 실패했다. 부끄러웠지만 해리는 웃지 않았다.",
-            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80", // 검색: "Ron train compartment" 또는 "Ron chocolate frog"
+            story: "호그와트 특급 열차에서 해리와 함께 앉았다. 나는 마법을 보여주려고 했지만 실패했다. 부끄러웠지만 해리는 웃지 않았다. 어떻게 할까?",
+            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
                 { text: "해리와 더 친해지려고 노력한다", effects: { friendship: 15 }, next: 2 },
                 { text: "다른 주제로 대화를 바꾼다", effects: { courage: 5 }, next: 2 },
@@ -128,7 +151,7 @@ const gameData = {
             ]
         },
         {
-            story: "기숙사 배정을 받았다. 나는 당연히 그리핀도르에 배정되었다. 해리도 그리핀도르에 배정되었고, 우리는 같은 방을 쓰게 되었다!",
+            story: "기숙사 배정을 받았다. 나는 당연히 그리핀도르에 배정되었다. 해리도 그리핀도르에 배정되었고, 우리는 같은 방을 쓰게 되었다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
                 { text: "해리와 함께 기숙사를 탐험한다", effects: { friendship: 15, courage: 5 }, next: 3 },
@@ -137,7 +160,7 @@ const gameData = {
             ]
         },
         {
-            story: "첫 마법 수업에서 나는 실패했다. 해리와 헤르미온느는 성공했지만 나는 깃털을 움직이지 못했다. 좌절감이 들었다.",
+            story: "첫 마법 수업에서 나는 실패했다. 해리와 헤르미온느는 성공했지만 나는 깃털을 움직이지 못했다. 좌절감이 들었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
                 { text: "포기하지 않고 계속 연습한다", effects: { courage: 15, knowledge: 10 }, next: 4 },
@@ -146,7 +169,7 @@ const gameData = {
             ]
         },
         {
-            story: "할로윈 밤, 헤르미온느가 트롤 때문에 위험에 빠졌다는 소식을 들었다. 해리와 함께 그녀를 구하러 가야 했다.",
+            story: "할로윈 밤, 헤르미온느가 트롤 때문에 위험에 빠졌다는 소식을 들었다. 해리와 함께 그녀를 구하러 가야 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "해리와 함께 용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 20 }, next: 5 },
@@ -155,7 +178,7 @@ const gameData = {
             ]
         },
         {
-            story: "체스 클럽에 가입했다. 나는 체스를 잘한다. 하지만 마법 체스는 조금 달랐다. 큰 체스 말들이 실제로 움직였다!",
+            story: "체스 클럽에 가입했다. 나는 체스를 잘한다. 하지만 마법 체스는 조금 달랐다. 큰 체스 말들이 실제로 움직였다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
                 { text: "마법 체스를 배우기 위해 열심히 연습한다", effects: { knowledge: 15, courage: 5 }, next: 6 },
@@ -164,7 +187,7 @@ const gameData = {
             ]
         },
         {
-            story: "해리의 첫 퀴디치 경기를 보러 갔다. 해리의 빗자리가 이상하게 흔들리고 있었다. 누군가 해리에게 저주를 걸고 있는 것 같았다.",
+            story: "해리의 첫 퀴디치 경기를 보러 갔다. 해리의 빗자리가 이상하게 흔들리고 있었다. 누군가 해리에게 저주를 걸고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
                 { text: "헤르미온느와 함께 누군지 찾아본다", effects: { friendship: 15, knowledge: 10 }, next: 7 },
@@ -173,7 +196,7 @@ const gameData = {
             ]
         },
         {
-            story: "크리스마스에 엄마가 보낸 털실 스웨터를 받았다. 형들의 것과 달리 내 것은 마음에 들지 않았다. 하지만 엄마의 마음은 따뜻했다.",
+            story: "크리스마스에 엄마가 보낸 털실 스웨터를 받았다. 형들의 것과 달리 내 것은 마음에 들지 않았다. 하지만 엄마의 마음은 따뜻했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&q=80",
             choices: [
                 { text: "스웨터를 고맙게 받아들인다", effects: { friendship: 10, courage: 5 }, next: 8 },
@@ -182,7 +205,7 @@ const gameData = {
             ]
         },
         {
-            story: "해리와 헤르미온느가 마법사의 돌을 찾으러 간다는 것을 알았다. 나도 함께 가고 싶었다. 하지만 위험할 수 있었다.",
+            story: "해리와 헤르미온느가 마법사의 돌을 찾으러 간다는 것을 알았다. 나도 함께 가고 싶었다. 하지만 위험할 수 있었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
                 { text: "용감하게 친구들과 함께 간다", effects: { courage: 20, friendship: 20 }, next: 9 },
@@ -191,7 +214,7 @@ const gameData = {
             ]
         },
         {
-            story: "마법사의 돌을 지키는 마지막 방에 도착했다. 거대한 마법 체스판이 있었다. 나는 체스를 잘하지만 이번에는 실제로 위험했다!",
+            story: "마법사의 돌을 지키는 마지막 방에 도착했다. 거대한 마법 체스판이 있었다. 나는 체스를 잘하지만 이번에는 실제로 위험했다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
                 { text: "용감하게 체스 게임에 참여한다", effects: { courage: 25, knowledge: 15 }, ending: "courage" },
@@ -202,8 +225,8 @@ const gameData = {
     ],
     hermione: [
         {
-            story: "호그와트 특급 열차에서 해리와 론을 처음 만났다. 나는 이미 모든 교과서를 읽었고, 모든 마법을 알고 싶었다. 그들에게 이것을 말하고 싶었다.",
-            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80", // 검색: "Hermione train" 또는 "Hermione first appearance"
+            story: "호그와트 특급 열차에서 해리와 론을 처음 만났다. 나는 이미 모든 교과서를 읽었고, 모든 마법을 알고 싶었다. 그들에게 이것을 말하고 싶었다. 어떻게 할까?",
+            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
                 { text: "해리와 론에게 지식을 나눈다", effects: { friendship: 10, knowledge: 5 }, next: 1 },
                 { text: "조용히 책을 읽는다", effects: { knowledge: 10, friendship: -5 }, next: 1 },
@@ -211,7 +234,7 @@ const gameData = {
             ]
         },
         {
-            story: "기숙사에 배정되었다. 나는 그리핀도르에 배정되었고, 해리와 론과 같은 기숙사였다. 하지만 나는 공부에 집중하고 싶었다.",
+            story: "기숙사에 배정되었다. 나는 그리핀도르에 배정되었고, 해리와 론과 같은 기숙사였다. 하지만 나는 공부에 집중하고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
                 { text: "도서관에 가서 공부한다", effects: { knowledge: 15 }, next: 2 },
@@ -220,7 +243,7 @@ const gameData = {
             ]
         },
         {
-            story: "첫 마법 수업에서 나는 유일하게 성공했다. 플리트윅 교수는 나를 칭찬했다. 하지만 다른 학생들은 나를 이상하게 봤다.",
+            story: "첫 마법 수업에서 나는 유일하게 성공했다. 플리트윅 교수는 나를 칭찬했다. 하지만 다른 학생들은 나를 이상하게 봤다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
                 { text: "다른 학생들에게 도움을 준다", effects: { friendship: 15, knowledge: 5 }, next: 3 },
@@ -229,7 +252,7 @@ const gameData = {
             ]
         },
         {
-            story: "할로윈 밤, 화장실에서 울고 있었다. 론이 내 마법을 비웃었다고 생각했다. 그때 트롤이 학교에 침입했다는 소식이 들렸다.",
+            story: "할로윈 밤, 화장실에서 울고 있었다. 론이 내 마법을 비웃었다고 생각했다. 그때 트롤이 학교에 침입했다는 소식이 들렸다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "화장실에 숨어서 기다린다", effects: { courage: -15 }, ending: "hermione_hiding" },
@@ -238,7 +261,7 @@ const gameData = {
             ]
         },
         {
-            story: "해리와 론이 나를 구해주었다. 그들은 트롤과 맞서 싸웠다. 나는 그들에게 고마웠고, 진짜 친구가 되었다.",
+            story: "해리와 론이 나를 구해주었다. 그들은 트롤과 맞서 싸웠다. 나는 그들에게 고마웠고, 진짜 친구가 되었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "해리와 론에게 고마움을 표현한다", effects: { friendship: 20 }, next: 5 },
@@ -247,7 +270,7 @@ const gameData = {
             ]
         },
         {
-            story: "해리의 퀴디치 경기 날이었다. 해리의 빗자리가 이상하게 흔들리고 있었다. 나는 이것이 저주라는 것을 알았다.",
+            story: "해리의 퀴디치 경기 날이었다. 해리의 빗자리가 이상하게 흔들리고 있었다. 나는 이것이 저주라는 것을 알았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
                 { text: "도서관에서 저주에 대해 찾아본다", effects: { knowledge: 15 }, next: 6 },
@@ -256,7 +279,7 @@ const gameData = {
             ]
         },
         {
-            story: "스네이프 교수가 해리에게 저주를 걸고 있다는 것을 발견했다! 나는 스네이프의 로브에 불을 지폈다. 하지만 나중에 알고 보니 진짜 범인은 퀴렐이었다.",
+            story: "스네이프 교수가 해리에게 저주를 걸고 있다는 것을 발견했다! 나는 스네이프의 로브에 불을 지폈다. 하지만 나중에 알고 보니 진짜 범인은 퀴렐이었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
                 { text: "실수를 인정하고 배운다", effects: { knowledge: 15, courage: 5 }, next: 7 },
@@ -265,7 +288,7 @@ const gameData = {
             ]
         },
         {
-            story: "크리스마스에 도서관에서 마법사의 돌에 대한 책을 읽고 있었다. 니콜라스 플라멜과 마법사의 돌에 대해 알게 되었다.",
+            story: "크리스마스에 도서관에서 마법사의 돌에 대한 책을 읽고 있었다. 니콜라스 플라멜과 마법사의 돌에 대해 알게 되었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
                 { text: "해리와 론에게 이 정보를 공유한다", effects: { friendship: 20, knowledge: 10 }, next: 8 },
@@ -274,7 +297,7 @@ const gameData = {
             ]
         },
         {
-            story: "해리와 론이 마법사의 돌을 찾으러 가려고 했다. 나는 이것이 위험하다는 것을 알고 있었다. 하지만 친구들을 혼자 두고 싶지 않았다.",
+            story: "해리와 론이 마법사의 돌을 찾으러 가려고 했다. 나는 이것이 위험하다는 것을 알고 있었다. 하지만 친구들을 혼자 두고 싶지 않았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
                 { text: "친구들과 함께 가되 계획을 세운다", effects: { knowledge: 20, friendship: 15, courage: 10 }, next: 9 },
@@ -283,7 +306,7 @@ const gameData = {
             ]
         },
         {
-            story: "마법사의 돌을 지키는 마지막 방에 도착했다. 논리 퍼즐이 있었다. 나는 이것을 풀 수 있었다. 하지만 해리가 혼자 볼드모트와 맞서야 했다.",
+            story: "마법사의 돌을 지키는 마지막 방에 도착했다. 논리 퍼즐이 있었다. 나는 이것을 풀 수 있었다. 하지만 해리가 혼자 볼드모트와 맞서야 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
                 { text: "퍼즐을 풀고 해리를 도와준다", effects: { knowledge: 25, friendship: 20, courage: 15 }, ending: "wisdom" },
@@ -383,6 +406,75 @@ const endings = {
     }
 };
 
+// 선택 확인 화면 표시
+function showChoiceConfirm(choice) {
+    pendingChoice = choice;
+    const confirmScreen = document.getElementById('choice-confirm-screen');
+    const confirmText = document.getElementById('confirm-choice-text');
+    const gameScreen = document.getElementById('game-screen');
+    
+    if (confirmScreen && confirmText && gameScreen) {
+        confirmText.textContent = '선택한 내용: ' + choice.text;
+        gameScreen.style.display = 'none';
+        gameScreen.classList.remove('active');
+        confirmScreen.style.display = 'block';
+        confirmScreen.classList.add('active');
+        playSound('clickSound');
+    }
+}
+
+// 선택 확인 화면 닫기
+function closeChoiceConfirm() {
+    const confirmScreen = document.getElementById('choice-confirm-screen');
+    const gameScreen = document.getElementById('game-screen');
+    
+    if (confirmScreen && gameScreen) {
+        confirmScreen.style.display = 'none';
+        confirmScreen.classList.remove('active');
+        gameScreen.style.display = 'block';
+        gameScreen.classList.add('active');
+        playSound('clickSound');
+    }
+}
+
+// 실제 선택 처리 함수
+function processChoice(choice) {
+    closeChoiceConfirm();
+    
+    // 상태 업데이트
+    if (choice.effects) {
+        Object.keys(choice.effects).forEach(function(key) {
+            gameState[key] = Math.max(0, Math.min(100, gameState[key] + choice.effects[key]));
+        });
+    }
+
+    // 결말인지 확인
+    if (choice.ending) {
+        setTimeout(function() {
+            showEnding(choice.ending);
+        }, 500);
+    } else if (choice.next !== undefined) {
+        setTimeout(function() {
+            currentEvent = choice.next;
+            showEvent();
+        }, 500);
+    } else {
+        setTimeout(function() {
+            currentEvent++;
+            if (currentEvent >= gameData[currentCharacter].length) {
+                // 기본 결말 (가장 높은 수치에 따라)
+                const maxStat = Object.keys(gameState).reduce(function(a, b) {
+                    return gameState[a] > gameState[b] ? a : b;
+                });
+                const endingType = maxStat === 'courage' ? 'courage' : (maxStat === 'knowledge' ? 'wisdom' : 'friendship');
+                showEnding(endingType);
+            } else {
+                showEvent();
+            }
+        }, 500);
+    }
+}
+
 // 이벤트 표시 함수
 function showEvent() {
     if (!currentCharacter || !gameData[currentCharacter]) {
@@ -400,10 +492,17 @@ function showEvent() {
     const choicesContainer = document.getElementById('choices-container');
     const eventNumber = document.getElementById('event-number');
     const storyImageContainer = document.getElementById('story-image-container');
+    const storyContainer = document.getElementById('story-container');
 
     if (!storyText || !choicesContainer || !eventNumber) {
         console.error('DOM 요소를 찾을 수 없습니다.');
         return;
+    }
+
+    // 페이드 인 애니메이션
+    if (storyContainer) {
+        storyContainer.style.opacity = '0';
+        storyContainer.style.transform = 'translateY(20px)';
     }
 
     eventNumber.textContent = currentEvent + 1;
@@ -422,41 +521,34 @@ function showEvent() {
         const button = document.createElement('button');
         button.className = 'choice-btn';
         button.textContent = (index + 1) + '. ' + choice.text;
+        button.style.opacity = '0';
+        button.style.transform = 'translateX(-20px)';
         button.addEventListener('click', function() {
-            makeChoice(choice);
+            showChoiceConfirm(choice);
         });
         choicesContainer.appendChild(button);
+        
+        // 버튼 애니메이션
+        setTimeout(function() {
+            button.style.transition = 'all 0.5s ease';
+            button.style.opacity = '1';
+            button.style.transform = 'translateX(0)';
+        }, 100 * (index + 1));
     });
+
+    // 스토리 애니메이션
+    setTimeout(function() {
+        if (storyContainer) {
+            storyContainer.style.transition = 'all 0.5s ease';
+            storyContainer.style.opacity = '1';
+            storyContainer.style.transform = 'translateY(0)';
+        }
+    }, 100);
 }
 
-// 선택 처리 함수
+// 선택 처리 함수 (확인 화면으로 이동)
 function makeChoice(choice) {
-    // 상태 업데이트
-    if (choice.effects) {
-        Object.keys(choice.effects).forEach(function(key) {
-            gameState[key] = Math.max(0, Math.min(100, gameState[key] + choice.effects[key]));
-        });
-    }
-
-    // 결말인지 확인
-    if (choice.ending) {
-        showEnding(choice.ending);
-    } else if (choice.next !== undefined) {
-        currentEvent = choice.next;
-        showEvent();
-    } else {
-        currentEvent++;
-        if (currentEvent >= gameData[currentCharacter].length) {
-            // 기본 결말 (가장 높은 수치에 따라)
-            const maxStat = Object.keys(gameState).reduce(function(a, b) {
-                return gameState[a] > gameState[b] ? a : b;
-            });
-            const endingType = maxStat === 'courage' ? 'courage' : (maxStat === 'knowledge' ? 'wisdom' : 'friendship');
-            showEnding(endingType);
-        } else {
-            showEvent();
-        }
-    }
+    showChoiceConfirm(choice);
 }
 
 // 결말 표시 함수
@@ -464,6 +556,7 @@ function showEnding(endingType) {
     const storyText = document.getElementById('story-text');
     const choicesContainer = document.getElementById('choices-container');
     const restartBtn = document.getElementById('restart-btn');
+    const storyContainer = document.getElementById('story-container');
 
     if (!storyText || !choicesContainer || !restartBtn) {
         console.error('DOM 요소를 찾을 수 없습니다.');
@@ -476,14 +569,42 @@ function showEnding(endingType) {
     
     const statsText = '\n\n최종 수치:\n우정: ' + gameState.friendship + '\n용기: ' + gameState.courage + '\n지식: ' + gameState.knowledge;
 
+    // 페이드 인 애니메이션
+    if (storyContainer) {
+        storyContainer.style.opacity = '0';
+        storyContainer.style.transform = 'translateY(20px)';
+    }
+
     storyText.textContent = endingText + statsText;
     choicesContainer.innerHTML = '';
-    restartBtn.style.display = 'block';
+    
+    setTimeout(function() {
+        if (storyContainer) {
+            storyContainer.style.transition = 'all 0.5s ease';
+            storyContainer.style.opacity = '1';
+            storyContainer.style.transform = 'translateY(0)';
+        }
+        restartBtn.style.display = 'block';
+        restartBtn.style.opacity = '0';
+        restartBtn.style.transform = 'translateY(20px)';
+        setTimeout(function() {
+            restartBtn.style.transition = 'all 0.5s ease';
+            restartBtn.style.opacity = '1';
+            restartBtn.style.transform = 'translateY(0)';
+        }, 200);
+    }, 100);
+    
     restartBtn.onclick = function() {
+        playSound('clickSound');
         document.getElementById('game-screen').classList.remove('active');
         document.getElementById('character-selection').classList.add('active');
         document.getElementById('game-screen').style.display = 'none';
         document.getElementById('character-selection').style.display = 'block';
+        const bgm = document.getElementById('bgm');
+        if (bgm) {
+            bgm.pause();
+            bgm.currentTime = 0;
+        }
     };
 }
 
@@ -491,7 +612,6 @@ function showEnding(endingType) {
 window.startGame = function(character) {
     console.log('=== startGame 함수 호출됨 ===');
     console.log('캐릭터:', character);
-    console.log('characterNames:', characterNames);
     
     if (!character) {
         console.error('캐릭터가 지정되지 않았습니다.');
@@ -505,7 +625,7 @@ window.startGame = function(character) {
         return;
     }
     
-    console.log('게임 시작:', character);
+    playSound('clickSound');
     
     currentCharacter = character;
     currentEvent = 0;
@@ -518,36 +638,73 @@ window.startGame = function(character) {
     const selectionScreen = document.getElementById('character-selection');
     const gameScreen = document.getElementById('game-screen');
     
-    console.log('selectionScreen:', selectionScreen);
-    console.log('gameScreen:', gameScreen);
-    
     if (!selectionScreen || !gameScreen) {
         console.error('화면 요소를 찾을 수 없습니다.');
         alert('게임 화면을 찾을 수 없습니다. 페이지를 새로고침해주세요.');
         return;
     }
     
-    console.log('화면 전환 시작');
-    selectionScreen.classList.remove('active');
-    selectionScreen.style.display = 'none';
-    gameScreen.classList.add('active');
-    gameScreen.style.display = 'block';
+    // 페이드 아웃 애니메이션
+    selectionScreen.style.transition = 'opacity 0.5s ease';
+    selectionScreen.style.opacity = '0';
     
-    console.log('selectionScreen active 제거됨, display: none');
-    console.log('gameScreen active 추가됨, display: block');
-    
-    const characterNameElement = document.getElementById('current-character-name');
-    if (characterNameElement) {
-        characterNameElement.textContent = characterNames[character];
-        console.log('캐릭터 이름 설정:', characterNames[character]);
-    }
-    
-    const restartBtn = document.getElementById('restart-btn');
-    if (restartBtn) {
-        restartBtn.style.display = 'none';
-    }
-    
-    console.log('showEvent 호출 전');
-    showEvent();
-    console.log('showEvent 호출 후');
+    setTimeout(function() {
+        selectionScreen.classList.remove('active');
+        selectionScreen.style.display = 'none';
+        gameScreen.classList.add('active');
+        gameScreen.style.display = 'block';
+        gameScreen.style.opacity = '0';
+        gameScreen.style.transform = 'translateY(20px)';
+        
+        // 페이드 인 애니메이션
+        setTimeout(function() {
+            gameScreen.style.transition = 'all 0.5s ease';
+            gameScreen.style.opacity = '1';
+            gameScreen.style.transform = 'translateY(0)';
+        }, 50);
+        
+        const characterNameElement = document.getElementById('current-character-name');
+        if (characterNameElement) {
+            characterNameElement.textContent = characterNames[character];
+        }
+        
+        const restartBtn = document.getElementById('restart-btn');
+        if (restartBtn) {
+            restartBtn.style.display = 'none';
+        }
+        
+        showEvent();
+        playBGM();
+    }, 500);
 };
+
+// DOM 로드 후 초기화
+document.addEventListener('DOMContentLoaded', function() {
+    // 선택 확인 화면 버튼 이벤트
+    const confirmYes = document.getElementById('confirm-yes');
+    const confirmNo = document.getElementById('confirm-no');
+    
+    if (confirmYes) {
+        confirmYes.addEventListener('click', function() {
+            if (pendingChoice) {
+                processChoice(pendingChoice);
+            }
+        });
+    }
+    
+    if (confirmNo) {
+        confirmNo.addEventListener('click', function() {
+            closeChoiceConfirm();
+        });
+    }
+    
+    // 첫 화면 페이드 인
+    const selectionScreen = document.getElementById('character-selection');
+    if (selectionScreen) {
+        selectionScreen.style.opacity = '0';
+        setTimeout(function() {
+            selectionScreen.style.transition = 'opacity 0.5s ease';
+            selectionScreen.style.opacity = '1';
+        }, 100);
+    }
+});

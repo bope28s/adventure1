@@ -240,6 +240,156 @@ button.character-card {
 
 .restart-btn {
     margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+/* 선택 확인 화면 */
+#choice-confirm-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+}
+
+.confirm-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    border: 3px solid #ffd700;
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+    animation: slideUp 0.5s ease;
+}
+
+.confirm-container h2 {
+    text-align: center;
+    color: #ffd700;
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.confirm-choice-text {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    font-size: 1.3em;
+    line-height: 1.8;
+    color: #fff;
+    text-align: center;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.confirm-btn {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    border: 2px solid #ffd700;
+    border-radius: 12px;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    min-width: 120px;
+}
+
+.confirm-btn:hover {
+    background: linear-gradient(135deg, #5a6578 0%, #3d4758 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    border-color: #ffed4e;
+}
+
+.confirm-btn:active {
+    transform: translateY(-1px);
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 캐릭터 카드 호버 애니메이션 강화 */
+.character-card {
+    animation: fadeInUp 0.6s ease;
+}
+
+.character-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.character-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.character-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* 스토리 텍스트 타이핑 효과 */
+.story-text {
+    animation: fadeInUp 0.5s ease;
+}
+
+.restart-btn {
+    margin-top: 30px;
     width: 100%;
     background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
     border: 2px solid #fff;

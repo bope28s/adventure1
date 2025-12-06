@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>해리포터 모험 게임 - 마법사의 돌</title>
+    <meta property="og:title" content="해리포터 모험 게임 - 마법사의 돌">
+    <meta property="og:description" content="해리, 론, 헤르미온느 중 한 명을 선택하여 마법사의 돌 모험을 시작하세요!">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1200&h=630&fit=crop&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1200&h=630&fit=crop&q=80">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,7 +51,30 @@
             <div id="choices-container" class="choices-container"></div>
             <button id="restart-btn" class="restart-btn" style="display: none;">다시 시작하기</button>
         </div>
+
+        <div id="choice-confirm-screen" class="screen" style="display: none;">
+            <div class="confirm-container">
+                <h2>선택 확인</h2>
+                <div id="confirm-choice-text" class="confirm-choice-text"></div>
+                <div class="confirm-buttons">
+                    <button id="confirm-yes" class="confirm-btn">확인</button>
+                    <button id="confirm-no" class="confirm-btn">취소</button>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <!-- 배경음악 (크리스마스 분위기) -->
+    <audio id="bgm" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <!-- 크리스마스 음악: 무료 크리스마스 BGM 사용 가능 -->
+    </audio>
+    
+    <!-- 효과음 -->
+    <audio id="clickSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGWi77+efTRAMUKfj8LZjHAY4kdfyzHksBSR3x/DdkEAKFF606euoVRQKRp/g8r5sIQUrgc7y2Yk2CBlou+/nn00QDFCn4/C2YxwGOJHX8sx5LAUkd8fw3ZBAC" type="audio/wav">
+    </audio>
+    
     <script src="game.js"></script>
     <script>
         // game.js 로드 확인
