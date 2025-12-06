@@ -14,21 +14,21 @@ const characterNames = {
     hermione: '헤르미온느 그레인저'
 };
 
-// 게임 데이터 - 각 주인공별 10개 이벤트
+// 게임 데이터 - 각 주인공별 10개 이벤트 (중간 결말 포함)
 const gameData = {
     harry: [
         {
             story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다!",
             choices: [
                 { text: "해그리드와 함께 호그와트로 가기로 결정한다", effects: { courage: 10 }, next: 1 },
-                { text: "더즐리 가족과 함께 있기로 한다", effects: { courage: -10 }, next: 1 },
+                { text: "더즐리 가족과 함께 있기로 한다", effects: { courage: -20 }, ending: "early_quit" },
                 { text: "마법 세계에 대해 더 물어본다", effects: { knowledge: 10 }, next: 1 }
             ]
         },
         {
             story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다.",
             choices: [
-                { text: "첫 번째 지팡이를 선택한다", effects: { knowledge: -5 }, next: 2 },
+                { text: "첫 번째 지팡이를 무작정 선택한다", effects: { knowledge: -10 }, ending: "wrong_wand" },
                 { text: "여러 지팡이를 차례로 시도해본다", effects: { knowledge: 10 }, next: 2 },
                 { text: "올리벤더 할아버지의 조언을 듣는다", effects: { knowledge: 15 }, next: 2 }
             ]
@@ -38,7 +38,7 @@ const gameData = {
             choices: [
                 { text: "용기를 내어 벽을 향해 뛴다", effects: { courage: 15 }, next: 3 },
                 { text: "론의 어머니에게 도움을 요청한다", effects: { friendship: 10 }, next: 3 },
-                { text: "주변을 더 둘러본다", effects: { knowledge: 5 }, next: 3 }
+                { text: "무서워서 집으로 돌아간다", effects: { courage: -30 }, ending: "gave_up" }
             ]
         },
         {
@@ -46,14 +46,14 @@ const gameData = {
             choices: [
                 { text: "론을 격려하고 친구가 되자고 한다", effects: { friendship: 15 }, next: 4 },
                 { text: "헤르미온느와 대화를 나눈다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
-                { text: "혼자 조용히 앉아있는다", effects: { friendship: -10 }, next: 4 }
+                { text: "혼자 조용히 앉아있어 친구를 사귀지 않는다", effects: { friendship: -20 }, ending: "lonely" }
             ]
         },
         {
             story: "기숙사 배정 모자 앞에 섰다. 모자는 내가 슬리데린에 적합하다고 말했다. 하지만 해그리드는 그리핀도르를 추천했다. 어느 기숙사를 선택할까?",
             choices: [
                 { text: "그리핀도르를 선택한다", effects: { courage: 15, friendship: 10 }, next: 5 },
-                { text: "슬리데린을 선택한다", effects: { courage: -10, knowledge: 10 }, next: 5 },
+                { text: "슬리데린을 선택한다", effects: { courage: -10, knowledge: 10 }, ending: "slytherin_path" },
                 { text: "모자의 결정을 따른다", effects: { knowledge: 5 }, next: 5 }
             ]
         },
@@ -62,7 +62,7 @@ const gameData = {
             choices: [
                 { text: "집중해서 다시 시도한다", effects: { knowledge: 15, courage: 5 }, next: 6 },
                 { text: "헤르미온느에게 도움을 요청한다", effects: { friendship: 10, knowledge: 5 }, next: 6 },
-                { text: "포기하고 다음 수업을 기다린다", effects: { knowledge: -10, courage: -5 }, next: 6 }
+                { text: "포기하고 마법을 배우지 않는다", effects: { knowledge: -30, courage: -20 }, ending: "no_magic" }
             ]
         },
         {
@@ -70,21 +70,21 @@ const gameData = {
             choices: [
                 { text: "용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 15 }, next: 7 },
                 { text: "교사들에게 도움을 요청한다", effects: { knowledge: 10, courage: -5 }, next: 7 },
-                { text: "론과 함께 작전을 세운다", effects: { friendship: 20, knowledge: 10 }, next: 7 }
+                { text: "무서워서 숨는다", effects: { courage: -25, friendship: -20 }, ending: "coward" }
             ]
         },
         {
             story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다.",
             choices: [
                 { text: "빗자리를 붙잡고 버틴다", effects: { courage: 20 }, next: 8 },
-                { text: "경기를 포기하고 내린다", effects: { courage: -15, friendship: -10 }, next: 8 },
+                { text: "경기를 포기하고 내린다", effects: { courage: -15, friendship: -10 }, ending: "quit_quidditch" },
                 { text: "헤르미온느의 도움을 받는다", effects: { friendship: 15, knowledge: 10 }, next: 8 }
             ]
         },
         {
             story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다.",
             choices: [
-                { text: "거울 앞에 매일 서서 부모님을 본다", effects: { courage: -10, knowledge: -5 }, next: 9 },
+                { text: "거울 앞에 매일 서서 부모님을 본다", effects: { courage: -10, knowledge: -5 }, ending: "mirror_addiction" },
                 { text: "덤블도어 교수의 조언을 듣고 거울을 떠난다", effects: { knowledge: 15, courage: 10 }, next: 9 },
                 { text: "친구들에게 거울에 대해 말한다", effects: { friendship: 15, knowledge: 5 }, next: 9 }
             ]
@@ -104,7 +104,7 @@ const gameData = {
             choices: [
                 { text: "해리에게 승강장을 찾는 방법을 알려준다", effects: { friendship: 15, courage: 5 }, next: 1 },
                 { text: "엄마에게 해리를 소개시켜준다", effects: { friendship: 20 }, next: 1 },
-                { text: "조용히 지나간다", effects: { friendship: -10 }, next: 1 }
+                { text: "부끄러워서 조용히 지나간다", effects: { friendship: -15 }, ending: "missed_friendship" }
             ]
         },
         {
@@ -112,7 +112,7 @@ const gameData = {
             choices: [
                 { text: "해리와 더 친해지려고 노력한다", effects: { friendship: 15 }, next: 2 },
                 { text: "다른 주제로 대화를 바꾼다", effects: { courage: 5 }, next: 2 },
-                { text: "혼자 조용히 앉아있는다", effects: { friendship: -5 }, next: 2 }
+                { text: "부끄러워서 다른 칸으로 이동한다", effects: { friendship: -20 }, ending: "shy_ron" }
             ]
         },
         {
@@ -128,7 +128,7 @@ const gameData = {
             choices: [
                 { text: "포기하지 않고 계속 연습한다", effects: { courage: 15, knowledge: 10 }, next: 4 },
                 { text: "해리에게 도움을 요청한다", effects: { friendship: 15, knowledge: 5 }, next: 4 },
-                { text: "포기하고 다른 일을 한다", effects: { knowledge: -10, courage: -10 }, next: 4 }
+                { text: "포기하고 마법을 배우지 않는다", effects: { knowledge: -30, courage: -20 }, ending: "ron_gave_up" }
             ]
         },
         {
@@ -136,7 +136,7 @@ const gameData = {
             choices: [
                 { text: "해리와 함께 용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 20 }, next: 5 },
                 { text: "교사들에게 먼저 알린다", effects: { knowledge: 10, courage: -5 }, next: 5 },
-                { text: "혼자서 트롤을 막으려고 한다", effects: { courage: 15, friendship: -5 }, next: 5 }
+                { text: "무서워서 도망간다", effects: { courage: -25, friendship: -25 }, ending: "ron_coward" }
             ]
         },
         {
@@ -152,14 +152,14 @@ const gameData = {
             choices: [
                 { text: "헤르미온느와 함께 누군지 찾아본다", effects: { friendship: 15, knowledge: 10 }, next: 7 },
                 { text: "교사들에게 알린다", effects: { knowledge: 10, courage: -5 }, next: 7 },
-                { text: "그냥 지켜본다", effects: { friendship: -10 }, next: 7 }
+                { text: "그냥 지켜본다", effects: { friendship: -20 }, ending: "ron_passive" }
             ]
         },
         {
             story: "크리스마스에 엄마가 보낸 털실 스웨터를 받았다. 형들의 것과 달리 내 것은 마음에 들지 않았다. 하지만 엄마의 마음은 따뜻했다.",
             choices: [
                 { text: "스웨터를 고맙게 받아들인다", effects: { friendship: 10, courage: 5 }, next: 8 },
-                { text: "스웨터를 입지 않는다", effects: { friendship: -10 }, next: 8 },
+                { text: "스웨터를 입지 않고 버린다", effects: { friendship: -20 }, ending: "ungrateful" },
                 { text: "친구들에게 스웨터를 보여준다", effects: { friendship: 15 }, next: 8 }
             ]
         },
@@ -167,7 +167,7 @@ const gameData = {
             story: "해리와 헤르미온느가 마법사의 돌을 찾으러 간다는 것을 알았다. 나도 함께 가고 싶었다. 하지만 위험할 수 있었다.",
             choices: [
                 { text: "용감하게 친구들과 함께 간다", effects: { courage: 20, friendship: 20 }, next: 9 },
-                { text: "교사들에게 알린다", effects: { knowledge: 10, courage: -10 }, next: 9 },
+                { text: "교사들에게 알린다", effects: { knowledge: 10, courage: -10 }, ending: "told_teachers" },
                 { text: "혼자서 다른 방법을 찾는다", effects: { knowledge: 15, friendship: -5 }, next: 9 }
             ]
         },
@@ -194,7 +194,7 @@ const gameData = {
             choices: [
                 { text: "도서관에 가서 공부한다", effects: { knowledge: 15 }, next: 2 },
                 { text: "해리와 론과 친해진다", effects: { friendship: 15, knowledge: -5 }, next: 2 },
-                { text: "기숙사를 탐험한다", effects: { courage: 10, knowledge: 5 }, next: 2 }
+                { text: "공부만 하고 친구를 사귀지 않는다", effects: { knowledge: 20, friendship: -30 }, ending: "hermione_lonely" }
             ]
         },
         {
@@ -202,13 +202,13 @@ const gameData = {
             choices: [
                 { text: "다른 학생들에게 도움을 준다", effects: { friendship: 15, knowledge: 5 }, next: 3 },
                 { text: "계속해서 더 배운다", effects: { knowledge: 15, friendship: -5 }, next: 3 },
-                { text: "조용히 앉아있는다", effects: { courage: -5 }, next: 3 }
+                { text: "자만심에 빠져 공부를 게을리한다", effects: { knowledge: -20, friendship: -15 }, ending: "hermione_arrogant" }
             ]
         },
         {
             story: "할로윈 밤, 화장실에서 울고 있었다. 론이 내 마법을 비웃었다고 생각했다. 그때 트롤이 학교에 침입했다는 소식이 들렸다.",
             choices: [
-                { text: "화장실에 숨어서 기다린다", effects: { courage: -10 }, next: 4 },
+                { text: "화장실에 숨어서 기다린다", effects: { courage: -15 }, ending: "hermione_hiding" },
                 { text: "용기를 내어 도움을 요청한다", effects: { courage: 15, friendship: 10 }, next: 4 },
                 { text: "책에서 트롤에 대해 찾아본다", effects: { knowledge: 15, courage: 5 }, next: 4 }
             ]
@@ -234,7 +234,7 @@ const gameData = {
             choices: [
                 { text: "실수를 인정하고 배운다", effects: { knowledge: 15, courage: 5 }, next: 7 },
                 { text: "다시 한번 더 조사한다", effects: { knowledge: 20 }, next: 7 },
-                { text: "친구들에게 말한다", effects: { friendship: 10, knowledge: 5 }, next: 7 }
+                { text: "실수를 인정하지 않고 고집한다", effects: { knowledge: -15, friendship: -10 }, ending: "hermione_stubborn" }
             ]
         },
         {
@@ -242,14 +242,14 @@ const gameData = {
             choices: [
                 { text: "해리와 론에게 이 정보를 공유한다", effects: { friendship: 20, knowledge: 10 }, next: 8 },
                 { text: "더 깊이 연구한다", effects: { knowledge: 20, friendship: -5 }, next: 8 },
-                { text: "교사들에게 알린다", effects: { knowledge: 10, courage: 5 }, next: 8 }
+                { text: "정보를 혼자만 알고 행동한다", effects: { knowledge: 15, friendship: -20 }, ending: "hermione_secretive" }
             ]
         },
         {
             story: "해리와 론이 마법사의 돌을 찾으러 가려고 했다. 나는 이것이 위험하다는 것을 알고 있었다. 하지만 친구들을 혼자 두고 싶지 않았다.",
             choices: [
                 { text: "친구들과 함께 가되 계획을 세운다", effects: { knowledge: 20, friendship: 15, courage: 10 }, next: 9 },
-                { text: "교사들에게 알리려고 한다", effects: { knowledge: 15, courage: -10 }, next: 9 },
+                { text: "교사들에게 알리려고 한다", effects: { knowledge: 15, courage: -10 }, ending: "hermione_told_teachers" },
                 { text: "혼자서 다른 방법을 찾는다", effects: { knowledge: 25, friendship: -10 }, next: 9 }
             ]
         },
@@ -264,8 +264,9 @@ const gameData = {
     ]
 };
 
-// 결말 텍스트
+// 결말 텍스트 (확장된 결말들)
 const endings = {
+    // 성공 결말들
     courage: {
         harry: "용감한 선택으로 볼드모트를 물리쳤다! 해리는 진정한 그리핀도르의 용기를 보여주었다. 마법사의 돌은 안전하게 보호되었고, 해리는 영웅이 되었다.",
         ron: "용감하게 체스 게임에 참여한 론은 친구들을 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
@@ -280,6 +281,75 @@ const endings = {
         harry: "친구들의 도움으로 위기를 극복했다! 해리는 혼자가 아니라는 것을 깨달았다. 진정한 우정의 힘이 볼드모트보다 강하다는 것을 증명했다.",
         ron: "론의 우정과 희생이 친구들을 구했다! 론은 친구를 위해 자신을 희생할 수 있다는 것을 보여주었다. 진정한 우정의 힘이 승리했다!",
         hermione: "헤르미온느의 지원과 우정이 해리를 구했다! 그녀는 친구를 위해 모든 지식을 동원했다. 우정의 힘이 마법보다 강하다는 것을 증명했다!"
+    },
+    // 조기 포기 결말들
+    early_quit: {
+        harry: "더즐리 가족과 함께 있기로 한 해리는 마법 세계로 가지 않았다. 평범한 삶을 살았지만, 마법사의 피가 흐르는 해리는 항상 뭔가 부족함을 느꼈다. 마법 세계는 그를 기다리고 있었지만, 해리는 그 기회를 놓쳤다."
+    },
+    wrong_wand: {
+        harry: "잘못된 지팡이를 선택한 해리는 마법을 제대로 사용할 수 없었다. 호그와트에서 수업을 따라가지 못하고 결국 퇴학당했다. 올리벤더 할아버지의 조언을 듣지 않은 것이 큰 실수였다."
+    },
+    gave_up: {
+        harry: "무서워서 집으로 돌아간 해리는 마법 세계로 가지 않았다. 승강장을 통과하지 못한 해리는 평범한 머글의 삶을 살았다. 하지만 마법 세계는 그를 필요로 했고, 해리의 선택은 많은 사람들에게 영향을 미쳤다."
+    },
+    lonely: {
+        harry: "친구를 사귀지 않은 해리는 호그와트에서 외로웠다. 론과 헤르미온느는 다른 친구들과 함께했고, 해리는 혼자서 모든 것을 해결해야 했다. 우정의 힘을 알지 못한 해리는 많은 위기에서 혼자서 고군분투했다."
+    },
+    slytherin_path: {
+        harry: "슬리데린을 선택한 해리는 완전히 다른 길을 걷게 되었다. 슬리데린의 가르침을 받은 해리는 냉정하고 야망 있는 마법사가 되었지만, 진정한 친구들을 잃었다. 그리핀도르의 용기와 우정 대신, 슬리데린의 야망이 해리를 이끌었다."
+    },
+    no_magic: {
+        harry: "마법을 포기한 해리는 호그와트에서 제대로 된 교육을 받지 못했다. 다른 학생들보다 뒤처진 해리는 자신감을 잃었고, 결국 마법 세계에서 도망치듯 떠났다. 마법사의 피를 가지고도 마법을 사용하지 못하는 비극적인 결말이었다."
+    },
+    coward: {
+        harry: "트롤 앞에서 도망친 해리는 헤르미온느를 구하지 못했다. 론은 해리를 실망스러워했고, 해리는 자신의 용기 부족에 대해 깊이 후회했다. 이 사건 이후 해리는 친구들의 신뢰를 잃었고, 외로워졌다."
+    },
+    quit_quidditch: {
+        harry: "퀴디치 경기를 포기한 해리는 그리핀도르 팀의 실망을 샀다. 퀴디치를 좋아했던 해리였지만, 두려움에 굴복한 선택은 해리의 명성을 손상시켰다. 이후 해리는 퀴디치를 다시 하지 않았다."
+    },
+    mirror_addiction: {
+        harry: "미러 오브 에리세드에 중독된 해리는 매일 밤 거울 앞에서 부모님을 보며 시간을 보냈다. 공부도 게임도 소홀해진 해리는 점점 쇠약해졌고, 덤블도어 교수가 거울을 옮긴 후에도 해리는 거울을 찾아 헤맸다. 과거에 사로잡힌 해리는 미래를 향해 나아가지 못했다."
+    },
+    // 론의 결말들
+    missed_friendship: {
+        ron: "해리에게 말을 걸지 못한 론은 해리와 친구가 되지 못했다. 론은 평범한 학생으로 호그와트를 다녔지만, 해리와의 우정 없이는 많은 모험을 경험하지 못했다. 용기를 내지 못한 것이 론의 가장 큰 후회였다."
+    },
+    shy_ron: {
+        ron: "부끄러워서 다른 칸으로 이동한 론은 해리와 친구가 되지 못했다. 론은 혼자서 호그와트 생활을 시작했고, 해리와 헤르미온느는 다른 친구들과 함께했다. 론의 수줍음이 큰 기회를 놓치게 했다."
+    },
+    ron_gave_up: {
+        ron: "마법을 포기한 론은 호그와트에서 제대로 된 교육을 받지 못했다. 형들처럼 뛰어난 마법사가 되고 싶었지만, 포기한 론은 점점 뒤처졌다. 론의 부모님은 실망했고, 론 자신도 자신감을 잃었다."
+    },
+    ron_coward: {
+        ron: "트롤 앞에서 도망친 론은 헤르미온느를 구하지 못했다. 해리는 론을 실망스러워했고, 론은 자신의 용기 부족에 대해 깊이 후회했다. 이 사건 이후 론은 해리와 헤르미온느의 신뢰를 잃었고, 외로워졌다."
+    },
+    ron_passive: {
+        ron: "해리를 도와주지 않은 론은 해리가 위험에 빠졌을 때 아무것도 하지 않았다. 론의 수동적인 태도는 해리와의 우정을 손상시켰고, 론은 자신이 진정한 친구가 아니라는 것을 깨달았다."
+    },
+    ungrateful: {
+        ron: "엄마가 보낸 스웨터를 버린 론은 엄마의 마음을 아프게 했다. 론의 무례한 행동은 가족들에게 실망을 주었고, 론은 자신의 행동을 깊이 후회했다. 감사하지 못한 론은 점점 외로워졌다."
+    },
+    told_teachers: {
+        ron: "교사들에게 알린 론은 해리와 헤르미온느의 모험을 막았다. 교사들이 개입하면서 마법사의 돌은 안전하게 보호되었지만, 론은 친구들의 신뢰를 잃었다. 때로는 규칙을 지키는 것보다 친구를 믿는 것이 중요하다는 것을 나중에 깨달았다."
+    },
+    // 헤르미온느의 결말들
+    hermione_lonely: {
+        hermione: "공부만 하고 친구를 사귀지 않은 헤르미온느는 호그와트에서 외로웠다. 똑똑했지만 친구가 없었던 헤르미온느는 많은 위기 상황에서 혼자서 해결해야 했다. 지식은 많았지만, 우정의 힘을 알지 못했다."
+    },
+    hermione_arrogant: {
+        hermione: "자만심에 빠진 헤르미온느는 공부를 게을리했다. 처음에는 뛰어났지만, 자만심으로 인해 다른 학생들에게 뒤처지기 시작했다. 겸손함의 중요성을 깨달았지만, 이미 늦었다."
+    },
+    hermione_hiding: {
+        hermione: "화장실에 숨어있던 헤르미온느는 해리와 론이 트롤과 싸우는 것을 보았다. 하지만 그녀는 아무것도 하지 못했다. 용기를 내지 못한 헤르미온느는 자신의 한계를 깨달았고, 이후로도 용기 있는 선택을 하지 못했다."
+    },
+    hermione_stubborn: {
+        hermione: "실수를 인정하지 않은 헤르미온느는 고집스러운 태도로 친구들을 멀리했다. 자신의 실수를 인정하지 않으려는 헤르미온느는 점점 외로워졌고, 친구들의 신뢰를 잃었다. 때로는 실수를 인정하는 것이 더 큰 용기라는 것을 나중에 깨달았다."
+    },
+    hermione_secretive: {
+        hermione: "정보를 혼자만 알고 행동한 헤르미온느는 해리와 론을 배제했다. 헤르미온느는 혼자서 문제를 해결하려고 했지만, 실패했다. 우정은 정보를 나누는 것에서 시작한다는 것을 깨달았지만, 이미 늦었다."
+    },
+    hermione_told_teachers: {
+        hermione: "교사들에게 알린 헤르미온느는 해리와 론의 모험을 막았다. 규칙을 지키는 것이 중요하다고 생각했지만, 때로는 친구를 믿고 함께 위험을 감수하는 것이 더 중요하다는 것을 나중에 깨달았다."
     }
 };
 
@@ -361,7 +431,10 @@ function showEnding(endingType) {
         return;
     }
 
-    const endingText = endings[endingType][currentCharacter];
+    const endingText = endings[endingType] && endings[endingType][currentCharacter] 
+        ? endings[endingType][currentCharacter] 
+        : '게임이 끝났습니다.';
+    
     const statsText = '\n\n최종 수치:\n우정: ' + gameState.friendship + '\n용기: ' + gameState.courage + '\n지식: ' + gameState.knowledge;
 
     storyText.textContent = endingText + statsText;
@@ -370,6 +443,8 @@ function showEnding(endingType) {
     restartBtn.onclick = function() {
         document.getElementById('game-screen').classList.remove('active');
         document.getElementById('character-selection').classList.add('active');
+        document.getElementById('game-screen').style.display = 'none';
+        document.getElementById('character-selection').style.display = 'block';
     };
 }
 
