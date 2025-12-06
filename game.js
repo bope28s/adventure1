@@ -283,21 +283,65 @@ const endings = {
     }
 };
 
-// DOM이 로드된 후 실행
-document.addEventListener('DOMContentLoaded', function() {
+// 이벤트 리스너 초기화 함수
+function initEventListeners() {
     console.log('게임 초기화 시작');
     
     // 캐릭터 카드에 이벤트 리스너 추가
     const characterCards = document.querySelectorAll('.character-card');
     console.log('찾은 캐릭터 카드 개수:', characterCards.length);
     
+    if (characterCards.length === 0) {
+        console.error('캐릭터 카드를 찾을 수 없습니다!');
+        return;
+    }
+    
     characterCards.forEach(function(card) {
-        card.addEventListener('click', function() {
+        // 기존 이벤트 리스너 제거 후 새로 추가
+        const newCard = card.cloneNode(true);
+        card.parentNode.replaceChild(newCard, card);
+        
+        newCard.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             const character = this.getAttribute('data-character');
             console.log('클릭된 캐릭터:', character);
-            startGame(character);
+            if (character) {
+                startGame(character);
+            } else {
+                console.error('캐릭터 속성을 찾을 수 없습니다!');
+            }
         });
+        
+        // 호버 효과를 위한 스타일 확인
+        newCard.style.cursor = 'pointer';
+        newCard.style.userSelect = 'none';
     });
+}
+
+// DOM이 로드된 후 실행 (여러 방법 시도)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEventListeners);
+} else {
+    // DOM이 이미 로드된 경우
+    initEventListeners();
+}
+
+// 추가 안전장치: window.onload
+window.addEventListener('load', function() {
+    // 이미 초기화되었는지 확인
+    const cards = document.querySelectorAll('.character-card');
+    let hasListeners = false;
+    cards.forEach(function(card) {
+        if (card.onclick || card.getAttribute('data-initialized')) {
+            hasListeners = true;
+        }
+    });
+    
+    if (!hasListeners && cards.length > 0) {
+        console.log('window.onload에서 이벤트 리스너 재초기화');
+        initEventListeners();
+    }
 });
 
 // 게임 시작
