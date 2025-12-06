@@ -26,17 +26,6 @@ function playSound(soundId) {
     }
 }
 
-// 배경음악 재생
-function playBGM() {
-    const bgm = document.getElementById('bgm');
-    if (bgm) {
-        bgm.volume = 0.3;
-        bgm.play().catch(function(err) {
-            console.log('배경음악 재생 실패:', err);
-        });
-    }
-}
-
 // 게임 데이터 - 각 주인공별 10개 이벤트 (중간 결말 포함, 질문 형태로 마무리)
 const gameData = {
     harry: [
@@ -674,7 +663,6 @@ window.startGame = function(character) {
         }
         
         showEvent();
-        playBGM();
     }, 500);
 };
 
