@@ -30,6 +30,7 @@ function playSound(soundId) {
 const gameData = {
     harry: [
         {
+            title: "🎂 생일의 소년",
             story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
             choices: [
@@ -39,6 +40,7 @@ const gameData = {
             ]
         },
         {
+            title: "🪄 지팡이 선택의 소년",
             story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
             choices: [
@@ -48,6 +50,7 @@ const gameData = {
             ]
         },
         {
+            title: "🚂 승강장의 소년",
             story: "킹스 크로스 역 9와 4분의 3 승강장에 도착했다. 벽을 향해 뛰어들어야 한다는 말을 들었지만 무섭다. 론 위즐리 가족이 지나가는 것을 보았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
@@ -57,6 +60,7 @@ const gameData = {
             ]
         },
         {
+            title: "🚂 열차의 소년",
             story: "호그와트 특급 열차에서 론과 헤르미온느를 만났다. 론은 마법을 보여주려 했지만 실패했다. 헤르미온느는 모든 것을 알고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
@@ -66,6 +70,7 @@ const gameData = {
             ]
         },
         {
+            title: "🎩 기숙사 선택의 소년",
             story: "기숙사 배정 모자 앞에 섰다. 모자는 내가 슬리데린에 적합하다고 말했다. 하지만 해그리드는 그리핀도르를 추천했다. 어느 기숙사를 선택할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
@@ -75,6 +80,7 @@ const gameData = {
             ]
         },
         {
+            title: "📚 첫 수업의 소년",
             story: "첫 마법 수업 시간이었다. 플리트윅 교수는 깃털을 띄우는 마법을 가르쳤다. 헤르미온느는 이미 성공했지만 나는 아직 실패했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
@@ -84,6 +90,7 @@ const gameData = {
             ]
         },
         {
+            title: "👹 트롤의 소년",
             story: "할로윈 밤, 트롤이 학교에 침입했다는 소식이 들렸다. 헤르미온느가 화장실에 숨어있다는 것을 알았다. 론과 함께 그녀를 구하러 가야 한다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -93,6 +100,7 @@ const gameData = {
             ]
         },
         {
+            title: "🏑 퀴디치의 소년",
             story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
@@ -102,6 +110,7 @@ const gameData = {
             ]
         },
         {
+            title: "🪞 거울의 소년",
             story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
             choices: [
@@ -111,6 +120,7 @@ const gameData = {
             ]
         },
         {
+            title: "💎 마법사의 돌의 소년",
             story: "마법사의 돌을 지키기 위해 마지막 방에 도착했다. 퀴렐 교수가 볼드모트와 함께 있었다. 그들은 마법사의 돌을 원했다. 나는 그들을 막아야 한다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
             choices: [
@@ -122,6 +132,7 @@ const gameData = {
     ],
     ron: [
         {
+            title: "🚂 승강장의 소년",
             story: "킹스 크로스 역에서 해리를 처음 만났다. 그는 9와 4분의 3 승강장을 찾지 못하고 있었다. 나는 그에게 도움을 줄 수 있었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
@@ -131,6 +142,7 @@ const gameData = {
             ]
         },
         {
+            title: "🚂 열차의 소년",
             story: "호그와트 특급 열차에서 해리와 함께 앉았다. 나는 마법을 보여주려고 했지만 실패했다. 부끄러웠지만 해리는 웃지 않았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
@@ -140,6 +152,7 @@ const gameData = {
             ]
         },
         {
+            title: "🏠 기숙사의 소년",
             story: "기숙사 배정을 받았다. 나는 당연히 그리핀도르에 배정되었다. 해리도 그리핀도르에 배정되었고, 우리는 같은 방을 쓰게 되었다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
@@ -149,6 +162,7 @@ const gameData = {
             ]
         },
         {
+            title: "📚 첫 수업의 소년",
             story: "첫 마법 수업에서 나는 실패했다. 해리와 헤르미온느는 성공했지만 나는 깃털을 움직이지 못했다. 좌절감이 들었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
@@ -158,6 +172,7 @@ const gameData = {
             ]
         },
         {
+            title: "👹 트롤의 소년",
             story: "할로윈 밤, 헤르미온느가 트롤 때문에 위험에 빠졌다는 소식을 들었다. 해리와 함께 그녀를 구하러 가야 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -167,6 +182,7 @@ const gameData = {
             ]
         },
         {
+            title: "♟️ 체스의 소년",
             story: "체스 클럽에 가입했다. 나는 체스를 잘한다. 하지만 마법 체스는 조금 달랐다. 큰 체스 말들이 실제로 움직였다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
@@ -176,6 +192,7 @@ const gameData = {
             ]
         },
         {
+            title: "🏑 퀴디치 관전의 소년",
             story: "해리의 첫 퀴디치 경기를 보러 갔다. 해리의 빗자리가 이상하게 흔들리고 있었다. 누군가 해리에게 저주를 걸고 있는 것 같았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
@@ -185,6 +202,7 @@ const gameData = {
             ]
         },
         {
+            title: "🎁 크리스마스의 소년",
             story: "크리스마스에 엄마가 보낸 털실 스웨터를 받았다. 형들의 것과 달리 내 것은 마음에 들지 않았다. 하지만 엄마의 마음은 따뜻했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&q=80",
             choices: [
@@ -194,6 +212,7 @@ const gameData = {
             ]
         },
         {
+            title: "💎 모험의 소년",
             story: "해리와 헤르미온느가 마법사의 돌을 찾으러 간다는 것을 알았다. 나도 함께 가고 싶었다. 하지만 위험할 수 있었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
@@ -203,6 +222,7 @@ const gameData = {
             ]
         },
         {
+            title: "♟️ 체스 게임의 소년",
             story: "마법사의 돌을 지키는 마지막 방에 도착했다. 거대한 마법 체스판이 있었다. 나는 체스를 잘하지만 이번에는 실제로 위험했다! 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
@@ -214,6 +234,7 @@ const gameData = {
     ],
     hermione: [
         {
+            title: "🚂 열차의 마법사",
             story: "호그와트 특급 열차에서 해리와 론을 처음 만났다. 나는 이미 모든 교과서를 읽었고, 모든 마법을 알고 싶었다. 그들에게 이것을 말하고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
@@ -223,6 +244,7 @@ const gameData = {
             ]
         },
         {
+            title: "🏠 기숙사의 마법사",
             story: "기숙사에 배정되었다. 나는 그리핀도르에 배정되었고, 해리와 론과 같은 기숙사였다. 하지만 나는 공부에 집중하고 싶었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
@@ -232,6 +254,7 @@ const gameData = {
             ]
         },
         {
+            title: "📚 첫 수업의 마법사",
             story: "첫 마법 수업에서 나는 유일하게 성공했다. 플리트윅 교수는 나를 칭찬했다. 하지만 다른 학생들은 나를 이상하게 봤다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
@@ -241,6 +264,7 @@ const gameData = {
             ]
         },
         {
+            title: "👹 트롤의 마법사",
             story: "할로윈 밤, 화장실에서 울고 있었다. 론이 내 마법을 비웃었다고 생각했다. 그때 트롤이 학교에 침입했다는 소식이 들렸다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -250,6 +274,7 @@ const gameData = {
             ]
         },
         {
+            title: "💝 우정의 마법사",
             story: "해리와 론이 나를 구해주었다. 그들은 트롤과 맞서 싸웠다. 나는 그들에게 고마웠고, 진짜 친구가 되었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
@@ -259,6 +284,7 @@ const gameData = {
             ]
         },
         {
+            title: "🏑 퀴디치 관전의 마법사",
             story: "해리의 퀴디치 경기 날이었다. 해리의 빗자리가 이상하게 흔들리고 있었다. 나는 이것이 저주라는 것을 알았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
@@ -268,6 +294,7 @@ const gameData = {
             ]
         },
         {
+            title: "🔍 조사의 마법사",
             story: "스네이프 교수가 해리에게 저주를 걸고 있다는 것을 발견했다! 나는 스네이프의 로브에 불을 지폈다. 하지만 나중에 알고 보니 진짜 범인은 퀴렐이었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
@@ -277,6 +304,7 @@ const gameData = {
             ]
         },
         {
+            title: "📖 도서관의 마법사",
             story: "크리스마스에 도서관에서 마법사의 돌에 대한 책을 읽고 있었다. 니콜라스 플라멜과 마법사의 돌에 대해 알게 되었다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
@@ -286,6 +314,7 @@ const gameData = {
             ]
         },
         {
+            title: "💎 모험의 마법사",
             story: "해리와 론이 마법사의 돌을 찾으러 가려고 했다. 나는 이것이 위험하다는 것을 알고 있었다. 하지만 친구들을 혼자 두고 싶지 않았다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
@@ -295,6 +324,7 @@ const gameData = {
             ]
         },
         {
+            title: "🧩 퍼즐의 마법사",
             story: "마법사의 돌을 지키는 마지막 방에 도착했다. 논리 퍼즐이 있었다. 나는 이것을 풀 수 있었다. 하지만 해리가 혼자 볼드모트와 맞서야 했다. 어떻게 할까?",
             image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
@@ -311,9 +341,9 @@ const endings = {
     // 성공 결말들
     courage: {
         title: {
-            harry: "🏆 용기의 영웅",
-            ron: "🏆 용기 있는 친구",
-            hermione: "🏆 용기 있는 마녀"
+            harry: "🏆 용감한 영웅",
+            ron: "🏆 용감한 친구",
+            hermione: "🏆 용감한 마법사"
         },
         harry: "용감한 선택으로 볼드모트를 물리쳤다! 해리는 진정한 그리핀도르의 용기를 보여주었다. 마법사의 돌은 안전하게 보호되었고, 해리는 영웅이 되었다.",
         ron: "용감하게 체스 게임에 참여한 론은 친구들을 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
@@ -321,9 +351,9 @@ const endings = {
     },
     wisdom: {
         title: {
-            harry: "🧠 지혜의 승리",
-            ron: "🧠 현명한 선택",
-            hermione: "🧠 지식의 힘"
+            harry: "🧠 지혜로운 영웅",
+            ron: "🧠 현명한 친구",
+            hermione: "🧠 지혜로운 마법사"
         },
         harry: "지혜로운 선택으로 마법사의 돌을 파괴했다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 볼드모트의 계획은 실패했고, 해리는 현명한 선택을 했다.",
         ron: "론은 다른 방법을 찾아 친구들을 구했다! 때로는 직접 맞서는 것보다 더 현명한 방법이 있다는 것을 보여주었다. 론의 지혜는 모두를 구했다.",
@@ -331,9 +361,9 @@ const endings = {
     },
     friendship: {
         title: {
-            harry: "💝 우정의 승리",
-            ron: "💝 진정한 우정",
-            hermione: "💝 우정의 힘"
+            harry: "💝 우정 있는 영웅",
+            ron: "💝 진실한 친구",
+            hermione: "💝 우정 있는 마법사"
         },
         harry: "친구들의 도움으로 위기를 극복했다! 해리는 혼자가 아니라는 것을 깨달았다. 진정한 우정의 힘이 볼드모트보다 강하다는 것을 증명했다.",
         ron: "론의 우정과 희생이 친구들을 구했다! 론은 친구를 위해 자신을 희생할 수 있다는 것을 보여주었다. 진정한 우정의 힘이 승리했다!",
@@ -342,80 +372,80 @@ const endings = {
     // 조기 포기 결말들
     early_quit: {
         title: {
-            harry: "😔 놓친 기회"
+            harry: "😔 놓친 기회의 소년"
         },
         harry: "더즐리 가족과 함께 있기로 한 해리는 마법 세계로 가지 않았다. 평범한 삶을 살았지만, 마법사의 피가 흐르는 해리는 항상 뭔가 부족함을 느꼈다. 마법 세계는 그를 기다리고 있었지만, 해리는 그 기회를 놓쳤다."
     },
     wrong_wand: {
         title: {
-            harry: "❌ 잘못된 선택"
+            harry: "❌ 잘못된 선택의 소년"
         },
         harry: "잘못된 지팡이를 선택한 해리는 마법을 제대로 사용할 수 없었다. 호그와트에서 수업을 따라가지 못하고 결국 퇴학당했다. 올리벤더 할아버지의 조언을 듣지 않은 것이 큰 실수였다."
     },
     gave_up: {
         title: {
-            harry: "😰 두려움의 선택"
+            harry: "😰 두려운 소년"
         },
         harry: "무서워서 집으로 돌아간 해리는 마법 세계로 가지 않았다. 승강장을 통과하지 못한 해리는 평범한 머글의 삶을 살았다. 하지만 마법 세계는 그를 필요로 했고, 해리의 선택은 많은 사람들에게 영향을 미쳤다."
     },
     lonely: {
         title: {
-            harry: "😢 외로운 여정"
+            harry: "😢 외로운 소년"
         },
         harry: "친구를 사귀지 않은 해리는 호그와트에서 외로웠다. 론과 헤르미온느는 다른 친구들과 함께했고, 해리는 혼자서 모든 것을 해결해야 했다. 우정의 힘을 알지 못한 해리는 많은 위기에서 혼자서 고군분투했다."
     },
     slytherin_path: {
         title: {
-            harry: "🐍 다른 길"
+            harry: "🐍 다른 길의 마법사"
         },
         harry: "슬리데린을 선택한 해리는 완전히 다른 길을 걷게 되었다. 슬리데린의 가르침을 받은 해리는 냉정하고 야망 있는 마법사가 되었지만, 진정한 친구들을 잃었다. 그리핀도르의 용기와 우정 대신, 슬리데린의 야망이 해리를 이끌었다."
     },
     no_magic: {
         title: {
-            harry: "💔 포기한 마법"
+            harry: "💔 포기한 소년"
         },
         harry: "마법을 포기한 해리는 호그와트에서 제대로 된 교육을 받지 못했다. 다른 학생들보다 뒤처진 해리는 자신감을 잃었고, 결국 마법 세계에서 도망치듯 떠났다. 마법사의 피를 가지고도 마법을 사용하지 못하는 비극적인 결말이었다."
     },
     coward: {
         title: {
-            harry: "😨 용기 부족"
+            harry: "😨 용기 없는 소년"
         },
         harry: "트롤 앞에서 도망친 해리는 헤르미온느를 구하지 못했다. 론은 해리를 실망스러워했고, 해리는 자신의 용기 부족에 대해 깊이 후회했다. 이 사건 이후 해리는 친구들의 신뢰를 잃었고, 외로워졌다."
     },
     quit_quidditch: {
         title: {
-            harry: "🏃 포기한 경기"
+            harry: "🏃 포기한 선수"
         },
         harry: "퀴디치 경기를 포기한 해리는 그리핀도르 팀의 실망을 샀다. 퀴디치를 좋아했던 해리였지만, 두려움에 굴복한 선택은 해리의 명성을 손상시켰다. 이후 해리는 퀴디치를 다시 하지 않았다."
     },
     mirror_addiction: {
         title: {
-            harry: "🪞 과거에 사로잡힌"
+            harry: "🪞 과거에 사로잡힌 소년"
         },
         harry: "미러 오브 에리세드에 중독된 해리는 매일 밤 거울 앞에서 부모님을 보며 시간을 보냈다. 공부도 게임도 소홀해진 해리는 점점 쇠약해졌고, 덤블도어 교수가 거울을 옮긴 후에도 해리는 거울을 찾아 헤맸다. 과거에 사로잡힌 해리는 미래를 향해 나아가지 못했다."
     },
     // 론의 결말들
     missed_friendship: {
         title: {
-            ron: "😔 놓친 우정"
+            ron: "😔 놓친 우정의 소년"
         },
         ron: "해리에게 말을 걸지 못한 론은 해리와 친구가 되지 못했다. 론은 평범한 학생으로 호그와트를 다녔지만, 해리와의 우정 없이는 많은 모험을 경험하지 못했다. 용기를 내지 못한 것이 론의 가장 큰 후회였다."
     },
     shy_ron: {
         title: {
-            ron: "😳 수줍은 론"
+            ron: "😳 수줍은 소년"
         },
         ron: "부끄러워서 다른 칸으로 이동한 론은 해리와 친구가 되지 못했다. 론은 혼자서 호그와트 생활을 시작했고, 해리와 헤르미온느는 다른 친구들과 함께했다. 론의 수줍음이 큰 기회를 놓치게 했다."
     },
     ron_gave_up: {
         title: {
-            ron: "💔 포기한 마법"
+            ron: "💔 포기한 소년"
         },
         ron: "마법을 포기한 론은 호그와트에서 제대로 된 교육을 받지 못했다. 형들처럼 뛰어난 마법사가 되고 싶었지만, 포기한 론은 점점 뒤처졌다. 론의 부모님은 실망했고, 론 자신도 자신감을 잃었다."
     },
     ron_coward: {
         title: {
-            ron: "😨 용기 부족"
+            ron: "😨 용기 없는 소년"
         },
         ron: "트롤 앞에서 도망친 론은 헤르미온느를 구하지 못했다. 해리는 론을 실망스러워했고, 론은 자신의 용기 부족에 대해 깊이 후회했다. 이 사건 이후 론은 해리와 헤르미온느의 신뢰를 잃었고, 외로워졌다."
     },
@@ -427,50 +457,50 @@ const endings = {
     },
     ungrateful: {
         title: {
-            ron: "😤 감사하지 못한"
+            ron: "😤 감사하지 못한 소년"
         },
         ron: "엄마가 보낸 스웨터를 버린 론은 엄마의 마음을 아프게 했다. 론의 무례한 행동은 가족들에게 실망을 주었고, 론은 자신의 행동을 깊이 후회했다. 감사하지 못한 론은 점점 외로워졌다."
     },
     told_teachers: {
         title: {
-            ron: "📚 규칙을 따른"
+            ron: "📚 규칙을 따른 소년"
         },
         ron: "교사들에게 알린 론은 해리와 헤르미온느의 모험을 막았다. 교사들이 개입하면서 마법사의 돌은 안전하게 보호되었지만, 론은 친구들의 신뢰를 잃었다. 때로는 규칙을 지키는 것보다 친구를 믿는 것이 중요하다는 것을 나중에 깨달았다."
     },
     // 헤르미온느의 결말들
     hermione_lonely: {
         title: {
-            hermione: "😢 외로운 학자"
+            hermione: "😢 외로운 마법사"
         },
         hermione: "공부만 하고 친구를 사귀지 않은 헤르미온느는 호그와트에서 외로웠다. 똑똑했지만 친구가 없었던 헤르미온느는 많은 위기 상황에서 혼자서 해결해야 했다. 지식은 많았지만, 우정의 힘을 알지 못했다."
     },
     hermione_arrogant: {
         title: {
-            hermione: "😤 자만심에 빠진"
+            hermione: "😤 자만심에 빠진 마법사"
         },
         hermione: "자만심에 빠진 헤르미온느는 공부를 게을리했다. 처음에는 뛰어났지만, 자만심으로 인해 다른 학생들에게 뒤처지기 시작했다. 겸손함의 중요성을 깨달았지만, 이미 늦었다."
     },
     hermione_hiding: {
         title: {
-            hermione: "😰 숨어버린"
+            hermione: "😰 숨어버린 마법사"
         },
         hermione: "화장실에 숨어있던 헤르미온느는 해리와 론이 트롤과 싸우는 것을 보았다. 하지만 그녀는 아무것도 하지 못했다. 용기를 내지 못한 헤르미온느는 자신의 한계를 깨달았고, 이후로도 용기 있는 선택을 하지 못했다."
     },
     hermione_stubborn: {
         title: {
-            hermione: "🤦 고집스러운"
+            hermione: "🤦 고집스러운 마법사"
         },
         hermione: "실수를 인정하지 않은 헤르미온느는 고집스러운 태도로 친구들을 멀리했다. 자신의 실수를 인정하지 않으려는 헤르미온느는 점점 외로워졌고, 친구들의 신뢰를 잃었다. 때로는 실수를 인정하는 것이 더 큰 용기라는 것을 나중에 깨달았다."
     },
     hermione_secretive: {
         title: {
-            hermione: "🤐 비밀스러운"
+            hermione: "🤐 비밀스러운 마법사"
         },
         hermione: "정보를 혼자만 알고 행동한 헤르미온느는 해리와 론을 배제했다. 헤르미온느는 혼자서 문제를 해결하려고 했지만, 실패했다. 우정은 정보를 나누는 것에서 시작한다는 것을 깨달았지만, 이미 늦었다."
     },
     hermione_told_teachers: {
         title: {
-            hermione: "📚 규칙을 따른"
+            hermione: "📚 규칙을 따른 마법사"
         },
         hermione: "교사들에게 알린 헤르미온느는 해리와 론의 모험을 막았다. 규칙을 지키는 것이 중요하다고 생각했지만, 때로는 친구를 믿고 함께 위험을 감수하는 것이 더 중요하다는 것을 나중에 깨달았다."
     }
@@ -563,10 +593,16 @@ function showEvent() {
     const eventNumber = document.getElementById('event-number');
     const storyImageContainer = document.getElementById('story-image-container');
     const storyContainer = document.getElementById('story-container');
+    const endingTitle = document.getElementById('ending-title');
 
     if (!storyText || !choicesContainer || !eventNumber) {
         console.error('DOM 요소를 찾을 수 없습니다.');
         return;
+    }
+
+    // 결말 제목 숨기기 (이벤트 화면에서는 제목 숨김)
+    if (endingTitle) {
+        endingTitle.style.display = 'none';
     }
 
     // 페이드 인 애니메이션
@@ -576,6 +612,15 @@ function showEvent() {
     }
 
     eventNumber.textContent = currentEvent + 1;
+    
+    // 이벤트 제목 표시
+    if (event.title && endingTitle) {
+        endingTitle.textContent = event.title;
+        endingTitle.style.display = 'block';
+        endingTitle.style.opacity = '0';
+        endingTitle.style.transform = 'translateY(-20px)';
+    }
+    
     storyText.textContent = event.story;
 
     // 배경 이미지 설정
@@ -612,6 +657,15 @@ function showEvent() {
             storyContainer.style.transition = 'all 0.5s ease';
             storyContainer.style.opacity = '1';
             storyContainer.style.transform = 'translateY(0)';
+        }
+        
+        // 이벤트 제목 애니메이션
+        if (event.title && endingTitle) {
+            setTimeout(function() {
+                endingTitle.style.transition = 'all 0.5s ease';
+                endingTitle.style.opacity = '1';
+                endingTitle.style.transform = 'translateY(0)';
+            }, 200);
         }
     }, 100);
 }
@@ -676,6 +730,7 @@ function showEnding(endingType) {
     const restartBtn = document.getElementById('restart-btn');
     const storyContainer = document.getElementById('story-container');
     const confirmScreen = document.getElementById('choice-confirm-screen');
+    const endingTitle = document.getElementById('ending-title');
 
     if (!storyText || !choicesContainer || !restartBtn) {
         console.error('DOM 요소를 찾을 수 없습니다.');
@@ -686,6 +741,22 @@ function showEnding(endingType) {
     if (confirmScreen && confirmScreen.classList.contains('active')) {
         confirmScreen.style.display = 'none';
         confirmScreen.classList.remove('active');
+    }
+
+    // 결말 제목 표시
+    const endingTitleText = endings[endingType] && endings[endingType].title && endings[endingType].title[currentCharacter]
+        ? endings[endingType].title[currentCharacter]
+        : null;
+    
+    if (endingTitle) {
+        if (endingTitleText) {
+            endingTitle.textContent = endingTitleText;
+            endingTitle.style.display = 'block';
+            endingTitle.style.opacity = '0';
+            endingTitle.style.transform = 'translateY(-20px)';
+        } else {
+            endingTitle.style.display = 'none';
+        }
     }
 
     const endingText = endings[endingType] && endings[endingType][currentCharacter] 
