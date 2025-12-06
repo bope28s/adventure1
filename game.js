@@ -344,8 +344,12 @@ window.addEventListener('load', function() {
     }
 });
 
-// 게임 시작
+// 게임 시작 함수
 function startGame(character) {
+    if (!character) {
+        console.error('캐릭터가 지정되지 않았습니다.');
+        return;
+    }
     console.log('게임 시작:', character);
     
     currentCharacter = character;
@@ -469,4 +473,7 @@ function showEnding(endingType) {
         document.getElementById('character-selection').classList.add('active');
     };
 }
+
+// 전역 스코프에 startGame 함수 노출 (인라인 onclick을 위해)
+window.startGame = startGame;
 
