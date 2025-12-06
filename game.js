@@ -19,7 +19,7 @@ const gameData = {
     harry: [
         {
             story: "나는 더즐리 집 지하실에서 깨어났다. 오늘은 내 11번째 생일이었다. 갑자기 문이 부서지며 거대한 남자가 나타났다. 그는 자신을 해그리드라고 소개했다. 나는 마법사라는 사실을 처음 알게 되었다!",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Harry Potter cupboard under stairs" 또는 "Harry Potter 11th birthday"
+            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
             choices: [
                 { text: "해그리드와 함께 호그와트로 가기로 결정한다", effects: { courage: 10 }, next: 1 },
                 { text: "더즐리 가족과 함께 있기로 한다", effects: { courage: -20 }, ending: "early_quit" },
@@ -28,7 +28,7 @@ const gameData = {
         },
         {
             story: "다이애건 앨리에 도착했다! 마법 세계의 상점가였다. 올리벤더의 지팡이 가게에서 나만의 지팡이를 찾아야 한다. 올리벤더 할아버지가 여러 지팡이를 시도해보라고 했다.",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80", // 검색: "Diagon Alley" 또는 "Ollivanders wand shop"
+            image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
             choices: [
                 { text: "첫 번째 지팡이를 무작정 선택한다", effects: { knowledge: -10 }, ending: "wrong_wand" },
                 { text: "여러 지팡이를 차례로 시도해본다", effects: { knowledge: 10 }, next: 2 },
@@ -37,7 +37,7 @@ const gameData = {
         },
         {
             story: "킹스 크로스 역 9와 4분의 3 승강장에 도착했다. 벽을 향해 뛰어들어야 한다는 말을 들었지만 무섭다. 론 위즐리 가족이 지나가는 것을 보았다.",
-            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80", // 검색: "King's Cross station platform 9 3/4"
+            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
             choices: [
                 { text: "용기를 내어 벽을 향해 뛴다", effects: { courage: 15 }, next: 3 },
                 { text: "론의 어머니에게 도움을 요청한다", effects: { friendship: 10 }, next: 3 },
@@ -46,7 +46,7 @@ const gameData = {
         },
         {
             story: "호그와트 특급 열차에서 론과 헤르미온느를 만났다. 론은 마법을 보여주려 했지만 실패했다. 헤르미온느는 모든 것을 알고 있는 것 같았다.",
-            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80", // 검색: "Hogwarts Express train" 또는 "Harry Potter train compartment"
+            image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
             choices: [
                 { text: "론을 격려하고 친구가 되자고 한다", effects: { friendship: 15 }, next: 4 },
                 { text: "헤르미온느와 대화를 나눈다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
@@ -55,7 +55,7 @@ const gameData = {
         },
         {
             story: "기숙사 배정 모자 앞에 섰다. 모자는 내가 슬리데린에 적합하다고 말했다. 하지만 해그리드는 그리핀도르를 추천했다. 어느 기숙사를 선택할까?",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Sorting Hat ceremony" 또는 "Harry Potter sorting hat"
+            image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
                 { text: "그리핀도르를 선택한다", effects: { courage: 15, friendship: 10 }, next: 5 },
                 { text: "슬리데린을 선택한다", effects: { courage: -10, knowledge: 10 }, ending: "slytherin_path" },
@@ -64,7 +64,7 @@ const gameData = {
         },
         {
             story: "첫 마법 수업 시간이었다. 플리트윅 교수는 깃털을 띄우는 마법을 가르쳤다. 헤르미온느는 이미 성공했지만 나는 아직 실패했다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hogwarts classroom" 또는 "Harry Potter magic class"
+            image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
                 { text: "집중해서 다시 시도한다", effects: { knowledge: 15, courage: 5 }, next: 6 },
                 { text: "헤르미온느에게 도움을 요청한다", effects: { friendship: 10, knowledge: 5 }, next: 6 },
@@ -73,7 +73,7 @@ const gameData = {
         },
         {
             story: "할로윈 밤, 트롤이 학교에 침입했다는 소식이 들렸다. 헤르미온느가 화장실에 숨어있다는 것을 알았다. 론과 함께 그녀를 구하러 가야 한다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Harry Potter troll scene" 또는 "Hogwarts bathroom troll"
+            image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 15 }, next: 7 },
                 { text: "교사들에게 도움을 요청한다", effects: { knowledge: 10, courage: -5 }, next: 7 },
@@ -82,7 +82,7 @@ const gameData = {
         },
         {
             story: "첫 퀴디치 경기 날이었다. 스니치를 쫓던 중 내 빗자리가 흔들리기 시작했다. 누군가 나에게 저주를 걸고 있는 것 같았다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Quidditch match" 또는 "Harry Potter quidditch"
+            image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
                 { text: "빗자리를 붙잡고 버틴다", effects: { courage: 20 }, next: 8 },
                 { text: "경기를 포기하고 내린다", effects: { courage: -15, friendship: -10 }, ending: "quit_quidditch" },
@@ -91,7 +91,7 @@ const gameData = {
         },
         {
             story: "크리스마스 밤, 미러 오브 에리세드를 발견했다. 거울 속에서 부모님과 함께 있는 나를 보았다. 매일 밤 거울 앞에 서서 그들을 바라보고 싶었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Mirror of Erised" 또는 "Harry Potter mirror"
+            image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
             choices: [
                 { text: "거울 앞에 매일 서서 부모님을 본다", effects: { courage: -10, knowledge: -5 }, ending: "mirror_addiction" },
                 { text: "덤블도어 교수의 조언을 듣고 거울을 떠난다", effects: { knowledge: 15, courage: 10 }, next: 9 },
@@ -100,7 +100,7 @@ const gameData = {
         },
         {
             story: "마법사의 돌을 지키기 위해 마지막 방에 도착했다. 퀴렐 교수가 볼드모트와 함께 있었다. 그들은 마법사의 돌을 원했다. 나는 그들을 막아야 한다!",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Philosopher's Stone final scene" 또는 "Harry Potter Quirrell Voldemort"
+            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
             choices: [
                 { text: "용감하게 퀴렐과 맞선다", effects: { courage: 25 }, ending: "courage" },
                 { text: "마법사의 돌을 파괴한다", effects: { knowledge: 20, courage: 15 }, ending: "wisdom" },
@@ -129,7 +129,7 @@ const gameData = {
         },
         {
             story: "기숙사 배정을 받았다. 나는 당연히 그리핀도르에 배정되었다. 해리도 그리핀도르에 배정되었고, 우리는 같은 방을 쓰게 되었다!",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron Gryffindor" 또는 "Ron Harry dormitory"
+            image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
                 { text: "해리와 함께 기숙사를 탐험한다", effects: { friendship: 15, courage: 5 }, next: 3 },
                 { text: "다른 학생들과 친해진다", effects: { friendship: 10 }, next: 3 },
@@ -138,7 +138,7 @@ const gameData = {
         },
         {
             story: "첫 마법 수업에서 나는 실패했다. 해리와 헤르미온느는 성공했지만 나는 깃털을 움직이지 못했다. 좌절감이 들었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron magic class" 또는 "Ron wand practice"
+            image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
                 { text: "포기하지 않고 계속 연습한다", effects: { courage: 15, knowledge: 10 }, next: 4 },
                 { text: "해리에게 도움을 요청한다", effects: { friendship: 15, knowledge: 5 }, next: 4 },
@@ -147,7 +147,7 @@ const gameData = {
         },
         {
             story: "할로윈 밤, 헤르미온느가 트롤 때문에 위험에 빠졌다는 소식을 들었다. 해리와 함께 그녀를 구하러 가야 했다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron troll fight" 또는 "Ron Hermione troll"
+            image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "해리와 함께 용감하게 트롤과 맞선다", effects: { courage: 20, friendship: 20 }, next: 5 },
                 { text: "교사들에게 먼저 알린다", effects: { knowledge: 10, courage: -5 }, next: 5 },
@@ -156,7 +156,7 @@ const gameData = {
         },
         {
             story: "체스 클럽에 가입했다. 나는 체스를 잘한다. 하지만 마법 체스는 조금 달랐다. 큰 체스 말들이 실제로 움직였다!",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron chess" 또는 "Wizard chess"
+            image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
                 { text: "마법 체스를 배우기 위해 열심히 연습한다", effects: { knowledge: 15, courage: 5 }, next: 6 },
                 { text: "친구들에게 체스를 가르쳐준다", effects: { friendship: 15 }, next: 6 },
@@ -165,7 +165,7 @@ const gameData = {
         },
         {
             story: "해리의 첫 퀴디치 경기를 보러 갔다. 해리의 빗자리가 이상하게 흔들리고 있었다. 누군가 해리에게 저주를 걸고 있는 것 같았다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron watching quidditch" 또는 "Ron Hermione quidditch"
+            image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
                 { text: "헤르미온느와 함께 누군지 찾아본다", effects: { friendship: 15, knowledge: 10 }, next: 7 },
                 { text: "교사들에게 알린다", effects: { knowledge: 10, courage: -5 }, next: 7 },
@@ -174,7 +174,7 @@ const gameData = {
         },
         {
             story: "크리스마스에 엄마가 보낸 털실 스웨터를 받았다. 형들의 것과 달리 내 것은 마음에 들지 않았다. 하지만 엄마의 마음은 따뜻했다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron Weasley sweater" 또는 "Christmas at Hogwarts"
+            image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&q=80",
             choices: [
                 { text: "스웨터를 고맙게 받아들인다", effects: { friendship: 10, courage: 5 }, next: 8 },
                 { text: "스웨터를 입지 않고 버린다", effects: { friendship: -20 }, ending: "ungrateful" },
@@ -183,7 +183,7 @@ const gameData = {
         },
         {
             story: "해리와 헤르미온느가 마법사의 돌을 찾으러 간다는 것을 알았다. 나도 함께 가고 싶었다. 하지만 위험할 수 있었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron chess game" 또는 "Ron sacrifice chess"
+            image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
                 { text: "용감하게 친구들과 함께 간다", effects: { courage: 20, friendship: 20 }, next: 9 },
                 { text: "교사들에게 알린다", effects: { knowledge: 10, courage: -10 }, ending: "told_teachers" },
@@ -192,7 +192,7 @@ const gameData = {
         },
         {
             story: "마법사의 돌을 지키는 마지막 방에 도착했다. 거대한 마법 체스판이 있었다. 나는 체스를 잘하지만 이번에는 실제로 위험했다!",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Ron giant chess" 또는 "Ron chess sacrifice"
+            image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
             choices: [
                 { text: "용감하게 체스 게임에 참여한다", effects: { courage: 25, knowledge: 15 }, ending: "courage" },
                 { text: "해리와 헤르미온느를 먼저 보낸다", effects: { friendship: 25, courage: 10 }, ending: "friendship" },
@@ -212,7 +212,7 @@ const gameData = {
         },
         {
             story: "기숙사에 배정되었다. 나는 그리핀도르에 배정되었고, 해리와 론과 같은 기숙사였다. 하지만 나는 공부에 집중하고 싶었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione Gryffindor" 또는 "Hermione sorting"
+            image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
             choices: [
                 { text: "도서관에 가서 공부한다", effects: { knowledge: 15 }, next: 2 },
                 { text: "해리와 론과 친해진다", effects: { friendship: 15, knowledge: -5 }, next: 2 },
@@ -221,7 +221,7 @@ const gameData = {
         },
         {
             story: "첫 마법 수업에서 나는 유일하게 성공했다. 플리트윅 교수는 나를 칭찬했다. 하지만 다른 학생들은 나를 이상하게 봤다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione magic class" 또는 "Hermione Wingardium Leviosa"
+            image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             choices: [
                 { text: "다른 학생들에게 도움을 준다", effects: { friendship: 15, knowledge: 5 }, next: 3 },
                 { text: "계속해서 더 배운다", effects: { knowledge: 15, friendship: -5 }, next: 3 },
@@ -230,7 +230,7 @@ const gameData = {
         },
         {
             story: "할로윈 밤, 화장실에서 울고 있었다. 론이 내 마법을 비웃었다고 생각했다. 그때 트롤이 학교에 침입했다는 소식이 들렸다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione bathroom troll" 또는 "Hermione crying bathroom"
+            image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "화장실에 숨어서 기다린다", effects: { courage: -15 }, ending: "hermione_hiding" },
                 { text: "용기를 내어 도움을 요청한다", effects: { courage: 15, friendship: 10 }, next: 4 },
@@ -239,7 +239,7 @@ const gameData = {
         },
         {
             story: "해리와 론이 나를 구해주었다. 그들은 트롤과 맞서 싸웠다. 나는 그들에게 고마웠고, 진짜 친구가 되었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Harry Ron save Hermione" 또는 "Troll fight"
+            image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
             choices: [
                 { text: "해리와 론에게 고마움을 표현한다", effects: { friendship: 20 }, next: 5 },
                 { text: "앞으로 더 도움이 되겠다고 말한다", effects: { friendship: 15, knowledge: 5 }, next: 5 },
@@ -248,7 +248,7 @@ const gameData = {
         },
         {
             story: "해리의 퀴디치 경기 날이었다. 해리의 빗자리가 이상하게 흔들리고 있었다. 나는 이것이 저주라는 것을 알았다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione library" 또는 "Hermione research"
+            image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
                 { text: "도서관에서 저주에 대해 찾아본다", effects: { knowledge: 15 }, next: 6 },
                 { text: "교사들에게 즉시 알린다", effects: { knowledge: 10, courage: 5 }, next: 6 },
@@ -257,7 +257,7 @@ const gameData = {
         },
         {
             story: "스네이프 교수가 해리에게 저주를 걸고 있다는 것을 발견했다! 나는 스네이프의 로브에 불을 지폈다. 하지만 나중에 알고 보니 진짜 범인은 퀴렐이었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione Snape" 또는 "Hermione fire spell"
+            image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
             choices: [
                 { text: "실수를 인정하고 배운다", effects: { knowledge: 15, courage: 5 }, next: 7 },
                 { text: "다시 한번 더 조사한다", effects: { knowledge: 20 }, next: 7 },
@@ -266,7 +266,7 @@ const gameData = {
         },
         {
             story: "크리스마스에 도서관에서 마법사의 돌에 대한 책을 읽고 있었다. 니콜라스 플라멜과 마법사의 돌에 대해 알게 되었다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione library research" 또는 "Hermione Nicolas Flamel"
+            image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
             choices: [
                 { text: "해리와 론에게 이 정보를 공유한다", effects: { friendship: 20, knowledge: 10 }, next: 8 },
                 { text: "더 깊이 연구한다", effects: { knowledge: 20, friendship: -5 }, next: 8 },
@@ -275,7 +275,7 @@ const gameData = {
         },
         {
             story: "해리와 론이 마법사의 돌을 찾으러 가려고 했다. 나는 이것이 위험하다는 것을 알고 있었다. 하지만 친구들을 혼자 두고 싶지 않았다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione potion puzzle" 또는 "Hermione logic puzzle"
+            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
                 { text: "친구들과 함께 가되 계획을 세운다", effects: { knowledge: 20, friendship: 15, courage: 10 }, next: 9 },
                 { text: "교사들에게 알리려고 한다", effects: { knowledge: 15, courage: -10 }, ending: "hermione_told_teachers" },
@@ -284,7 +284,7 @@ const gameData = {
         },
         {
             story: "마법사의 돌을 지키는 마지막 방에 도착했다. 논리 퍼즐이 있었다. 나는 이것을 풀 수 있었다. 하지만 해리가 혼자 볼드모트와 맞서야 했다.",
-            image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80", // 검색: "Hermione potion riddle" 또는 "Hermione final puzzle"
+            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
             choices: [
                 { text: "퍼즐을 풀고 해리를 도와준다", effects: { knowledge: 25, friendship: 20, courage: 15 }, ending: "wisdom" },
                 { text: "해리를 먼저 보내고 뒤에서 지원한다", effects: { friendship: 25, knowledge: 15 }, ending: "friendship" },
