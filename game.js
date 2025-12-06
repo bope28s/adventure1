@@ -375,10 +375,22 @@ function showEnding(endingType) {
 
 // 게임 시작 함수 (전역에 즉시 노출)
 window.startGame = function(character) {
+    console.log('=== startGame 함수 호출됨 ===');
+    console.log('캐릭터:', character);
+    console.log('characterNames:', characterNames);
+    
     if (!character) {
         console.error('캐릭터가 지정되지 않았습니다.');
+        alert('캐릭터를 선택해주세요.');
         return;
     }
+    
+    if (!characterNames[character]) {
+        console.error('유효하지 않은 캐릭터:', character);
+        alert('유효하지 않은 캐릭터입니다.');
+        return;
+    }
+    
     console.log('게임 시작:', character);
     
     currentCharacter = character;
@@ -392,17 +404,26 @@ window.startGame = function(character) {
     const selectionScreen = document.getElementById('character-selection');
     const gameScreen = document.getElementById('game-screen');
     
+    console.log('selectionScreen:', selectionScreen);
+    console.log('gameScreen:', gameScreen);
+    
     if (!selectionScreen || !gameScreen) {
         console.error('화면 요소를 찾을 수 없습니다.');
+        alert('게임 화면을 찾을 수 없습니다. 페이지를 새로고침해주세요.');
         return;
     }
     
+    console.log('화면 전환 시작');
     selectionScreen.classList.remove('active');
     gameScreen.classList.add('active');
+    
+    console.log('selectionScreen active 제거됨');
+    console.log('gameScreen active 추가됨');
     
     const characterNameElement = document.getElementById('current-character-name');
     if (characterNameElement) {
         characterNameElement.textContent = characterNames[character];
+        console.log('캐릭터 이름 설정:', characterNames[character]);
     }
     
     const restartBtn = document.getElementById('restart-btn');
@@ -410,5 +431,7 @@ window.startGame = function(character) {
         restartBtn.style.display = 'none';
     }
     
+    console.log('showEvent 호출 전');
     showEvent();
+    console.log('showEvent 호출 후');
 };
