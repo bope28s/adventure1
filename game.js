@@ -344,7 +344,7 @@ window.addEventListener('load', function() {
     }
 });
 
-// 게임 시작 함수 (즉시 전역에 노출)
+// 게임 시작 함수 (즉시 전역에 노출하여 onclick에서 사용 가능하도록)
 window.startGame = function(character) {
     if (!character) {
         console.error('캐릭터가 지정되지 않았습니다.');
@@ -386,10 +386,8 @@ window.startGame = function(character) {
     showEvent();
 };
 
-// 함수 참조도 유지 (내부에서 사용)
-function startGame(character) {
-    window.startGame(character);
-}
+// 함수 참조도 유지 (내부 코드 호환성을 위해)
+var startGame = window.startGame;
 
 // 이벤트 표시
 function showEvent() {
