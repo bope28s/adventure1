@@ -70,9 +70,10 @@ button.character-card {
     text-align: center !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
-    flex: 1 !important;
+    flex: 1 1 200px !important;
     min-width: 200px !important;
     max-width: 250px !important;
+    width: 100% !important;
     position: relative !important;
     z-index: 1 !important;
     pointer-events: auto !important;
@@ -81,11 +82,11 @@ button.character-card {
     -moz-user-select: none !important;
     -ms-user-select: none !important;
     display: block !important;
-    width: auto !important;
     margin: 0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     font-family: inherit !important;
     outline: none !important;
+    box-sizing: border-box !important;
 }
 
 .character-card {
@@ -96,9 +97,10 @@ button.character-card {
     text-align: center !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
-    flex: 1 !important;
+    flex: 1 1 200px !important;
     min-width: 200px !important;
     max-width: 250px !important;
+    width: 100% !important;
     position: relative !important;
     z-index: 1 !important;
     pointer-events: auto !important;
@@ -107,9 +109,9 @@ button.character-card {
     -moz-user-select: none !important;
     -ms-user-select: none !important;
     display: block !important;
-    width: 100% !important;
     margin: 0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    box-sizing: border-box !important;
 }
 
 .character-card:hover {
@@ -126,6 +128,14 @@ button.character-card {
 .character-icon {
     font-size: 4em;
     margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-icon img {
+    display: block;
+    margin: 0 auto;
 }
 
 .character-card h3 {
@@ -531,8 +541,13 @@ button.character-card {
         align-items: center;
     }
     
-    .character-card {
-        max-width: 100%;
+    .character-card,
+    button.character-card {
+        width: 100% !important;
+        max-width: 300px !important;
+        min-width: 200px !important;
+        flex: 0 0 auto !important;
+        box-sizing: border-box !important;
     }
     
     .story-text {
