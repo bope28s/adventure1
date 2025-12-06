@@ -415,10 +415,12 @@ window.startGame = function(character) {
     
     console.log('화면 전환 시작');
     selectionScreen.classList.remove('active');
+    selectionScreen.style.display = 'none';
     gameScreen.classList.add('active');
+    gameScreen.style.display = 'block';
     
-    console.log('selectionScreen active 제거됨');
-    console.log('gameScreen active 추가됨');
+    console.log('selectionScreen active 제거됨, display: none');
+    console.log('gameScreen active 추가됨, display: block');
     
     const characterNameElement = document.getElementById('current-character-name');
     if (characterNameElement) {
