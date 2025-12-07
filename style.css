@@ -204,7 +204,7 @@ button.character-card {
 
 .event-counter {
     color: #c0c0c0;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .story-container {
@@ -629,7 +629,7 @@ button.character-card {
     }
     
     .event-counter {
-        font-size: 0.9em !important;
+        font-size: 0.8em !important;
         white-space: nowrap !important;
         flex-shrink: 0 !important;
     }
