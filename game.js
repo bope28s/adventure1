@@ -490,7 +490,7 @@ const gameData = {
                 image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
                 choices: [
                     { text: "용감하게 바실리스크와 맞선다", effects: { courage: 25 }, ending: "courage" },
-                    { text: "피니스를 불러 도움을 받는다", effects: { knowledge: 20, courage: 15 }, ending: "wisdom" },
+                    { text: "폭스를 불러 도움을 받는다", effects: { knowledge: 20, courage: 15 }, ending: "wisdom" },
                     { text: "지니와 함께 용감하게 맞선다", effects: { friendship: 25, courage: 10 }, ending: "friendship" }
                 ]
             }
@@ -1289,7 +1289,7 @@ const endings = {
                 ron: 75,
                 hermione: 92
             },
-            harry: "지혜롭게 피니스를 불러 도움을 받은 해리는 바실리스크를 물리쳤다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 비밀의 방의 위험은 해결되었고, 해리는 현명한 선택을 했다.",
+            harry: "지혜롭게 폭스를 불러 도움을 받은 해리는 바실리스크를 물리쳤다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 비밀의 방의 위험은 해결되었고, 해리는 현명한 선택을 했다.",
             ron: "론은 다른 방법을 찾아 친구들을 구했다! 때로는 직접 맞서는 것보다 더 현명한 방법이 있다는 것을 보여주었다. 론의 지혜는 모두를 구했다.",
             hermione: "헤르미온느의 지식과 논리적 사고가 모든 것을 해결했다! 그녀가 남긴 메모가 해리와 론에게 중요한 단서를 주었다. 진정한 지혜의 승리였다!"
         },
