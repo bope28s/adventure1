@@ -974,6 +974,12 @@ function showEnding(endingType) {
             if (statsContainer) {
                 statsContainer.style.display = 'none';
             }
+            
+            // 원작 일치율 그래프 숨기기
+            const matchContainer = document.getElementById('original-match-container');
+            if (matchContainer) {
+                matchContainer.style.display = 'none';
+            }
         }, 500);
     };
 }
