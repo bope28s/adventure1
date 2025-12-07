@@ -34,6 +34,60 @@ function playSound(soundId) {
     }
 }
 
+// Web Audio API로 효과음 생성 함수
+function createSound(type) {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        if (type === 'click') {
+            // 버튼 클릭 사운드 (짧고 높은 톤)
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+            oscillator.type = 'sine';
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        } else if (type === 'transition') {
+            // 화면 전환 사운드 (마법 효과)
+            oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.3);
+            oscillator.type = 'sine';
+            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        } else if (type === 'ending') {
+            // 결말 사운드 (승리/성공)
+            const times = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+            const frequencies = [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50, 1318.51]; // C5, E5, G5, C6, G5, C6, E6
+            times.forEach(function(time, index) {
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.frequency.setValueAtTime(frequencies[index], audioContext.currentTime + time);
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.2, audioContext.currentTime + time);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + time + 0.2);
+                osc.start(audioContext.currentTime + time);
+                osc.stop(audioContext.currentTime + time + 0.2);
+            });
+        }
+    } catch (err) {
+        console.log('Web Audio API 오류:', err);
+        // 폴백: 기본 clickSound 재생
+        if (type === 'click') {
+            playSound('clickSound');
+        }
+    }
+}
+
 // 배열 셔플 함수 (Fisher-Yates 알고리즘)
 function shuffleArray(array) {
     const shuffled = array.slice(); // 원본 배열 복사
@@ -46,7 +100,7 @@ function shuffleArray(array) {
 
 // 편 선택 함수
 window.selectPart = function(partNumber) {
-    playSound('clickSound');
+    createSound('click');
     currentPart = partNumber;
     
     const partSelection = document.getElementById('part-selection');
@@ -72,6 +126,9 @@ window.selectPart = function(partNumber) {
         characterSelection.style.display = 'block';
         characterSelection.style.opacity = '0';
         characterSelection.style.transform = 'translateY(20px)';
+        
+        // 화면 전환 효과음
+        createSound('transition');
         
         // 페이드 인 애니메이션
         setTimeout(function() {
@@ -1673,7 +1730,7 @@ function showChoiceConfirm(choice) {
         confirmText.textContent = '"' + choice.text + '"를 선택하시겠습니까?';
         confirmScreen.style.display = 'flex';
         confirmScreen.style.opacity = '0';
-        playSound('clickSound');
+        createSound('click');
         
         // 페이드 인 애니메이션
         setTimeout(function() {
@@ -1695,7 +1752,7 @@ function closeChoiceConfirm() {
         setTimeout(function() {
             confirmScreen.style.display = 'none';
         }, 300);
-        playSound('clickSound');
+        createSound('click');
     }
 }
 
@@ -1717,6 +1774,7 @@ function processChoice(choice) {
         }, 500);
     } else if (choice.next !== undefined) {
         setTimeout(function() {
+            createSound('transition');
             currentEvent = choice.next;
             showEvent();
         }, 500);
@@ -1731,6 +1789,7 @@ function processChoice(choice) {
                 const endingType = maxStat === 'courage' ? 'courage' : (maxStat === 'knowledge' ? 'wisdom' : 'friendship');
                 showEnding(endingType);
             } else {
+                createSound('transition');
                 showEvent();
             }
         }, 500);
@@ -1805,6 +1864,7 @@ function showEvent() {
         button.style.opacity = '0';
         button.style.transform = 'translateX(-20px)';
         button.addEventListener('click', function() {
+            createSound('click');
             showChoiceConfirm(choice);
         });
         choicesContainer.appendChild(button);
@@ -1819,6 +1879,11 @@ function showEvent() {
 
     // 스토리 애니메이션
     setTimeout(function() {
+        // 이벤트 전환 효과음 (첫 이벤트가 아닐 때만)
+        if (currentEvent > 0) {
+            createSound('transition');
+        }
+        
         if (storyContainer) {
             storyContainer.style.transition = 'all 0.5s ease';
             storyContainer.style.opacity = '1';
@@ -1968,6 +2033,9 @@ function showEnding(endingType) {
     storyText.textContent = endingText;
     choicesContainer.innerHTML = '';
     
+    // 결말 효과음 재생
+    createSound('ending');
+    
     // 통계 그래프 표시
     showStatsGraph();
     
@@ -2004,7 +2072,7 @@ function showEnding(endingType) {
     // 다시 시작하기 버튼 이벤트 (기존 이벤트 제거 후 새로 등록)
     restartBtn.onclick = null; // 기존 이벤트 제거
     restartBtn.onclick = function() {
-        playSound('clickSound');
+        createSound('click');
         
         // 선택 확인 화면 닫기
         if (confirmScreen) {
@@ -2029,6 +2097,10 @@ function showEnding(endingType) {
                 partSelectionScreen.classList.add('active');
                 partSelectionScreen.style.display = 'block';
                 partSelectionScreen.style.opacity = '0';
+                
+                // 화면 전환 효과음
+                createSound('transition');
+                
                 setTimeout(function() {
                     partSelectionScreen.style.transition = 'opacity 0.5s ease';
                     partSelectionScreen.style.opacity = '1';
@@ -2076,7 +2148,7 @@ window.startGame = function(character) {
         return;
     }
     
-    playSound('clickSound');
+    createSound('click');
     
     currentCharacter = character;
     currentEvent = 0;
@@ -2106,6 +2178,9 @@ window.startGame = function(character) {
         gameScreen.style.display = 'block';
         gameScreen.style.opacity = '0';
         gameScreen.style.transform = 'translateY(20px)';
+        
+        // 화면 전환 효과음
+        createSound('transition');
         
         // 페이드 인 애니메이션
         setTimeout(function() {
