@@ -358,7 +358,7 @@ const endings = {
         originalMatchRate: {
             harry: 90,
             ron: 85,
-            hermione: 88
+            hermione: 78
         },
         harry: "용감한 선택으로 볼드모트를 물리쳤다! 해리는 진정한 그리핀도르의 용기를 보여주었다. 마법사의 돌은 안전하게 보호되었고, 해리는 영웅이 되었다.",
         ron: "용감하게 체스 게임에 참여한 론은 친구들을 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
@@ -371,8 +371,8 @@ const endings = {
             hermione: "🧠 지혜로운 마법사"
         },
         originalMatchRate: {
-            harry: 92,
-            ron: 80,
+            harry: 75,
+            ron: 70,
             hermione: 95
         },
         harry: "지혜로운 선택으로 마법사의 돌을 파괴했다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 볼드모트의 계획은 실패했고, 해리는 현명한 선택을 했다.",
@@ -386,7 +386,7 @@ const endings = {
             hermione: "💝 우정 있는 마법사"
         },
         originalMatchRate: {
-            harry: 88,
+            harry: 82,
             ron: 90,
             hermione: 87
         },
