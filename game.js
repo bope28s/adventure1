@@ -761,7 +761,7 @@ const gameData = {
         harry: [
             {
                 title: "머글 여름",
-                story: "여름 방학 동안 더즐리 집에서 지내고 있었다. 마법부가 마법 사용 금지 통지를 보냈다. 그런데 마녀를 불어 날려버렸다! 어떻게 할까?",
+                story: "여름 방학 동안 더즐리 집에서 지내고 있었다. 마법부가 마법 사용 금지 통지를 보냈다. 그런데 두들리의 고모 마지를 불어 날려버렸다! 어떻게 할까?",
                 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
                 choices: [
                     { text: "집을 나가 도망간다", effects: { courage: 15 }, next: 1 },
