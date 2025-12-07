@@ -25,43 +25,37 @@
     <link rel="stylesheet" href="style.css">
     <!-- 스플래시 이미지 사전 로드 -->
     <link rel="preload" as="image" href="icon2.png" crossorigin="anonymous">
-    <style>
-        /* 저장된 상태가 있으면 스플래시 화면 숨김 */
-        #splash-screen[data-hide="true"] {
-            display: none !important;
-        }
-    </style>
     <script>
-        // 즉시 실행: 저장된 상태 체크하여 스플래시 화면 제어
+        // 즉시 실행: 저장된 상태 체크하여 스플래시 화면 표시 여부 결정
         (function() {
             try {
                 const saved = sessionStorage.getItem('harryPotterGameState');
-                if (saved) {
-                    // DOM이 준비되기 전에 속성 설정을 위한 설정 저장
-                    window.__skipSplash = true;
+                if (!saved) {
+                    // 저장된 상태가 없을 때만 스플래시 화면 표시
+                    window.__showSplash = true;
                 }
             } catch(e) {
-                // sessionStorage 체크 실패 시 무시
+                // sessionStorage 체크 실패 시 스플래시 표시
+                window.__showSplash = true;
             }
         })();
     </script>
 </head>
 <body>
+    <div id="splash-screen" class="splash-screen">
+        <img src="icon2.png" alt="" class="splash-image" id="splash-icon" crossorigin="anonymous">
+    </div>
     <script>
-        // body 시작 부분에서 즉시 스플래시 화면 제어
+        // 즉시 실행: 저장된 상태가 없을 때만 스플래시 화면 표시
         (function() {
-            if (window.__skipSplash) {
+            if (window.__showSplash) {
                 const splashScreen = document.getElementById('splash-screen');
                 if (splashScreen) {
-                    splashScreen.setAttribute('data-hide', 'true');
-                    splashScreen.style.display = 'none';
+                    splashScreen.classList.add('show');
                 }
             }
         })();
     </script>
-    <div id="splash-screen" class="splash-screen" style="display: flex !important;">
-        <img src="icon2.png" alt="" class="splash-image" id="splash-icon" crossorigin="anonymous">
-    </div>
     <div class="container">
         <div id="part-selection" class="screen active" style="display: none !important;">
             <h1>해리포터 모험 게임</h1>
