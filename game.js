@@ -9,7 +9,7 @@ let gameState = {
 };
 let pendingChoice = null; // 선택 확인을 위한 변수
 
-// 게임 상태 저장 함수
+// 게임 상태 저장 함수 (sessionStorage 사용 - 새로고침 시에만 유지)
 function saveGameState() {
     const state = {
         currentPart: currentPart,
@@ -19,30 +19,29 @@ function saveGameState() {
         timestamp: Date.now()
     };
     try {
-        localStorage.setItem('harryPotterGameState', JSON.stringify(state));
+        // sessionStorage 사용: 새로고침만 하면 유지, 탭을 닫으면 삭제
+        sessionStorage.setItem('harryPotterGameState', JSON.stringify(state));
     } catch (e) {
         console.error('게임 상태 저장 실패:', e);
     }
 }
 
-// 게임 상태 복원 함수
+// 게임 상태 복원 함수 (sessionStorage에서 복원)
 function loadGameState() {
     try {
-        const saved = localStorage.getItem('harryPotterGameState');
+        const saved = sessionStorage.getItem('harryPotterGameState');
         if (saved) {
             const state = JSON.parse(saved);
-            // 24시간 이내의 저장된 상태만 복원
-            if (Date.now() - state.timestamp < 24 * 60 * 60 * 1000) {
-                currentPart = state.currentPart || 1;
-                currentCharacter = state.currentCharacter || null;
-                currentEvent = state.currentEvent || 0;
-                gameState = state.gameState || {
-                    friendship: 50,
-                    courage: 50,
-                    knowledge: 50
-                };
-                return true;
-            }
+            // sessionStorage는 탭이 닫히면 자동으로 삭제되므로 timestamp 체크 불필요
+            currentPart = state.currentPart || 1;
+            currentCharacter = state.currentCharacter || null;
+            currentEvent = state.currentEvent || 0;
+            gameState = state.gameState || {
+                friendship: 50,
+                courage: 50,
+                knowledge: 50
+            };
+            return true;
         }
     } catch (e) {
         console.error('게임 상태 복원 실패:', e);
@@ -53,7 +52,7 @@ function loadGameState() {
 // 게임 상태 초기화 함수
 function clearGameState() {
     try {
-        localStorage.removeItem('harryPotterGameState');
+        sessionStorage.removeItem('harryPotterGameState');
     } catch (e) {
         console.error('게임 상태 삭제 실패:', e);
     }
