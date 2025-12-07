@@ -298,10 +298,16 @@
                 console.log('저장된 게임 상태 복원 - 스플래시 화면 건너뛰기');
                 if (splashScreen) {
                     splashScreen.style.display = 'none';
+                    splashScreen.classList.remove('show');
                 }
                 // 바로 상태 복원 화면으로 이동
                 restoreGameScreen();
                 return;
+            }
+            
+            // 저장된 상태가 없으면 스플래시 화면 표시
+            if (splashScreen && !splashScreen.classList.contains('show')) {
+                splashScreen.classList.add('show');
             }
             
             let imageLoaded = false;
