@@ -929,8 +929,10 @@ function showEnding(endingType) {
     // 통계 그래프 표시
     showStatsGraph();
     
-    // 책 이야기와의 일치도 표시
-    showOriginalMatchRate(endingType);
+    // 책 이야기와의 일치도 표시 (약간의 지연 후 표시)
+    setTimeout(function() {
+        showOriginalMatchRate(endingType);
+    }, 500);
     
     setTimeout(function() {
         if (storyContainer) {
