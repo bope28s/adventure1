@@ -25,14 +25,20 @@
     <link rel="stylesheet" href="style.css">
     <!-- 스플래시 이미지 사전 로드 -->
     <link rel="preload" as="image" href="icon2.png" crossorigin="anonymous">
+    <style>
+        /* 저장된 상태가 있으면 스플래시 화면 숨김 */
+        #splash-screen[data-hide="true"] {
+            display: none !important;
+        }
+    </style>
     <script>
         // 즉시 실행: 저장된 상태 체크하여 스플래시 화면 제어
         (function() {
             try {
                 const saved = sessionStorage.getItem('harryPotterGameState');
                 if (saved) {
-                    // 저장된 상태가 있으면 스플래시 화면 숨김
-                    document.write('<style>#splash-screen { display: none !important; }</style>');
+                    // DOM이 준비되기 전에 속성 설정을 위한 설정 저장
+                    window.__skipSplash = true;
                 }
             } catch(e) {
                 // sessionStorage 체크 실패 시 무시
@@ -41,6 +47,18 @@
     </script>
 </head>
 <body>
+    <script>
+        // body 시작 부분에서 즉시 스플래시 화면 제어
+        (function() {
+            if (window.__skipSplash) {
+                const splashScreen = document.getElementById('splash-screen');
+                if (splashScreen) {
+                    splashScreen.setAttribute('data-hide', 'true');
+                    splashScreen.style.display = 'none';
+                }
+            }
+        })();
+    </script>
     <div id="splash-screen" class="splash-screen" style="display: flex !important;">
         <img src="icon2.png" alt="" class="splash-image" id="splash-icon" crossorigin="anonymous">
     </div>
