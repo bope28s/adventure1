@@ -770,14 +770,14 @@ function makeChoice(choice) {
     showChoiceConfirm(choice);
 }
 
-// 원작 일치율 표시 함수
+// 책 이야기와의 일치도 표시 함수
 function showOriginalMatchRate(endingType) {
     const matchContainer = document.getElementById('original-match-container');
     const matchBar = document.getElementById('original-match-bar');
     const matchValue = document.getElementById('original-match-value');
 
     if (!matchContainer || !matchBar || !matchValue) {
-        console.error('원작 일치율 그래프 요소를 찾을 수 없습니다.');
+        console.error('책 이야기 일치도 그래프 요소를 찾을 수 없습니다.');
         return;
     }
 
@@ -907,7 +907,7 @@ function showEnding(endingType) {
     // 통계 그래프 표시
     showStatsGraph();
     
-    // 원작 일치율 표시
+    // 책 이야기와의 일치도 표시
     showOriginalMatchRate(endingType);
     
     setTimeout(function() {
@@ -975,7 +975,7 @@ function showEnding(endingType) {
                 statsContainer.style.display = 'none';
             }
             
-            // 원작 일치율 그래프 숨기기
+            // 책 이야기 일치도 그래프 숨기기
             const matchContainer = document.getElementById('original-match-container');
             if (matchContainer) {
                 matchContainer.style.display = 'none';
