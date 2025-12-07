@@ -816,11 +816,11 @@ const gameData = {
             },
             {
                 title: "스캐버스",
-                story: "스캐버스가 아파 보였다. 내 쥐였고 정말 아꼈다. 하지만 크루셔가 스캐버스를 계속 쫓았다. 어떻게 할까?",
+                story: "스캐버스가 아파 보였다. 내 쥐였고 정말 아꼈다. 하지만 크룩섕스가 스캐버스를 계속 쫓았다. 어떻게 할까?",
                 image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
                 choices: [
-                    { text: "크루셔를 막고 스캐버스를 보호한다", effects: { courage: 10, friendship: -5 }, next: 2 },
-                    { text: "크루셔에게 스캐버스를 숨긴다", effects: { knowledge: 5 }, next: 2 },
+                    { text: "크룩섕스를 막고 스캐버스를 보호한다", effects: { courage: 10, friendship: -5 }, next: 2 },
+                    { text: "크룩섕스에게 스캐버스를 숨긴다", effects: { knowledge: 5 }, next: 2 },
                     { text: "스캐버스가 아프다고 생각한다", effects: { friendship: 5 }, next: 2 }
                 ]
             },
@@ -835,12 +835,12 @@ const gameData = {
                 ]
             },
             {
-                title: "크루셔",
-                story: "크루셔를 받았다. 헤르미온느의 고양이였다. 크루셔는 스캐버스를 계속 쫓았다. 나는 화가 났다. 어떻게 할까?",
+                title: "크룩섕스",
+                story: "크룩섕스를 받았다. 헤르미온느의 고양이였다. 크룩섕스는 스캐버스를 계속 쫓았다. 나는 화가 났다. 어떻게 할까?",
                 image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
                 choices: [
                     { text: "헤르미온느와 다툰다", effects: { friendship: -15 }, ending: "fought_hermione" },
-                    { text: "크루셔를 이해하려고 노력한다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
+                    { text: "크룩섕스를 이해하려고 노력한다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
                     { text: "스캐버스를 더 잘 보호한다", effects: { courage: 5 }, next: 4 }
                 ]
             },
@@ -937,13 +937,13 @@ const gameData = {
                 ]
             },
             {
-                title: "크루셔와 스캐버스",
-                story: "크루셔가 스캐버스를 계속 쫓았다. 론이 화가 났다. 하지만 크루셔는 단순히 고양이가 아니었다. 어떻게 할까?",
+                title: "크룩섕스와 스캐버스",
+                story: "크룩섕스가 스캐버스를 계속 쫓았다. 론이 화가 났다. 하지만 크룩섕스는 단순히 고양이가 아니었다. 어떻게 할까?",
                 image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
                 choices: [
-                    { text: "크루셔가 특별하다는 것을 직감한다", effects: { knowledge: 15 }, next: 4 },
+                    { text: "크룩섕스가 특별하다는 것을 직감한다", effects: { knowledge: 15 }, next: 4 },
                     { text: "론과 다툰다", effects: { friendship: -15 }, ending: "fought_ron" },
-                    { text: "크루셔를 막으려고 노력한다", effects: { friendship: 5 }, next: 4 }
+                    { text: "크룩섕스를 막으려고 노력한다", effects: { friendship: 5 }, next: 4 }
                 ]
             },
             {
@@ -978,11 +978,11 @@ const gameData = {
             },
             {
                 title: "피터 페티그루",
-                story: "피터 페티그루가 진짜 배신자였다! 스캐버스가 사실 피터였다. 나는 크루셔가 맞았다는 것을 깨달았다. 어떻게 할까?",
+                story: "피터 페티그루가 진짜 배신자였다! 스캐버스가 사실 피터였다. 나는 크룩섕스가 맞았다는 것을 깨달았다. 어떻게 할까?",
                 image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
                 choices: [
                     { text: "피터를 잡아서 진실을 밝힌다", effects: { knowledge: 20, courage: 15 }, next: 8 },
-                    { text: "론에게 크루셔가 옳았다고 말한다", effects: { friendship: 15, knowledge: 10 }, next: 8 },
+                    { text: "론에게 크룩섕스가 옳았다고 말한다", effects: { friendship: 15, knowledge: 10 }, next: 8 },
                     { text: "증거를 더 모은다", effects: { knowledge: 20, friendship: -5 }, next: 8 }
                 ]
             },
@@ -1487,7 +1487,7 @@ const endings = {
         originalMatchRate: {
             ron: 18
         },
-        ron: "크루셔 때문에 헤르미온느와 다툰 론은 친구의 신뢰를 잃었다. 작은 일로 큰 우정을 잃지 말아야 한다는 것을 배웠다."
+        ron: "크룩섕스 때문에 헤르미온느와 다툰 론은 친구의 신뢰를 잃었다. 작은 일로 큰 우정을 잃지 말아야 한다는 것을 배웠다."
     },
     took_map_back: {
         title: {
@@ -1542,7 +1542,7 @@ const endings = {
         originalMatchRate: {
             hermione: 18
         },
-        hermione: "크루셔 때문에 론과 다툰 헤르미온느는 친구의 신뢰를 잃었다. 작은 일로 우정을 해치지 말아야 한다는 것을 배웠다."
+        hermione: "크룩섕스 때문에 론과 다툰 헤르미온느는 친구의 신뢰를 잃었다. 작은 일로 우정을 해치지 말아야 한다는 것을 배웠다."
     },
     feared_lupin: {
         title: {
