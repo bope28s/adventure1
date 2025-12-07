@@ -561,6 +561,10 @@ button.character-card {
     background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%);
 }
 
+.original-match-bar {
+    background: linear-gradient(90deg, #9b59b6 0%, #8e44ad 100%);
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2em;
