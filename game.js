@@ -1868,6 +1868,27 @@ function showEvent() {
     const storyImageContainer = document.getElementById('story-image-container');
     const storyContainer = document.getElementById('story-container');
     const endingTitle = document.getElementById('ending-title');
+    
+    // 캐릭터 정보 표시 (새로고침 후에도 유지)
+    const characterNameElement = document.getElementById('current-character-name');
+    const characterIconElement = document.getElementById('current-character-icon');
+    if (characterNameElement) {
+        characterNameElement.textContent = characterNames[currentCharacter];
+    }
+    if (characterIconElement) {
+        const iconPaths = {
+            harry: 'image/Harry.png',
+            ron: 'image/Ron.png',
+            hermione: 'image/Hermione.png'
+        };
+        if (iconPaths[currentCharacter]) {
+            characterIconElement.src = iconPaths[currentCharacter];
+            characterIconElement.alt = characterNames[currentCharacter];
+            characterIconElement.style.display = 'block';
+        } else {
+            characterIconElement.style.display = 'none';
+        }
+    }
 
     if (!storyText || !choicesContainer || !eventNumber) {
         console.error('DOM 요소를 찾을 수 없습니다.');

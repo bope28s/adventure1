@@ -180,32 +180,8 @@
             const partSelection = document.getElementById('part-selection');
             const splashIcon = document.getElementById('splash-icon');
             
-            let imageLoaded = false;
-            let timeoutReached = false;
-            
-            // 이미지가 완전히 로드되면 표시
-            function showImage() {
-                if (splashIcon && !imageLoaded) {
-                    imageLoaded = true;
-                    splashIcon.style.opacity = '1';
-                    console.log('아이콘 이미지 로드 완료');
-                }
-                checkTransition();
-            }
-            
-            // 전환 조건 확인
-            function checkTransition() {
-                if (timeoutReached && imageLoaded) {
-                    transitionToMainScreen();
-                }
-            }
-            
-            // 메인 화면으로 전환 (저장된 상태 복원 포함)
-            function transitionToMainScreen() {
-                if (splashScreen) {
-                    splashScreen.style.display = 'none';
-                }
-                
+            // 게임 화면 복원 함수 (공통으로 사용)
+            function restoreGameScreen() {
                 // 저장된 게임 상태 복원 시도
                 if (typeof loadGameState === 'function' && loadGameState()) {
                     console.log('저장된 게임 상태 복원:', {
@@ -238,10 +214,10 @@
                                 partTitle.textContent = partTitles[currentPart];
                             }
                             
-                            // 이벤트 표시
+                            // 이벤트 표시 (캐릭터 정보 포함)
                             setTimeout(function() {
                                 showEvent();
-                            }, 300);
+                            }, 100);
                             return;
                         }
                     }
@@ -289,6 +265,45 @@
                         createSound('transition');
                     }
                 }
+            }
+            
+            // 저장된 게임 상태가 있으면 스플래시 화면 건너뛰기
+            if (typeof loadGameState === 'function' && loadGameState()) {
+                console.log('저장된 게임 상태 복원 - 스플래시 화면 건너뛰기');
+                if (splashScreen) {
+                    splashScreen.style.display = 'none';
+                }
+                // 바로 상태 복원 화면으로 이동
+                restoreGameScreen();
+                return;
+            }
+            
+            let imageLoaded = false;
+            let timeoutReached = false;
+            
+            // 이미지가 완전히 로드되면 표시
+            function showImage() {
+                if (splashIcon && !imageLoaded) {
+                    imageLoaded = true;
+                    splashIcon.style.opacity = '1';
+                    console.log('아이콘 이미지 로드 완료');
+                }
+                checkTransition();
+            }
+            
+            // 전환 조건 확인
+            function checkTransition() {
+                if (timeoutReached && imageLoaded) {
+                    transitionToMainScreen();
+                }
+            }
+            
+            // 메인 화면으로 전환 (저장된 상태 복원 포함)
+            function transitionToMainScreen() {
+                if (splashScreen) {
+                    splashScreen.style.display = 'none';
+                }
+                restoreGameScreen();
             }
             
             // 이미지 로드 확인
