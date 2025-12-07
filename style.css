@@ -561,8 +561,43 @@ button.character-card {
     background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%);
 }
 
-.original-match-bar {
-    background: linear-gradient(90deg, #9b59b6 0%, #8e44ad 100%);
+.original-match-text-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    animation: fadeInUp 0.5s ease;
+}
+
+.original-match-text {
+    margin: 0;
+}
+
+.match-percentage {
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.match-percentage:hover {
+    transform: scale(1.1);
+    color: #fff !important;
+}
+
+@keyframes dialUp {
+    0% {
+        transform: rotate(-180deg) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(0deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.match-percentage.animating {
+    animation: dialUp 1.5s ease-out;
 }
 
 @media (max-width: 768px) {

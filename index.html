@@ -106,19 +106,10 @@
                     </div>
                 </div>
             </div>
-            <div id="original-match-container" class="stats-graph-container" style="display: none; margin-top: 20px;">
-                <h3 class="stats-title">책 이야기와의 일치도</h3>
-                <div class="stats-graph">
-                    <div class="stat-item">
-                        <div class="stat-label">
-                            <span>일치도</span>
-                            <span id="original-match-value" class="stat-value">0</span>
-                        </div>
-                        <div class="stat-bar-container">
-                            <div id="original-match-bar" class="stat-bar original-match-bar" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                </div>
+            <div id="original-match-container" class="original-match-text-container" style="display: none; margin-top: 20px; text-align: center; padding: 20px;">
+                <p class="original-match-text" style="font-size: 1.5em; color: #ffd700; line-height: 1.8;">
+                    당신의 선택은 원래 이야기와 <span id="original-match-value" class="match-percentage" style="font-size: 1.3em; font-weight: bold; color: #ffed4e; cursor: pointer; display: inline-block; min-width: 60px;">--</span>% 똑같군요!
+                </p>
             </div>
             <div id="choices-container" class="choices-container"></div>
             <button id="restart-btn" class="restart-btn" style="display: none;">다시 시작하기</button>

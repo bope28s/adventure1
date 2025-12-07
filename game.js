@@ -773,11 +773,10 @@ function makeChoice(choice) {
 // 책 이야기와의 일치도 표시 함수
 function showOriginalMatchRate(endingType) {
     const matchContainer = document.getElementById('original-match-container');
-    const matchBar = document.getElementById('original-match-bar');
     const matchValue = document.getElementById('original-match-value');
 
-    if (!matchContainer || !matchBar || !matchValue) {
-        console.error('책 이야기 일치도 그래프 요소를 찾을 수 없습니다.');
+    if (!matchContainer || !matchValue) {
+        console.error('책 이야기 일치도 요소를 찾을 수 없습니다.');
         return;
     }
 
@@ -786,10 +785,11 @@ function showOriginalMatchRate(endingType) {
         ? endings[endingType].originalMatchRate[currentCharacter]
         : 0;
 
-    // 값 설정
-    matchValue.textContent = matchRate + '%';
-
-    // 그래프 표시
+    // 초기값을 "--"로 설정
+    matchValue.textContent = '--';
+    matchValue.classList.remove('animating');
+    
+    // 컨테이너 표시
     matchContainer.style.display = 'block';
     matchContainer.style.opacity = '0';
     matchContainer.style.transform = 'translateY(20px)';
@@ -798,12 +798,30 @@ function showOriginalMatchRate(endingType) {
         matchContainer.style.transition = 'all 0.5s ease';
         matchContainer.style.opacity = '1';
         matchContainer.style.transform = 'translateY(0)';
-
-        // 애니메이션으로 바 채우기
-        setTimeout(function() {
-            matchBar.style.transition = 'width 1s ease';
-            matchBar.style.width = matchRate + '%';
-        }, 200);
+        
+        // 클릭 이벤트 추가
+        matchValue.onclick = function() {
+            if (matchValue.textContent === '--' || matchValue.classList.contains('animating')) {
+                return; // 이미 애니메이션 중이면 무시
+            }
+            
+            // 다이얼 애니메이션 시작
+            matchValue.textContent = '--';
+            matchValue.classList.add('animating');
+            
+            // 숫자를 0부터 목표값까지 증가시키며 표시
+            let currentValue = 0;
+            const increment = matchRate > 50 ? 2 : 1; // 큰 값은 더 빠르게
+            const interval = setInterval(function() {
+                currentValue += increment;
+                if (currentValue >= matchRate) {
+                    currentValue = matchRate;
+                    clearInterval(interval);
+                    matchValue.classList.remove('animating');
+                }
+                matchValue.textContent = currentValue;
+            }, 30); // 30ms마다 업데이트
+        };
     }, 100);
 }
 
