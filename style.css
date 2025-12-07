@@ -20,11 +20,30 @@
 }
 
 .splash-image {
-    max-width: 80%;
-    max-height: 80%;
-    width: auto;
-    height: auto;
+    max-width: 400px;
+    max-height: 400px;
+    width: 60vmin;
+    height: 60vmin;
+    object-fit: contain;
     animation: splashPulse 2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .splash-image {
+        max-width: 300px;
+        max-height: 300px;
+        width: 70vmin;
+        height: 70vmin;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-image {
+        max-width: 250px;
+        max-height: 250px;
+        width: 75vmin;
+        height: 75vmin;
+    }
 }
 
 @keyframes splashPulse {
