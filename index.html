@@ -26,9 +26,31 @@
 </head>
 <body>
     <div class="container">
-        <div id="character-selection" class="screen active" style="display: block !important;">
+        <div id="part-selection" class="screen active" style="display: block !important;">
             <h1>해리포터 모험 게임</h1>
-            <h2>제 1편 : 마법사의 돌</h2>
+            <p class="intro">플레이할 편을 선택하세요!</p>
+            <div class="part-cards">
+                <button class="part-card" onclick="selectPart(1)" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border: 3px solid #ffd700; border-radius: 15px; padding: 30px; cursor: pointer; min-width: 250px; max-width: 300px; color: white; font-family: inherit;">
+                    <h3 style="font-size: 1.8em; margin-bottom: 15px; color: #ffd700; text-align: center;">제 1편</h3>
+                    <h4 style="font-size: 1.4em; margin-bottom: 10px; color: #ffd700; text-align: center;">마법사의 돌</h4>
+                    <p style="font-size: 1em; color: #b0b0b0; text-align: center; margin: 0;">해리의 첫 해</p>
+                </button>
+                <button class="part-card" onclick="selectPart(2)" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border: 3px solid #ffd700; border-radius: 15px; padding: 30px; cursor: pointer; min-width: 250px; max-width: 300px; color: white; font-family: inherit;">
+                    <h3 style="font-size: 1.8em; margin-bottom: 15px; color: #ffd700; text-align: center;">제 2편</h3>
+                    <h4 style="font-size: 1.4em; margin-bottom: 10px; color: #ffd700; text-align: center;">비밀의 방</h4>
+                    <p style="font-size: 1em; color: #b0b0b0; text-align: center; margin: 0;">미지의 위험</p>
+                </button>
+                <button class="part-card" onclick="selectPart(3)" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border: 3px solid #ffd700; border-radius: 15px; padding: 30px; cursor: pointer; min-width: 250px; max-width: 300px; color: white; font-family: inherit;">
+                    <h3 style="font-size: 1.8em; margin-bottom: 15px; color: #ffd700; text-align: center;">제 3편</h3>
+                    <h4 style="font-size: 1.4em; margin-bottom: 10px; color: #ffd700; text-align: center;">아즈카반의 죄수</h4>
+                    <p style="font-size: 1em; color: #b0b0b0; text-align: center; margin: 0;">탈출한 죄수</p>
+                </button>
+            </div>
+        </div>
+
+        <div id="character-selection" class="screen" style="display: none !important;">
+            <h1>해리포터 모험 게임</h1>
+            <h2 id="part-title">제 1편 : 마법사의 돌</h2>
             <p class="intro">모험을 시작할 주인공을 선택하세요!</p>
             <div class="character-cards">
                 <button class="character-card" data-character="harry" onclick="startGame('harry')" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border: 3px solid #ffd700; border-radius: 15px; padding: 20px; cursor: pointer; min-width: 200px; max-width: 250px; color: white; font-family: inherit;">

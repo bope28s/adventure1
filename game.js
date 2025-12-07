@@ -1,4 +1,5 @@
 // 게임 상태
+let currentPart = 1; // 현재 선택한 편 (1, 2, 3)
 let currentCharacter = null;
 let currentEvent = 0;
 let gameState = {
@@ -13,6 +14,13 @@ const characterNames = {
     harry: '해리 포터',
     ron: '론 위즐리',
     hermione: '헤르미온느 그레인저'
+};
+
+// 편 제목 매핑
+const partTitles = {
+    1: '제 1편 : 마법사의 돌',
+    2: '제 2편 : 비밀의 방',
+    3: '제 3편 : 아즈카반의 죄수'
 };
 
 // 사운드 재생 함수
@@ -36,8 +44,47 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// 게임 데이터 - 각 주인공별 10개 이벤트 (중간 결말 포함, 질문 형태로 마무리)
+// 편 선택 함수
+window.selectPart = function(partNumber) {
+    playSound('clickSound');
+    currentPart = partNumber;
+    
+    const partSelection = document.getElementById('part-selection');
+    const characterSelection = document.getElementById('character-selection');
+    const partTitle = document.getElementById('part-title');
+    
+    if (!partSelection || !characterSelection || !partTitle) {
+        console.error('화면 요소를 찾을 수 없습니다.');
+        return;
+    }
+    
+    // 편 제목 업데이트
+    partTitle.textContent = partTitles[partNumber];
+    
+    // 페이드 아웃 애니메이션
+    partSelection.style.transition = 'opacity 0.5s ease';
+    partSelection.style.opacity = '0';
+    
+    setTimeout(function() {
+        partSelection.classList.remove('active');
+        partSelection.style.display = 'none';
+        characterSelection.classList.add('active');
+        characterSelection.style.display = 'block';
+        characterSelection.style.opacity = '0';
+        characterSelection.style.transform = 'translateY(20px)';
+        
+        // 페이드 인 애니메이션
+        setTimeout(function() {
+            characterSelection.style.transition = 'all 0.5s ease';
+            characterSelection.style.opacity = '1';
+            characterSelection.style.transform = 'translateY(0)';
+        }, 50);
+    }, 500);
+};
+
+// 게임 데이터 - 각 편별, 각 주인공별 10개 이벤트 (중간 결말 포함, 질문 형태로 마무리)
 const gameData = {
+    1: { // 제 1편: 마법사의 돌
     harry: [
         {
             title: "해리의 생일",
@@ -344,6 +391,623 @@ const gameData = {
             ]
         }
     ]
+    },
+    2: { // 제 2편: 비밀의 방
+        harry: [
+            {
+                title: "여름 방학",
+                story: "여름 방학 동안 더즐리 집에서 갇혀있던 나는 도비라는 집요정을 만났다. 도비는 내가 호그와트로 돌아가면 안 된다고 경고했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "도비의 경고를 무시하고 호그와트로 돌아간다", effects: { courage: 10 }, next: 1 },
+                    { text: "도비의 말을 듣고 집에 남는다", effects: { courage: -15 }, ending: "stayed_home" },
+                    { text: "도비에게 더 자세히 물어본다", effects: { knowledge: 10 }, next: 1 }
+                ]
+            },
+            {
+                title: "위즐리 집 탈출",
+                story: "론의 형들이 나를 구하러 왔다! 더즐리 집에서 탈출해서 위즐리 집에서 지내게 되었다. 위즐리 집은 정말 따뜻하고 좋은 곳이었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+                choices: [
+                    { text: "위즐리 가족에게 감사하며 지낸다", effects: { friendship: 15 }, next: 2 },
+                    { text: "마법 세계의 일을 탐구한다", effects: { knowledge: 10 }, next: 2 },
+                    { text: "조용히 지내며 방해하지 않는다", effects: { friendship: 5 }, next: 2 }
+                ]
+            },
+            {
+                title: "다이애건 앨리",
+                story: "론과 함께 다이애건 앨리에 왔다. 지팡이를 수리하고 새 책을 사야 했다. 그런데 록하트 교수의 책을 너무 많이 샀다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
+                choices: [
+                    { text: "록하트의 책을 모두 산다", effects: { knowledge: 5 }, next: 3 },
+                    { text: "필요한 것만 선택해서 산다", effects: { knowledge: 10 }, next: 3 },
+                    { text: "론의 조언을 따른다", effects: { friendship: 10 }, next: 3 }
+                ]
+            },
+            {
+                title: "킹스 크로스 역",
+                story: "9와 4분의 3 승강장에 들어가지 못했다! 벽이 막혀있었다. 론과 함께 어떻게든 호그와트 특급 열차에 탑승해야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
+                choices: [
+                    { text: "론과 함께 플라잉 카를 사용한다", effects: { courage: 15, friendship: 10 }, next: 4 },
+                    { text: "어른들에게 도움을 요청한다", effects: { knowledge: 10, courage: -5 }, next: 4 },
+                    { text: "집으로 돌아간다", effects: { courage: -20 }, ending: "gave_up_station" }
+                ]
+            },
+            {
+                title: "호그와트 도착",
+                story: "호그와트에 도착했지만 위즐리 집 자동차 사고로 문제가 생겼다. 맥고나걸 교수님이 매우 화가 나셨다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "솔직하게 사과하고 책임을 진다", effects: { courage: 10, friendship: 5 }, next: 5 },
+                    { text: "변명을 하지 않고 조용히 듣는다", effects: { knowledge: 5 }, next: 5 },
+                    { text: "론에게 모든 책임을 돌린다", effects: { friendship: -20 }, ending: "blamed_ron" }
+                ]
+            },
+            {
+                title: "비밀의 방의 전설",
+                story: "학교에 '비밀의 방이 열렸다'는 글이 발견되었다. 누군가가 마법사를 공격하고 있었다. 호그와트에 위험이 도사리고 있었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "사건을 조사하기 시작한다", effects: { courage: 15, knowledge: 10 }, next: 6 },
+                    { text: "교사들에게 모든 것을 알린다", effects: { knowledge: 10, courage: -5 }, next: 6 },
+                    { text: "두려워서 숨는다", effects: { courage: -20 }, ending: "hid_from_danger" }
+                ]
+            },
+            {
+                title: "뱀의 말",
+                story: "듀얼 클럽에서 내가 뱀과 대화하는 것을 모두가 보았다. 모두가 내가 슬리데린의 후계자라고 생각하기 시작했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
+                choices: [
+                    { text: "사람들에게 설명하려고 노력한다", effects: { friendship: 10, knowledge: 5 }, next: 7 },
+                    { text: "조사해서 진실을 찾아낸다", effects: { knowledge: 15, courage: 5 }, next: 7 },
+                    { text: "포기하고 외톨이가 된다", effects: { friendship: -25 }, ending: "isolated" }
+                ]
+            },
+            {
+                title: "다이어리 발견",
+                story: "화장실에서 이상한 다이어리를 발견했다. 톰 리들의 다이어리였다. 다이어리는 나에게 글을 쓰라고 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "다이어리와 대화한다", effects: { knowledge: 10 }, next: 8 },
+                    { text: "헤르미온느에게 보여준다", effects: { friendship: 15, knowledge: 5 }, next: 8 },
+                    { text: "다이어리를 버린다", effects: { knowledge: -10 }, ending: "missed_diary" }
+                ]
+            },
+            {
+                title: "헤르미온느의 실종",
+                story: "헤르미온느가 돌로 변해 실종되었다! 그녀가 남긴 메모로 거대한 거미를 찾아야 했다. 아라고그를 만나러 갔다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+                choices: [
+                    { text: "용감하게 거미들의 거처로 간다", effects: { courage: 20, friendship: 15 }, next: 9 },
+                    { text: "다른 방법을 찾는다", effects: { knowledge: 15 }, next: 9 },
+                    { text: "두려워서 도망간다", effects: { courage: -25, friendship: -20 }, ending: "ran_from_spiders" }
+                ]
+            },
+            {
+                title: "비밀의 방",
+                story: "비밀의 방에 들어갔다! 톰 리들이 나타났고, 그는 볼드모트의 16세 시절 모습이었다. 지니가 위험에 빠졌다. 나는 바실리스크와 맞서야 한다! 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "용감하게 바실리스크와 맞선다", effects: { courage: 25 }, ending: "courage" },
+                    { text: "피니스를 불러 도움을 받는다", effects: { knowledge: 20, courage: 15 }, ending: "wisdom" },
+                    { text: "지니와 함께 용감하게 맞선다", effects: { friendship: 25, courage: 10 }, ending: "friendship" }
+                ]
+            }
+        ],
+        ron: [
+            {
+                title: "여름 방학",
+                story: "여름 방학 동안 집에서 지내고 있었다. 해리가 우리 집에 오기를 기다리고 있었다. 그런데 해리가 도비라는 집요정 때문에 문제가 생겼다는 편지를 받았다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "형들과 함께 해리를 구하러 간다", effects: { friendship: 15, courage: 10 }, next: 1 },
+                    { text: "엄마에게 해리 문제를 말한다", effects: { friendship: 10 }, next: 1 },
+                    { text: "기다리기만 한다", effects: { friendship: -10 }, ending: "waited_passively" }
+                ]
+            },
+            {
+                title: "해리의 도착",
+                story: "해리가 우리 집에 왔다! 정말 기쁘다. 하지만 해리는 도비가 경고했다고 말했다. 호그와트에 위험이 있을 수 있다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+                choices: [
+                    { text: "해리와 함께 조사하기로 한다", effects: { friendship: 15, courage: 5 }, next: 2 },
+                    { text: "엄마에게 모든 것을 말한다", effects: { knowledge: 5 }, next: 2 },
+                    { text: "무시하고 평소처럼 지낸다", effects: { friendship: -5 }, next: 2 }
+                ]
+            },
+            {
+                title: "킹스 크로스 역",
+                story: "9와 4분의 3 승강장에 들어가지 못했다! 벽이 막혀있었다. 해리와 함께 어떻게든 호그와트 특급 열차에 탑승해야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
+                choices: [
+                    { text: "플라잉 카를 사용하자고 제안한다", effects: { courage: 15, friendship: 10 }, next: 3 },
+                    { text: "어른들에게 도움을 요청한다", effects: { knowledge: 10, courage: -5 }, next: 3 },
+                    { text: "두려워서 다른 방법을 찾는다", effects: { courage: -10 }, next: 3 }
+                ]
+            },
+            {
+                title: "플라잉 카 사고",
+                story: "플라잉 카를 타고 호그와트에 도착했지만 위즐리 집 자동차와 충돌했다. 맥고나걸 교수님이 매우 화가 나셨다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "해리와 함께 책임을 진다", effects: { friendship: 15, courage: 10 }, next: 4 },
+                    { text: "모든 책임을 자신이 진다", effects: { courage: 15, friendship: 10 }, next: 4 },
+                    { text: "변명을 한다", effects: { friendship: -10 }, next: 4 }
+                ]
+            },
+            {
+                title: "비밀의 방",
+                story: "학교에 '비밀의 방이 열렸다'는 글이 발견되었다. 모두가 해리가 슬리데린의 후계자라고 생각하기 시작했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "해리를 믿고 변호한다", effects: { friendship: 20, courage: 10 }, next: 5 },
+                    { text: "해리와 함께 진실을 찾는다", effects: { friendship: 15, knowledge: 10 }, next: 5 },
+                    { text: "의심하기 시작한다", effects: { friendship: -20 }, ending: "doubted_harry" }
+                ]
+            },
+            {
+                title: "듀얼 클럽",
+                story: "듀얼 클럽에서 해리가 뱀과 대화하는 것을 보았다. 모두가 무서워했다. 나도 조금 무서웠지만 해리를 믿어야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
+                choices: [
+                    { text: "해리를 변호하고 옆에 선다", effects: { friendship: 20, courage: 15 }, next: 6 },
+                    { text: "해리에게 뱀의 말에 대해 물어본다", effects: { friendship: 15, knowledge: 5 }, next: 6 },
+                    { text: "조금 거리를 둔다", effects: { friendship: -15 }, ending: "distanced_self" }
+                ]
+            },
+            {
+                title: "다이어리 조사",
+                story: "해리가 이상한 다이어리를 발견했다. 톰 리들의 다이어리였다. 헤르미온느와 함께 조사하기로 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "해리와 헤르미온느와 함께 조사한다", effects: { friendship: 15, knowledge: 10 }, next: 7 },
+                    { text: "혼자서 더 조사한다", effects: { knowledge: 15, friendship: -5 }, next: 7 },
+                    { text: "교사들에게 말한다", effects: { knowledge: 10, friendship: -10 }, next: 7 }
+                ]
+            },
+            {
+                title: "헤르미온느 실종",
+                story: "헤르미온느가 돌로 변해 실종되었다! 그녀가 남긴 메모를 발견했다. 거대한 거미를 찾아야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+                choices: [
+                    { text: "해리와 함께 거미들의 거처로 간다", effects: { friendship: 20, courage: 15 }, next: 8 },
+                    { text: "두려워하지만 해리를 따른다", effects: { courage: 10, friendship: 15 }, next: 8 },
+                    { text: "너무 무서워서 가지 않는다", effects: { courage: -20, friendship: -20 }, ending: "too_scared" }
+                ]
+            },
+            {
+                title: "거미와의 대면",
+                story: "거대한 거미 아라고그를 만났다. 거미들은 우리를 공격했다. 해리와 함께 도망쳐야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+                choices: [
+                    { text: "용감하게 해리와 함께 싸운다", effects: { courage: 20, friendship: 20 }, next: 9 },
+                    { text: "플라잉 카로 도망간다", effects: { courage: 15, friendship: 10 }, next: 9 },
+                    { text: "무서워서 움직이지 못한다", effects: { courage: -25 }, ending: "frozen_fear" }
+                ]
+            },
+            {
+                title: "비밀의 방 구출",
+                story: "해리가 비밀의 방에 들어갔다. 나는 지니를 구하기 위해 교사들에게 알리러 갔다. 하지만 해리를 기다리며 매우 걱정되었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "교사들에게 알리고 해리를 구하러 간다", effects: { friendship: 25, courage: 20 }, ending: "friendship" },
+                    { text: "해리를 믿고 기다린다", effects: { friendship: 20, courage: 15 }, ending: "courage" },
+                    { text: "혼자서 비밀의 방으로 들어간다", effects: { courage: 25, knowledge: 10 }, ending: "wisdom" }
+                ]
+            }
+        ],
+        hermione: [
+            {
+                title: "2학년 시작",
+                story: "2학년이 시작되었다. 록하트 교수가 어둠의 마법 방어술 교수로 왔다. 나는 그의 책을 모두 읽었다. 하지만 뭔가 이상했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "록하트의 책을 더 자세히 연구한다", effects: { knowledge: 15 }, next: 1 },
+                    { text: "해리와 론에게 록하트에 대해 말한다", effects: { friendship: 10, knowledge: 5 }, next: 1 },
+                    { text: "의심하지 않고 록하트를 따른다", effects: { knowledge: -10 }, ending: "trusted_lockhart" }
+                ]
+            },
+            {
+                title: "비밀의 방",
+                story: "학교에 '비밀의 방이 열렸다'는 글이 발견되었다. 나는 도서관에서 비밀의 방에 대해 조사하기 시작했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "도서관에서 집중적으로 조사한다", effects: { knowledge: 20 }, next: 2 },
+                    { text: "해리와 론과 함께 조사한다", effects: { friendship: 15, knowledge: 10 }, next: 2 },
+                    { text: "교사들에게 모든 것을 말한다", effects: { knowledge: 10, friendship: -5 }, next: 2 }
+                ]
+            },
+            {
+                title: "다이어리 발견",
+                story: "해리가 이상한 다이어리를 발견했다. 톰 리들의 다이어리였다. 나는 이것이 매우 위험할 수 있다는 것을 직감했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "다이어리에 대해 깊이 연구한다", effects: { knowledge: 20, friendship: 5 }, next: 3 },
+                    { text: "해리에게 다이어리를 버리라고 말한다", effects: { friendship: 15, knowledge: 10 }, next: 3 },
+                    { text: "다이어리와 직접 대화해본다", effects: { knowledge: 15, courage: -10 }, ending: "talked_to_diary" }
+                ]
+            },
+            {
+                title: "폴리주스 물약",
+                story: "드레이코 말포이가 의심스러웠다. 나는 폴리주스 물약을 만들어서 말포이를 직접 물어보기로 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+                choices: [
+                    { text: "폴리주스 물약을 완벽하게 만든다", effects: { knowledge: 20 }, next: 4 },
+                    { text: "해리와 론과 함께 계획한다", effects: { friendship: 15, knowledge: 10 }, next: 4 },
+                    { text: "말포이를 직접 물어본다", effects: { courage: 10, knowledge: -5 }, next: 4 }
+                ]
+            },
+            {
+                title: "실수",
+                story: "폴리주스 물약을 만들 때 실수를 했다! 고양이 털을 넣었는데, 고양이가 아닌 사람 털이 필요했다. 나는 고양이 인간이 되었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "병원에 가서 치료를 받는다", effects: { knowledge: 10, courage: 5 }, next: 5 },
+                    { text: "친구들에게 부끄러워서 숨는다", effects: { friendship: -15 }, ending: "hid_mistake" },
+                    { text: "다시 시도해서 올바르게 만든다", effects: { knowledge: 15, courage: 10 }, next: 5 }
+                ]
+            },
+            {
+                title: "말포이 조사",
+                story: "병원에서 나왔다. 말포이는 슬리데린의 후계자가 아니었다. 다른 단서를 찾아야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "도서관에서 더 깊이 조사한다", effects: { knowledge: 20 }, next: 6 },
+                    { text: "해리와 론과 함께 다른 방법을 찾는다", effects: { friendship: 15, knowledge: 10 }, next: 6 },
+                    { text: "포기하고 교사들에게 맡긴다", effects: { knowledge: -10, courage: -10 }, ending: "gave_up_investigation" }
+                ]
+            },
+            {
+                title: "바실리스크 단서",
+                story: "도서관에서 바실리스크에 대한 정보를 찾았다! 거대한 뱀이었고, 시선으로 사람을 돌로 만들 수 있었다. 하지만 나는 이것을 직접 확인할 수 없었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "해리와 론에게 모든 정보를 알려준다", effects: { friendship: 20, knowledge: 15 }, next: 7 },
+                    { text: "더 확실한 증거를 찾는다", effects: { knowledge: 20, friendship: -5 }, next: 7 },
+                    { text: "교사들에게 즉시 알린다", effects: { knowledge: 15, friendship: -10 }, next: 7 }
+                ]
+            },
+            {
+                title: "마지막 실험",
+                story: "바실리스크를 직접 보지 않고 거울을 통해 확인하려고 했다. 하지만 실수를 했다. 나는 돌로 변해버렸다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "메모를 남겨 친구들에게 단서를 준다", effects: { knowledge: 20, friendship: 20 }, next: 8 },
+                    { text: "아무것도 하지 못한다", effects: { courage: -10 }, next: 8 },
+                    { text: "두려워서 아무 정보도 남기지 않는다", effects: { friendship: -20 }, ending: "no_clue_left" }
+                ]
+            },
+            {
+                title: "병원",
+                story: "병원에서 돌 상태로 누워있었다. 하지만 내가 남긴 메모가 해리와 론에게 도움이 되었을 것이다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "친구들을 믿고 기다린다", effects: { friendship: 20 }, next: 9 },
+                    { text: "걱정되지만 아무것도 할 수 없다", effects: { courage: 5, friendship: 10 }, next: 9 },
+                    { text: "자책하며 후회한다", effects: { courage: -15, knowledge: -10 }, next: 9 }
+                ]
+            },
+            {
+                title: "회복",
+                story: "돌에서 풀려났다! 해리가 바실리스크를 물리치고 지니를 구했다. 나는 해리와 론에게 고마웠다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "친구들에게 깊이 감사한다", effects: { friendship: 25, courage: 10 }, ending: "friendship" },
+                    { text: "앞으로 더 조심하겠다고 다짐한다", effects: { knowledge: 20, courage: 15 }, ending: "wisdom" },
+                    { text: "친구들과 함께 모험을 계속한다", effects: { friendship: 20, courage: 20 }, ending: "courage" }
+                ]
+            }
+        ]
+    },
+    3: { // 제 3편: 아즈카반의 죄수
+        harry: [
+            {
+                title: "머글 여름",
+                story: "여름 방학 동안 더즐리 집에서 지내고 있었다. 마법부가 마법 사용 금지 통지를 보냈다. 그런데 마녀를 불어 날려버렸다! 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+                choices: [
+                    { text: "집을 나가 도망간다", effects: { courage: 15 }, next: 1 },
+                    { text: "마법부의 심판을 기다린다", effects: { knowledge: 10, courage: -5 }, ending: "waited_trial" },
+                    { text: "위즐리 집으로 도망간다", effects: { friendship: 10, courage: 10 }, next: 1 }
+                ]
+            },
+            {
+                title: "나이트 버스",
+                story: "나이트 버스에 탔다. 이상한 버스였지만 런던으로 갈 수 있었다. 위즐리 집으로 가서 상황을 설명해야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
+                choices: [
+                    { text: "위즐리 가족에게 솔직하게 설명한다", effects: { friendship: 15, courage: 5 }, next: 2 },
+                    { text: "조금 숨기고 설명한다", effects: { friendship: 5 }, next: 2 },
+                    { text: "아무 말도 하지 않는다", effects: { friendship: -10 }, next: 2 }
+                ]
+            },
+            {
+                title: "시리우스 블랙",
+                story: "시리우스 블랙이 아즈카반에서 탈출했다는 소식이 들렸다. 그는 볼드모트의 오른팔이었고, 나의 부모님을 배신했다고 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "시리우스를 찾아 복수하겠다", effects: { courage: 15, knowledge: -5 }, next: 3 },
+                    { text: "진실을 조사한다", effects: { knowledge: 15, courage: 5 }, next: 3 },
+                    { text: "두려워서 숨는다", effects: { courage: -20 }, ending: "hid_from_black" }
+                ]
+            },
+            {
+                title: "디멘터",
+                story: "호그와트 특급 열차에서 디멘터를 만났다! 차가운 공기가 감돌았고, 나는 부모님이 죽는 소리를 다시 들었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
+                choices: [
+                    { text: "기절하지만 용기를 낸다", effects: { courage: 15 }, next: 4 },
+                    { text: "루핀 교수에게 도움을 요청한다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
+                    { text: "두려워서 기절한다", effects: { courage: -15 }, next: 4 }
+                ]
+            },
+            {
+                title: "루핀 교수",
+                story: "루핀 교수가 새로운 어둠의 마법 방어술 교수로 왔다. 그는 디멘터에 대해 가르쳐주었고, 패트로누스 마법을 알려주었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+                choices: [
+                    { text: "루핀 교수에게 패트로누스를 열심히 배운다", effects: { knowledge: 15, courage: 10 }, next: 5 },
+                    { text: "혼자서 연습한다", effects: { knowledge: 10, courage: 5 }, next: 5 },
+                    { text: "포기하고 다른 방법을 찾는다", effects: { knowledge: -10, courage: -15 }, ending: "gave_up_patronus" }
+                ]
+            },
+            {
+                title: "마법 지도",
+                story: "프레드와 조지에게서 마법 지도를 받았다. 호그와트의 모든 비밀 통로를 볼 수 있었다. 하지만 위험할 수도 있었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "지도를 사용해서 호그와트를 탐험한다", effects: { courage: 15, knowledge: 10 }, next: 6 },
+                    { text: "친구들과 지도를 공유한다", effects: { friendship: 15, knowledge: 5 }, next: 6 },
+                    { text: "지도를 버린다", effects: { knowledge: -10 }, ending: "threw_map" }
+                ]
+            },
+            {
+                title: "시리우스와의 대면",
+                story: "시리우스 블랙을 만났다! 하지만 그는 나를 해치려 하지 않았다. 오히려 그는 진실을 말해주었다. 그는 배신자가 아니었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "시리우스를 믿는다", effects: { courage: 20, knowledge: 15 }, next: 7 },
+                    { text: "의심하고 더 확인한다", effects: { knowledge: 15, courage: -5 }, next: 7 },
+                    { text: "시리우스를 공격한다", effects: { courage: -20, knowledge: -15 }, ending: "attacked_sirius" }
+                ]
+            },
+            {
+                title: "피터 페티그루",
+                story: "진짜 배신자는 피터 페티그루였다! 그는 아직 살아있었고, 쥐 스캐버스로 변신해서 론과 함께 있었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
+                choices: [
+                    { text: "피터를 잡아서 진실을 밝힌다", effects: { courage: 20, friendship: 15 }, next: 8 },
+                    { text: "론에게 스캐버스의 진실을 말한다", effects: { friendship: 20, knowledge: 10 }, next: 8 },
+                    { text: "혼란스러워서 아무것도 하지 않는다", effects: { courage: -15, knowledge: -10 }, ending: "did_nothing" }
+                ]
+            },
+            {
+                title: "시간을 되돌리다",
+                story: "헤르미온느와 함께 시간 변환기를 사용해서 과거로 돌아갔다. 버크와 시리우스를 구할 수 있었다. 하지만 시간 여행은 위험했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
+                choices: [
+                    { text: "과거를 바꾸기 위해 신중하게 행동한다", effects: { knowledge: 20, courage: 15 }, next: 9 },
+                    { text: "용감하게 과거로 가서 구한다", effects: { courage: 20, friendship: 15 }, next: 9 },
+                    { text: "두려워서 과거로 가지 않는다", effects: { courage: -20 }, ending: "didnt_time_travel" }
+                ]
+            },
+            {
+                title: "패트로누스",
+                story: "과거의 자신을 구하기 위해 패트로누스를 시전해야 했다. 나는 강한 기억을 생각하며 패트로누스를 만들어냈다. 시리우스와 버크를 구했다! 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "시리우스와 버크를 구하는 데 성공한다", effects: { courage: 25, friendship: 20 }, ending: "courage" },
+                    { text: "시간 여행의 지혜를 사용한다", effects: { knowledge: 25, courage: 15 }, ending: "wisdom" },
+                    { text: "친구들과 함께 구한다", effects: { friendship: 25, courage: 20 }, ending: "friendship" }
+                ]
+            }
+        ],
+        ron: [
+            {
+                title: "이집트 여행",
+                story: "가족과 함께 이집트로 여행을 갔다. 아빠가 로또에 당첨되어서 가능했다. 정말 즐거운 여행이었다. 해리에게도 선물을 샀다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73612?w=800&q=80",
+                choices: [
+                    { text: "해리에게 선물을 보낸다", effects: { friendship: 15 }, next: 1 },
+                    { text: "이집트에서 더 많은 것을 본다", effects: { knowledge: 10 }, next: 1 },
+                    { text: "여행만 즐긴다", effects: { friendship: 5 }, next: 1 }
+                ]
+            },
+            {
+                title: "스캐버스",
+                story: "스캐버스가 아파 보였다. 내 쥐였고 정말 아꼈다. 하지만 크루셔가 스캐버스를 계속 쫓았다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "크루셔를 막고 스캐버스를 보호한다", effects: { courage: 10, friendship: -5 }, next: 2 },
+                    { text: "크루셔에게 스캐버스를 숨긴다", effects: { knowledge: 5 }, next: 2 },
+                    { text: "스캐버스가 아프다고 생각한다", effects: { friendship: 5 }, next: 2 }
+                ]
+            },
+            {
+                title: "시리우스 블랙",
+                story: "시리우스 블랙이 아즈카반에서 탈출했다는 소식을 들었다. 그는 해리를 노리고 있었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "해리를 보호하겠다고 다짐한다", effects: { friendship: 20, courage: 15 }, next: 3 },
+                    { text: "해리와 함께 조심한다", effects: { friendship: 15, courage: 10 }, next: 3 },
+                    { text: "두려워한다", effects: { courage: -10 }, next: 3 }
+                ]
+            },
+            {
+                title: "크루셔",
+                story: "크루셔를 받았다. 헤르미온느의 고양이였다. 크루셔는 스캐버스를 계속 쫓았다. 나는 화가 났다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "헤르미온느와 다툰다", effects: { friendship: -15 }, ending: "fought_hermione" },
+                    { text: "크루셔를 이해하려고 노력한다", effects: { knowledge: 10, friendship: 5 }, next: 4 },
+                    { text: "스캐버스를 더 잘 보호한다", effects: { courage: 5 }, next: 4 }
+                ]
+            },
+            {
+                title: "마법 지도",
+                story: "프레드와 조지에게서 마법 지도를 받았다. 하지만 해리에게 주었다. 나는 해리를 믿었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80",
+                choices: [
+                    { text: "해리와 함께 지도를 사용한다", effects: { friendship: 15, courage: 10 }, next: 5 },
+                    { text: "해리를 믿고 맡긴다", effects: { friendship: 20 }, next: 5 },
+                    { text: "지도를 다시 받아온다", effects: { friendship: -10 }, ending: "took_map_back" }
+                ]
+            },
+            {
+                title: "퀴디치 경기",
+                story: "해리의 퀴디치 경기 날이었다. 디멘터들이 나타났다. 해리가 떨어졌다. 나는 매우 걱정되었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
+                choices: [
+                    { text: "해리를 도와주러 간다", effects: { friendship: 20, courage: 15 }, next: 6 },
+                    { text: "교사들에게 도움을 요청한다", effects: { knowledge: 10, friendship: 10 }, next: 6 },
+                    { text: "걱정하지만 기다린다", effects: { friendship: 10 }, next: 6 }
+                ]
+            },
+            {
+                title: "시리우스 발견",
+                story: "시리우스 블랙을 발견했다! 해리와 함께 시리우스를 따라갔다. 시리우스가 해리를 공격할 것 같았다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "해리를 보호하고 시리우스와 맞선다", effects: { courage: 20, friendship: 25 }, next: 7 },
+                    { text: "도움을 요청하러 간다", effects: { knowledge: 10, friendship: 15 }, next: 7 },
+                    { text: "도망간다", effects: { courage: -20, friendship: -25 }, ending: "ran_away" }
+                ]
+            },
+            {
+                title: "스캐버스의 진실",
+                story: "스캐버스가 사실 피터 페티그루였다! 그는 내 부모님을 배신했다. 나는 믿을 수 없었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "피터를 잡아서 진실을 밝힌다", effects: { courage: 20, friendship: 15 }, next: 8 },
+                    { text: "믿을 수 없어서 확인한다", effects: { knowledge: 15, courage: 5 }, next: 8 },
+                    { text: "충격에 빠져 아무것도 하지 않는다", effects: { courage: -15, knowledge: -10 }, ending: "shocked" }
+                ]
+            },
+            {
+                title: "시리우스 도움",
+                story: "시리우스가 무죄라는 것을 알게 되었다. 그를 도와야 했다. 하지만 디멘터들이 다가오고 있었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "시리우스를 구하기 위해 싸운다", effects: { courage: 20, friendship: 20 }, next: 9 },
+                    { text: "해리와 함께 시리우스를 구한다", effects: { friendship: 25, courage: 15 }, next: 9 },
+                    { text: "두려워서 도망간다", effects: { courage: -20 }, ending: "fled_from_dementors" }
+                ]
+            },
+            {
+                title: "해피 엔딩",
+                story: "피터는 도망갔지만 시리우스는 구했다. 해리에게 시리우스가 대부라는 것을 알려줄 수 있었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "해리에게 시리우스의 이야기를 전한다", effects: { friendship: 25, courage: 15 }, ending: "friendship" },
+                    { text: "시리우스를 도와 탈출시킨다", effects: { courage: 25, friendship: 20 }, ending: "courage" },
+                    { text: "진실을 찾아내는 데 성공한다", effects: { knowledge: 25, friendship: 15 }, ending: "wisdom" }
+                ]
+            }
+        ],
+        hermione: [
+            {
+                title: "3학년 시작",
+                story: "3학년이 시작되었다. 나는 모든 과목을 듣고 싶었지만 시간이 부족했다. 그래서 시간 변환기를 받았다. 하지만 이것은 비밀이어야 했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+                choices: [
+                    { text: "시간 변환기를 사용해서 모든 수업을 듣는다", effects: { knowledge: 20 }, next: 1 },
+                    { text: "친구들에게 비밀로 한다", effects: { knowledge: 15, friendship: 5 }, next: 1 },
+                    { text: "시간 변환기를 사용하지 않는다", effects: { knowledge: -15 }, ending: "no_time_turner" }
+                ]
+            },
+            {
+                title: "루핀 교수",
+                story: "루핀 교수가 새로운 어둠의 마법 방어술 교수로 왔다. 그는 정말 좋은 교수였다. 나는 그의 수업을 좋아했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+                choices: [
+                    { text: "루핀 교수의 수업에 열심히 참여한다", effects: { knowledge: 15, courage: 5 }, next: 2 },
+                    { text: "루핀 교수에 대해 더 알아본다", effects: { knowledge: 15 }, next: 2 },
+                    { text: "평소처럼 공부한다", effects: { knowledge: 10 }, next: 2 }
+                ]
+            },
+            {
+                title: "디멘터 수업",
+                story: "루핀 교수가 보그트를 사용해서 디멘터를 가르쳐주었다. 나는 패트로누스 마법을 배우고 싶었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+                choices: [
+                    { text: "패트로누스를 열심히 연습한다", effects: { knowledge: 20, courage: 15 }, next: 3 },
+                    { text: "도서관에서 패트로누스에 대해 더 배운다", effects: { knowledge: 20 }, next: 3 },
+                    { text: "해리와 론과 함께 연습한다", effects: { friendship: 15, knowledge: 10 }, next: 3 }
+                ]
+            },
+            {
+                title: "크루셔와 스캐버스",
+                story: "크루셔가 스캐버스를 계속 쫓았다. 론이 화가 났다. 하지만 크루셔는 단순히 고양이가 아니었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "크루셔가 특별하다는 것을 직감한다", effects: { knowledge: 15 }, next: 4 },
+                    { text: "론과 다툰다", effects: { friendship: -15 }, ending: "fought_ron" },
+                    { text: "크루셔를 막으려고 노력한다", effects: { friendship: 5 }, next: 4 }
+                ]
+            },
+            {
+                title: "해리의 패트로누스",
+                story: "해리가 패트로누스를 배우고 있었다. 그는 어려워했다. 나는 도와주고 싶었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80",
+                choices: [
+                    { text: "해리에게 패트로누스 이론을 가르쳐준다", effects: { friendship: 15, knowledge: 10 }, next: 5 },
+                    { text: "해리를 격려한다", effects: { friendship: 20, courage: 10 }, next: 5 },
+                    { text: "해리가 스스로 배우도록 둔다", effects: { friendship: 5 }, next: 5 }
+                ]
+            },
+            {
+                title: "루핀의 비밀",
+                story: "루핀 교수가 늑대인간이라는 것을 알게 되었다. 하지만 나는 그를 두려워하지 않았다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+                choices: [
+                    { text: "루핀 교수를 그대로 받아들인다", effects: { knowledge: 15, courage: 10 }, next: 6 },
+                    { text: "루핀 교수에 대해 더 연구한다", effects: { knowledge: 20 }, next: 6 },
+                    { text: "두려워서 거리를 둔다", effects: { courage: -15, knowledge: -10 }, ending: "feared_lupin" }
+                ]
+            },
+            {
+                title: "시리우스 블랙",
+                story: "시리우스 블랙을 만났다. 하지만 그는 해리를 해치려 하지 않았다. 오히려 진실을 말해주었다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "시리우스의 말을 분석한다", effects: { knowledge: 20, friendship: 10 }, next: 7 },
+                    { text: "시리우스를 믿고 해리를 돕는다", effects: { friendship: 20, courage: 15 }, next: 7 },
+                    { text: "의심한다", effects: { knowledge: 10, friendship: -5 }, next: 7 }
+                ]
+            },
+            {
+                title: "피터 페티그루",
+                story: "피터 페티그루가 진짜 배신자였다! 스캐버스가 사실 피터였다. 나는 크루셔가 맞았다는 것을 깨달았다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
+                choices: [
+                    { text: "피터를 잡아서 진실을 밝힌다", effects: { knowledge: 20, courage: 15 }, next: 8 },
+                    { text: "론에게 크루셔가 옳았다고 말한다", effects: { friendship: 15, knowledge: 10 }, next: 8 },
+                    { text: "증거를 더 모은다", effects: { knowledge: 20, friendship: -5 }, next: 8 }
+                ]
+            },
+            {
+                title: "시간 변환기",
+                story: "시간 변환기를 사용해서 과거로 돌아가야 했다. 버크와 시리우스를 구할 수 있었다. 하지만 시간 여행은 위험했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
+                choices: [
+                    { text: "신중하게 시간 여행을 계획한다", effects: { knowledge: 25, courage: 10 }, next: 9 },
+                    { text: "해리와 함께 용감하게 간다", effects: { friendship: 20, courage: 20 }, next: 9 },
+                    { text: "두려워서 가지 않는다", effects: { courage: -20 }, ending: "afraid_time_travel" }
+                ]
+            },
+            {
+                title: "시간 여행 성공",
+                story: "시간 여행에 성공했다! 버크와 시리우스를 구했다. 나의 논리와 시간 변환기가 모든 것을 해결했다. 어떻게 할까?",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&q=80",
+                choices: [
+                    { text: "시간 여행의 지혜를 사용한다", effects: { knowledge: 25, friendship: 15 }, ending: "wisdom" },
+                    { text: "친구들과 함께 구한다", effects: { friendship: 25, courage: 20 }, ending: "friendship" },
+                    { text: "용감하게 모든 위험을 감수한다", effects: { courage: 25, friendship: 15 }, ending: "courage" }
+                ]
+            }
+        ]
+    }
 };
 
 // 결말 텍스트 (확장된 결말들)
@@ -652,7 +1316,7 @@ function processChoice(choice) {
     } else {
         setTimeout(function() {
             currentEvent++;
-            if (currentEvent >= gameData[currentCharacter].length) {
+            if (currentEvent >= gameData[currentPart][currentCharacter].length) {
                 // 기본 결말 (가장 높은 수치에 따라)
                 const maxStat = Object.keys(gameState).reduce(function(a, b) {
                     return gameState[a] > gameState[b] ? a : b;
@@ -668,12 +1332,12 @@ function processChoice(choice) {
 
 // 이벤트 표시 함수
 function showEvent() {
-    if (!currentCharacter || !gameData[currentCharacter]) {
-        console.error('캐릭터 데이터를 찾을 수 없습니다.');
+    if (!currentCharacter || !currentPart || !gameData[currentPart] || !gameData[currentPart][currentCharacter]) {
+        console.error('게임 데이터를 찾을 수 없습니다.');
         return;
     }
     
-    const event = gameData[currentCharacter][currentEvent];
+    const event = gameData[currentPart][currentCharacter][currentEvent];
     if (!event) {
         console.error('이벤트를 찾을 수 없습니다.');
         return;
@@ -964,6 +1628,8 @@ function showEnding(endingType) {
                 }, 50);
             }
             
+            // 편 선택 화면으로 돌아가도록 변경하지 않고 캐릭터 선택 화면으로만 돌아감
+            
             // 통계 그래프 숨기기
             const statsContainer = document.getElementById('stats-graph-container');
             if (statsContainer) {
@@ -982,6 +1648,7 @@ function showEnding(endingType) {
 // 게임 시작 함수 (전역에 즉시 노출)
 window.startGame = function(character) {
     console.log('=== startGame 함수 호출됨 ===');
+    console.log('편:', currentPart);
     console.log('캐릭터:', character);
     
     if (!character) {
@@ -993,6 +1660,12 @@ window.startGame = function(character) {
     if (!characterNames[character]) {
         console.error('유효하지 않은 캐릭터:', character);
         alert('유효하지 않은 캐릭터입니다.');
+        return;
+    }
+    
+    if (!currentPart || !gameData[currentPart]) {
+        console.error('편이 선택되지 않았습니다.');
+        alert('편을 선택해주세요.');
         return;
     }
     

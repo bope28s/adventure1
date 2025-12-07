@@ -54,6 +54,29 @@ h2 {
     color: #e0e0e0;
 }
 
+.part-cards {
+    display: flex !important;
+    justify-content: space-around !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+.part-card {
+    transition: all 0.3s ease !important;
+}
+
+.part-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5) !important;
+    border-color: #ffed4e !important;
+    background: linear-gradient(135deg, #3c4e60 0%, #44596e 100%) !important;
+}
+
+.part-card:active {
+    transform: translateY(-5px) !important;
+}
+
 .character-cards {
     display: flex !important;
     justify-content: space-around !important;
@@ -583,6 +606,18 @@ button.character-card {
     
     h2 {
         font-size: 1.5em;
+    }
+    
+    .part-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .part-card {
+        width: 100% !important;
+        max-width: 300px !important;
+        min-width: 200px !important;
+        box-sizing: border-box !important;
     }
     
     .character-cards {
