@@ -785,9 +785,8 @@ function showOriginalMatchRate(endingType) {
         ? endings[endingType].originalMatchRate[currentCharacter]
         : 0;
 
-    // 초기값을 "--"로 설정
-    matchValue.textContent = '--';
-    matchValue.classList.remove('animating');
+    // 값 설정
+    matchValue.textContent = matchRate;
     
     // 컨테이너 표시
     matchContainer.style.display = 'block';
@@ -798,54 +797,6 @@ function showOriginalMatchRate(endingType) {
         matchContainer.style.transition = 'all 0.5s ease';
         matchContainer.style.opacity = '1';
         matchContainer.style.transform = 'translateY(0)';
-        
-        // 클릭 이벤트 추가 (기존 이벤트 제거 후 새로 등록)
-        matchValue.onclick = null;
-        matchValue.onclick = function() {
-            // 이미 숫자가 표시되어 있고 애니메이션 중이 아니면 무시
-            if (matchValue.textContent !== '--' && !matchValue.classList.contains('animating')) {
-                return;
-            }
-            
-            // 힌트 숨기기
-            const clickHint = document.querySelector('.click-hint');
-            if (clickHint) {
-                clickHint.classList.add('hidden');
-            }
-            
-            // 룰렛 애니메이션 시작
-            matchValue.classList.add('animating');
-            matchValue.classList.remove('revealed');
-            
-            // 랜덤 숫자가 빠르게 변하다가 목표값에 멈추는 효과
-            let animationCount = 0;
-            const totalFrames = 30 + Math.floor(Math.random() * 20); // 30-50 프레임
-            const randomInterval = setInterval(function() {
-                animationCount++;
-                
-                // 랜덤 숫자 표시 (목표값 주변으로)
-                if (animationCount < totalFrames - 5) {
-                    // 빠르게 랜덤 숫자 표시
-                    const randomRange = matchRate + 20;
-                    const randomValue = Math.max(0, Math.min(100, matchRate - 10 + Math.floor(Math.random() * randomRange)));
-                    matchValue.textContent = randomValue;
-                } else if (animationCount < totalFrames) {
-                    // 목표값에 가까워지며 표시
-                    const progress = (animationCount - (totalFrames - 5)) / 5;
-                    const currentValue = Math.floor(matchRate * progress);
-                    matchValue.textContent = currentValue;
-                } else {
-                    // 최종값 표시
-                    matchValue.textContent = matchRate;
-                    matchValue.classList.remove('animating');
-                    matchValue.classList.add('revealed');
-                    clearInterval(randomInterval);
-                    
-                    // 축하 효과음 (선택사항)
-                    playSound('clickSound');
-                }
-            }, 50); // 50ms마다 업데이트
-        };
     }, 100);
 }
 
