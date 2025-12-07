@@ -194,7 +194,7 @@ button.character-card {
 #current-character-name {
     font-weight: bold;
     color: #ffd700;
-    font-size: 1.3em;
+    font-size: 1.4em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -615,7 +615,7 @@ button.character-card {
     }
     
     #current-character-name {
-        font-size: 1.1em !important;
+        font-size: 1.3em !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
