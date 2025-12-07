@@ -608,5 +608,30 @@ button.character-card {
         font-size: 1em;
         padding: 15px;
     }
+    
+    .character-info {
+        font-size: 1em !important;
+        gap: 8px !important;
+    }
+    
+    #current-character-name {
+        font-size: 1.1em !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    #current-character-icon {
+        width: 35px !important;
+        height: 35px !important;
+        margin-right: 8px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .event-counter {
+        font-size: 0.9em !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
 }
 
