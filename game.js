@@ -1258,6 +1258,309 @@ const endings = {
             hermione: 48
         },
         hermione: "교사들에게 알린 헤르미온느는 해리와 론의 모험을 막았다. 규칙을 지키는 것이 중요하다고 생각했지만, 때로는 친구를 믿고 함께 위험을 감수하는 것이 더 중요하다는 것을 나중에 깨달았다."
+    },
+    // 제 2편 비밀의 방 - 해리
+    stayed_home: {
+        title: {
+            harry: "😔 집에 남은 소년"
+        },
+        originalMatchRate: {
+            harry: 8
+        },
+        harry: "도비의 말을 듣고 집에 남은 해리는 호그와트로 돌아가지 않았다. 하지만 도비는 해리가 필요하다는 것을 알고 있었고, 해리는 중요한 모험을 놓쳤다."
+    },
+    gave_up_station: {
+        title: {
+            harry: "😰 포기한 소년"
+        },
+        originalMatchRate: {
+            harry: 10
+        },
+        harry: "승강장에 들어가지 못하고 포기한 해리는 호그와트로 돌아가지 못했다. 하지만 해리의 친구들은 해리를 기다리고 있었다."
+    },
+    blamed_ron: {
+        title: {
+            harry: "😤 책임을 돌린 소년"
+        },
+        originalMatchRate: {
+            harry: 15
+        },
+        harry: "론에게 모든 책임을 돌린 해리는 친구의 신뢰를 잃었다. 진정한 친구는 함께 책임을 진다는 것을 나중에 깨달았다."
+    },
+    hid_from_danger: {
+        title: {
+            harry: "😨 위험에서 숨은 소년"
+        },
+        originalMatchRate: {
+            harry: 20
+        },
+        harry: "비밀의 방의 위험에서 숨은 해리는 문제를 해결하지 못했다. 용기를 내지 못한 해리는 자신의 한계를 깨달았다."
+    },
+    isolated: {
+        title: {
+            harry: "😢 외로운 소년"
+        },
+        originalMatchRate: {
+            harry: 18
+        },
+        harry: "모두가 해리를 두려워하며 외톨이로 만든 해리는 친구들을 잃었다. 하지만 진정한 친구들은 해리를 믿었다."
+    },
+    missed_diary: {
+        title: {
+            harry: "📖 놓친 단서"
+        },
+        originalMatchRate: {
+            harry: 25
+        },
+        harry: "다이어리를 버린 해리는 중요한 단서를 놓쳤다. 톰 리들의 비밀을 알아내지 못한 해리는 문제를 해결하는 데 어려움을 겪었다."
+    },
+    ran_from_spiders: {
+        title: {
+            harry: "🕷️ 거미에게서 도망친 소년"
+        },
+        originalMatchRate: {
+            harry: 22
+        },
+        harry: "거미들 앞에서 도망친 해리는 헤르미온느를 구하지 못했다. 두려움에 굴복한 해리는 자신의 용기를 다시 생각해봐야 했다."
+    },
+    // 제 2편 - 론
+    waited_passively: {
+        title: {
+            ron: "😐 수동적인 소년"
+        },
+        originalMatchRate: {
+            ron: 12
+        },
+        ron: "기다리기만 한 론은 해리를 도와주지 못했다. 론의 수동적인 태도는 친구들에게 실망을 주었다."
+    },
+    doubted_harry: {
+        title: {
+            ron: "🤔 의심한 친구"
+        },
+        originalMatchRate: {
+            ron: 20
+        },
+        ron: "해리를 의심한 론은 친구의 신뢰를 손상시켰다. 진정한 친구는 서로를 믿는다는 것을 깨달았다."
+    },
+    distanced_self: {
+        title: {
+            ron: "😔 거리를 둔 친구"
+        },
+        originalMatchRate: {
+            ron: 15
+        },
+        ron: "해리와 거리를 둔 론은 친구의 곁에 서지 못했다. 진정한 우정은 어려울 때 함께하는 것이라는 것을 배웠다."
+    },
+    too_scared: {
+        title: {
+            ron: "😰 너무 무서워한 소년"
+        },
+        originalMatchRate: {
+            ron: 18
+        },
+        ron: "너무 무서워서 해리와 함께 가지 못한 론은 친구를 혼자 두었다. 용기를 내지 못한 론은 후회했다."
+    },
+    frozen_fear: {
+        title: {
+            ron: "❄️ 두려움에 얼어버린 소년"
+        },
+        originalMatchRate: {
+            ron: 15
+        },
+        ron: "두려움에 얼어버린 론은 아무것도 할 수 없었다. 하지만 해리는 론을 이해하고 있었다."
+    },
+    // 제 2편 - 헤르미온느
+    trusted_lockhart: {
+        title: {
+            hermione: "📚 록하트를 신뢰한 마법사"
+        },
+        originalMatchRate: {
+            hermione: 20
+        },
+        hermione: "록하트를 무조건 신뢰한 헤르미온느는 큰 실수를 했다. 때로는 비판적인 사고가 필요하다는 것을 배웠다."
+    },
+    talked_to_diary: {
+        title: {
+            hermione: "📖 다이어리와 대화한 마법사"
+        },
+        originalMatchRate: {
+            hermione: 15
+        },
+        hermione: "다이어리와 직접 대화한 헤르미온느는 위험에 빠졌다. 경고를 무시한 것이 큰 실수였다."
+    },
+    hid_mistake: {
+        title: {
+            hermione: "😳 실수를 숨긴 마법사"
+        },
+        originalMatchRate: {
+            hermione: 18
+        },
+        hermione: "폴리주스 물약 실수를 숨긴 헤르미온느는 친구들과의 신뢰를 손상시켰다. 실수를 인정하는 것이 용기라는 것을 배웠다."
+    },
+    gave_up_investigation: {
+        title: {
+            hermione: "💔 조사를 포기한 마법사"
+        },
+        originalMatchRate: {
+            hermione: 20
+        },
+        hermione: "조사를 포기한 헤르미온느는 문제 해결을 포기했다. 하지만 때로는 포기하는 것도 현명한 선택일 수 있다."
+    },
+    no_clue_left: {
+        title: {
+            hermione: "📝 단서를 남기지 않은 마법사"
+        },
+        originalMatchRate: {
+            hermione: 15
+        },
+        hermione: "단서를 남기지 않은 헤르미온느는 친구들을 도울 수 없었다. 협력의 중요성을 깨달았다."
+    },
+    // 제 3편 아즈카반의 죄수 - 해리
+    waited_trial: {
+        title: {
+            harry: "⚖️ 심판을 기다린 소년"
+        },
+        originalMatchRate: {
+            harry: 25
+        },
+        harry: "마법부의 심판을 기다린 해리는 집에 남아야 했다. 하지만 때로는 규칙을 따르는 것이 필요하다."
+    },
+    hid_from_black: {
+        title: {
+            harry: "😨 블랙에게서 숨은 소년"
+        },
+        originalMatchRate: {
+            harry: 20
+        },
+        harry: "시리우스 블랙에게서 숨은 해리는 진실을 알아내지 못했다. 두려움은 진실을 가린다는 것을 배웠다."
+    },
+    gave_up_patronus: {
+        title: {
+            harry: "💔 패트로누스를 포기한 소년"
+        },
+        originalMatchRate: {
+            harry: 15
+        },
+        harry: "패트로누스를 포기한 해리는 디멘터에 대항할 수 없었다. 연습의 중요성을 깨달았다."
+    },
+    threw_map: {
+        title: {
+            harry: "🗺️ 지도를 버린 소년"
+        },
+        originalMatchRate: {
+            harry: 18
+        },
+        harry: "마법 지도를 버린 해리는 호그와트의 비밀을 잃었다. 소중한 것을 함부로 버리지 말아야 한다는 것을 배웠다."
+    },
+    attacked_sirius: {
+        title: {
+            harry: "⚔️ 시리우스를 공격한 소년"
+        },
+        originalMatchRate: {
+            harry: 10
+        },
+        harry: "시리우스를 공격한 해리는 큰 실수를 했다. 진실을 확인하기 전에 행동하지 말아야 한다는 것을 깨달았다."
+    },
+    did_nothing: {
+        title: {
+            harry: "😐 아무것도 하지 않은 소년"
+        },
+        originalMatchRate: {
+            harry: 12
+        },
+        harry: "혼란스러워서 아무것도 하지 않은 해리는 중요한 순간을 놓쳤다. 행동하는 것이 때로는 필요하다는 것을 배웠다."
+    },
+    didnt_time_travel: {
+        title: {
+            harry: "⏰ 시간 여행을 하지 않은 소년"
+        },
+        originalMatchRate: {
+            harry: 15
+        },
+        harry: "두려워서 시간 여행을 하지 않은 해리는 시리우스를 구하지 못했다. 용기를 내야 할 때가 있다는 것을 배웠다."
+    },
+    // 제 3편 - 론
+    fought_hermione: {
+        title: {
+            ron: "😤 헤르미온느와 다툰 소년"
+        },
+        originalMatchRate: {
+            ron: 18
+        },
+        ron: "크루셔 때문에 헤르미온느와 다툰 론은 친구의 신뢰를 잃었다. 작은 일로 큰 우정을 잃지 말아야 한다는 것을 배웠다."
+    },
+    took_map_back: {
+        title: {
+            ron: "🗺️ 지도를 다시 받아온 소년"
+        },
+        originalMatchRate: {
+            ron: 15
+        },
+        ron: "지도를 다시 받아온 론은 해리의 신뢰를 손상시켰다. 친구를 믿는 것이 중요하다는 것을 깨달았다."
+    },
+    ran_away: {
+        title: {
+            ron: "🏃 도망친 소년"
+        },
+        originalMatchRate: {
+            ron: 10
+        },
+        ron: "시리우스 앞에서 도망친 론은 해리를 혼자 두었다. 진정한 친구는 함께 위험을 감수한다는 것을 배웠다."
+    },
+    shocked: {
+        title: {
+            ron: "😱 충격에 빠진 소년"
+        },
+        originalMatchRate: {
+            ron: 12
+        },
+        ron: "스캐버스의 진실에 충격받아 아무것도 하지 못한 론은 기회를 놓쳤다. 하지만 해리는 론을 이해했다."
+    },
+    fled_from_dementors: {
+        title: {
+            ron: "👻 디멘터에게서 도망친 소년"
+        },
+        originalMatchRate: {
+            ron: 15
+        },
+        ron: "디멘터에게서 도망친 론은 시리우스를 구하지 못했다. 하지만 때로는 도망치는 것도 용기일 수 있다."
+    },
+    // 제 3편 - 헤르미온느
+    no_time_turner: {
+        title: {
+            hermione: "⏰ 시간 변환기를 사용하지 않은 마법사"
+        },
+        originalMatchRate: {
+            hermione: 15
+        },
+        hermione: "시간 변환기를 사용하지 않은 헤르미온느는 모든 수업을 들을 수 없었다. 하지만 때로는 선택이 필요하다는 것을 배웠다."
+    },
+    fought_ron: {
+        title: {
+            hermione: "😤 론과 다툰 마법사"
+        },
+        originalMatchRate: {
+            hermione: 18
+        },
+        hermione: "크루셔 때문에 론과 다툰 헤르미온느는 친구의 신뢰를 잃었다. 작은 일로 우정을 해치지 말아야 한다는 것을 배웠다."
+    },
+    feared_lupin: {
+        title: {
+            hermione: "😨 루핀을 두려워한 마법사"
+        },
+        originalMatchRate: {
+            hermione: 20
+        },
+        hermione: "루핀 교수가 늑대인간이라는 것을 알고 두려워한 헤르미온느는 좋은 교수를 잃었다. 진실을 이해하는 것이 중요하다는 것을 배웠다."
+    },
+    afraid_time_travel: {
+        title: {
+            hermione: "😰 시간 여행을 두려워한 마법사"
+        },
+        originalMatchRate: {
+            hermione: 15
+        },
+        hermione: "두려워서 시간 여행을 하지 않은 헤르미온느는 시리우스를 구하지 못했다. 하지만 때로는 신중함이 필요하다는 것을 배웠다."
     }
 };
 
@@ -1613,22 +1916,22 @@ function showEnding(endingType) {
         }
         
         setTimeout(function() {
-            const selectionScreen = document.getElementById('character-selection');
+            const partSelectionScreen = document.getElementById('part-selection');
             if (gameScreen) {
                 gameScreen.classList.remove('active');
                 gameScreen.style.display = 'none';
             }
-            if (selectionScreen) {
-                selectionScreen.classList.add('active');
-                selectionScreen.style.display = 'block';
-                selectionScreen.style.opacity = '0';
+            if (partSelectionScreen) {
+                partSelectionScreen.classList.add('active');
+                partSelectionScreen.style.display = 'block';
+                partSelectionScreen.style.opacity = '0';
                 setTimeout(function() {
-                    selectionScreen.style.transition = 'opacity 0.5s ease';
-                    selectionScreen.style.opacity = '1';
+                    partSelectionScreen.style.transition = 'opacity 0.5s ease';
+                    partSelectionScreen.style.opacity = '1';
                 }, 50);
             }
             
-            // 편 선택 화면으로 돌아가도록 변경하지 않고 캐릭터 선택 화면으로만 돌아감
+            // 편 선택 화면으로 돌아가기
             
             // 통계 그래프 숨기기
             const statsContainer = document.getElementById('stats-graph-container');
