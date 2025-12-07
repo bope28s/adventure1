@@ -1010,56 +1010,57 @@ const gameData = {
     }
 };
 
-// 결말 텍스트 (확장된 결말들)
+// 결말 텍스트 (편별로 구분)
 const endings = {
-    // 성공 결말들
-    courage: {
-        title: {
-            harry: "🏆 용감한 영웅",
-            ron: "🏆 용감한 친구",
-            hermione: "🏆 용감한 마법사"
+    1: { // 제 1편: 마법사의 돌
+        // 성공 결말들
+        courage: {
+            title: {
+                harry: "🏆 용감한 영웅",
+                ron: "🏆 용감한 친구",
+                hermione: "🏆 용감한 마법사"
+            },
+            originalMatchRate: {
+                harry: 90,
+                ron: 85,
+                hermione: 78
+            },
+            harry: "용감한 선택으로 볼드모트를 물리쳤다! 해리는 진정한 그리핀도르의 용기를 보여주었다. 마법사의 돌은 안전하게 보호되었고, 해리는 영웅이 되었다.",
+            ron: "용감하게 체스 게임에 참여한 론은 친구들을 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
+            hermione: "용감하게 해리와 함께 맞선 헤르미온느는 지식뿐만 아니라 용기도 가지고 있음을 증명했다! 그녀의 용기는 모든 것을 바꿨다."
         },
-        originalMatchRate: {
-            harry: 90,
-            ron: 85,
-            hermione: 78
+        wisdom: {
+            title: {
+                harry: "🧠 지혜로운 영웅",
+                ron: "🧠 현명한 친구",
+                hermione: "🧠 지혜로운 마법사"
+            },
+            originalMatchRate: {
+                harry: 75,
+                ron: 70,
+                hermione: 95
+            },
+            harry: "지혜로운 선택으로 마법사의 돌을 파괴했다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 볼드모트의 계획은 실패했고, 해리는 현명한 선택을 했다.",
+            ron: "론은 다른 방법을 찾아 친구들을 구했다! 때로는 직접 맞서는 것보다 더 현명한 방법이 있다는 것을 보여주었다. 론의 지혜는 모두를 구했다.",
+            hermione: "헤르미온느의 지식과 논리적 사고가 모든 것을 해결했다! 그녀의 똑똑함이 친구들을 구했고, 마법사의 돌도 안전하게 보호되었다. 진정한 지혜의 승리였다!"
         },
-        harry: "용감한 선택으로 볼드모트를 물리쳤다! 해리는 진정한 그리핀도르의 용기를 보여주었다. 마법사의 돌은 안전하게 보호되었고, 해리는 영웅이 되었다.",
-        ron: "용감하게 체스 게임에 참여한 론은 친구들을 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
-        hermione: "용감하게 해리와 함께 맞선 헤르미온느는 지식뿐만 아니라 용기도 가지고 있음을 증명했다! 그녀의 용기는 모든 것을 바꿨다."
-    },
-    wisdom: {
-        title: {
-            harry: "🧠 지혜로운 영웅",
-            ron: "🧠 현명한 친구",
-            hermione: "🧠 지혜로운 마법사"
+        friendship: {
+            title: {
+                harry: "💝 우정 있는 영웅",
+                ron: "💝 진실한 친구",
+                hermione: "💝 우정 있는 마법사"
+            },
+            originalMatchRate: {
+                harry: 82,
+                ron: 90,
+                hermione: 87
+            },
+            harry: "친구들의 도움으로 위기를 극복했다! 해리는 혼자가 아니라는 것을 깨달았다. 진정한 우정의 힘이 볼드모트보다 강하다는 것을 증명했다.",
+            ron: "론의 우정과 희생이 친구들을 구했다! 론은 친구를 위해 자신을 희생할 수 있다는 것을 보여주었다. 진정한 우정의 힘이 승리했다!",
+            hermione: "헤르미온느의 지원과 우정이 해리를 구했다! 그녀는 친구를 위해 모든 지식을 동원했다. 우정의 힘이 마법보다 강하다는 것을 증명했다!"
         },
-        originalMatchRate: {
-            harry: 75,
-            ron: 70,
-            hermione: 95
-        },
-        harry: "지혜로운 선택으로 마법사의 돌을 파괴했다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 볼드모트의 계획은 실패했고, 해리는 현명한 선택을 했다.",
-        ron: "론은 다른 방법을 찾아 친구들을 구했다! 때로는 직접 맞서는 것보다 더 현명한 방법이 있다는 것을 보여주었다. 론의 지혜는 모두를 구했다.",
-        hermione: "헤르미온느의 지식과 논리적 사고가 모든 것을 해결했다! 그녀의 똑똑함이 친구들을 구했고, 마법사의 돌도 안전하게 보호되었다. 진정한 지혜의 승리였다!"
-    },
-    friendship: {
-        title: {
-            harry: "💝 우정 있는 영웅",
-            ron: "💝 진실한 친구",
-            hermione: "💝 우정 있는 마법사"
-        },
-        originalMatchRate: {
-            harry: 82,
-            ron: 90,
-            hermione: 87
-        },
-        harry: "친구들의 도움으로 위기를 극복했다! 해리는 혼자가 아니라는 것을 깨달았다. 진정한 우정의 힘이 볼드모트보다 강하다는 것을 증명했다.",
-        ron: "론의 우정과 희생이 친구들을 구했다! 론은 친구를 위해 자신을 희생할 수 있다는 것을 보여주었다. 진정한 우정의 힘이 승리했다!",
-        hermione: "헤르미온느의 지원과 우정이 해리를 구했다! 그녀는 친구를 위해 모든 지식을 동원했다. 우정의 힘이 마법보다 강하다는 것을 증명했다!"
-    },
-    // 조기 포기 결말들
-    early_quit: {
+        // 조기 포기 결말들
+        early_quit: {
         title: {
             harry: "😔 놓친 기회의 소년"
         },
@@ -1258,9 +1259,57 @@ const endings = {
             hermione: 48
         },
         hermione: "교사들에게 알린 헤르미온느는 해리와 론의 모험을 막았다. 규칙을 지키는 것이 중요하다고 생각했지만, 때로는 친구를 믿고 함께 위험을 감수하는 것이 더 중요하다는 것을 나중에 깨달았다."
+        }
     },
-    // 제 2편 비밀의 방 - 해리
-    stayed_home: {
+    2: { // 제 2편: 비밀의 방
+        // 성공 결말들
+        courage: {
+            title: {
+                harry: "🏆 용감한 영웅",
+                ron: "🏆 용감한 친구",
+                hermione: "🏆 용감한 마법사"
+            },
+            originalMatchRate: {
+                harry: 88,
+                ron: 82,
+                hermione: 80
+            },
+            harry: "용감하게 바실리스크와 맞선 해리는 비밀의 방의 위험을 물리쳤다! 그리핀도르의 검으로 바실리스크를 물리치고 지니를 구했다. 해리는 진정한 용기를 보여주었다.",
+            ron: "용감하게 해리와 함께 거미들과 맞선 론은 친구를 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
+            hermione: "용감하게 친구들과 함께 모험을 계속한 헤르미온느는 지식뿐만 아니라 용기도 가지고 있음을 증명했다! 그녀의 용기는 모든 것을 바꿨다."
+        },
+        wisdom: {
+            title: {
+                harry: "🧠 지혜로운 영웅",
+                ron: "🧠 현명한 친구",
+                hermione: "🧠 지혜로운 마법사"
+            },
+            originalMatchRate: {
+                harry: 80,
+                ron: 75,
+                hermione: 92
+            },
+            harry: "지혜롭게 피니스를 불러 도움을 받은 해리는 바실리스크를 물리쳤다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 비밀의 방의 위험은 해결되었고, 해리는 현명한 선택을 했다.",
+            ron: "론은 다른 방법을 찾아 친구들을 구했다! 때로는 직접 맞서는 것보다 더 현명한 방법이 있다는 것을 보여주었다. 론의 지혜는 모두를 구했다.",
+            hermione: "헤르미온느의 지식과 논리적 사고가 모든 것을 해결했다! 그녀가 남긴 메모가 해리와 론에게 중요한 단서를 주었다. 진정한 지혜의 승리였다!"
+        },
+        friendship: {
+            title: {
+                harry: "💝 우정 있는 영웅",
+                ron: "💝 진실한 친구",
+                hermione: "💝 우정 있는 마법사"
+            },
+            originalMatchRate: {
+                harry: 85,
+                ron: 88,
+                hermione: 85
+            },
+            harry: "지니와 함께 용감하게 맞선 해리는 친구의 도움으로 위기를 극복했다! 해리는 혼자가 아니라는 것을 깨달았다. 진정한 우정의 힘이 톰 리들보다 강하다는 것을 증명했다.",
+            ron: "론의 우정과 희생이 친구들을 구했다! 론은 해리를 믿고 기다렸고, 교사들에게 알려 해리를 구했다. 진정한 우정의 힘이 승리했다!",
+            hermione: "헤르미온느의 지원과 우정이 해리를 구했다! 그녀가 남긴 메모와 정보가 친구들을 도왔다. 우정의 힘이 마법보다 강하다는 것을 증명했다!"
+        },
+        // 제 2편 비밀의 방 - 해리
+        stayed_home: {
         title: {
             harry: "😔 집에 남은 소년"
         },
@@ -1414,153 +1463,202 @@ const endings = {
             hermione: 15
         },
         hermione: "단서를 남기지 않은 헤르미온느는 친구들을 도울 수 없었다. 협력의 중요성을 깨달았다."
+        }
     },
-    // 제 3편 아즈카반의 죄수 - 해리
-    waited_trial: {
-        title: {
-            harry: "⚖️ 심판을 기다린 소년"
+    3: { // 제 3편: 아즈카반의 죄수
+        // 성공 결말들
+        courage: {
+            title: {
+                harry: "🏆 용감한 영웅",
+                ron: "🏆 용감한 친구",
+                hermione: "🏆 용감한 마법사"
+            },
+            originalMatchRate: {
+                harry: 85,
+                ron: 80,
+                hermione: 78
+            },
+            harry: "용감하게 시리우스와 버크를 구한 해리는 패트로누스로 디멘터들을 물리쳤다! 해리는 진정한 그리핀도르의 용기를 보여주었다. 시리우스는 탈출했고, 해리는 대부를 찾았다.",
+            ron: "용감하게 시리우스를 도와 탈출시킨 론은 친구를 구했다! 론의 용기는 그리핀도르의 진정한 정신을 보여주었다. 친구들은 론을 영웅으로 기억했다.",
+            hermione: "용감하게 모든 위험을 감수한 헤르미온느는 시간 여행으로 시리우스를 구했다! 그녀의 용기는 모든 것을 바꿨다."
         },
-        originalMatchRate: {
-            harry: 25
+        wisdom: {
+            title: {
+                harry: "🧠 지혜로운 영웅",
+                ron: "🧠 현명한 친구",
+                hermione: "🧠 지혜로운 마법사"
+            },
+            originalMatchRate: {
+                harry: 78,
+                ron: 72,
+                hermione: 90
+            },
+            harry: "지혜롭게 시간 여행을 사용한 해리는 시리우스와 버크를 구했다! 해리는 단순한 용기보다 더 큰 지혜를 보여주었다. 시간의 힘을 현명하게 사용했다.",
+            ron: "론은 진실을 찾아내는 데 성공했다! 때로는 직접 맞서는 것보다 더 현명한 방법이 있다는 것을 보여주었다. 론의 지혜는 모두를 구했다.",
+            hermione: "헤르미온느의 지식과 시간 여행의 지혜가 모든 것을 해결했다! 그녀의 똑똑함이 친구들을 구했고, 시리우스도 안전하게 탈출했다. 진정한 지혜의 승리였다!"
         },
-        harry: "마법부의 심판을 기다린 해리는 집에 남아야 했다. 하지만 때로는 규칙을 따르는 것이 필요하다."
-    },
-    hid_from_black: {
-        title: {
-            harry: "😨 블랙에게서 숨은 소년"
+        friendship: {
+            title: {
+                harry: "💝 우정 있는 영웅",
+                ron: "💝 진실한 친구",
+                hermione: "💝 우정 있는 마법사"
+            },
+            originalMatchRate: {
+                harry: 83,
+                ron: 86,
+                hermione: 84
+            },
+            harry: "친구들과 함께 시리우스를 구한 해리는 혼자가 아니라는 것을 깨달았다! 진정한 우정의 힘이 디멘터보다 강하다는 것을 증명했다.",
+            ron: "론의 우정과 희생이 해리를 구했다! 론은 해리에게 시리우스의 이야기를 전하고 함께 시리우스를 도왔다. 진정한 우정의 힘이 승리했다!",
+            hermione: "헤르미온느의 지원과 우정이 해리를 구했다! 그녀는 친구를 위해 시간 여행의 위험을 감수했다. 우정의 힘이 마법보다 강하다는 것을 증명했다!"
         },
-        originalMatchRate: {
-            harry: 20
+        // 제 3편 조기 포기 결말들
+        waited_trial: {
+            title: {
+                harry: "⚖️ 심판을 기다린 소년"
+            },
+            originalMatchRate: {
+                harry: 25
+            },
+            harry: "마법부의 심판을 기다린 해리는 집에 남아야 했다. 하지만 때로는 규칙을 따르는 것이 필요하다."
         },
-        harry: "시리우스 블랙에게서 숨은 해리는 진실을 알아내지 못했다. 두려움은 진실을 가린다는 것을 배웠다."
-    },
-    gave_up_patronus: {
-        title: {
-            harry: "💔 패트로누스를 포기한 소년"
+        hid_from_black: {
+            title: {
+                harry: "😨 블랙에게서 숨은 소년"
+            },
+            originalMatchRate: {
+                harry: 20
+            },
+            harry: "시리우스 블랙에게서 숨은 해리는 진실을 알아내지 못했다. 두려움은 진실을 가린다는 것을 배웠다."
         },
-        originalMatchRate: {
-            harry: 15
+        gave_up_patronus: {
+            title: {
+                harry: "💔 패트로누스를 포기한 소년"
+            },
+            originalMatchRate: {
+                harry: 15
+            },
+            harry: "패트로누스를 포기한 해리는 디멘터에 대항할 수 없었다. 연습의 중요성을 깨달았다."
         },
-        harry: "패트로누스를 포기한 해리는 디멘터에 대항할 수 없었다. 연습의 중요성을 깨달았다."
-    },
-    threw_map: {
-        title: {
-            harry: "🗺️ 지도를 버린 소년"
+        threw_map: {
+            title: {
+                harry: "🗺️ 지도를 버린 소년"
+            },
+            originalMatchRate: {
+                harry: 18
+            },
+            harry: "마법 지도를 버린 해리는 호그와트의 비밀을 잃었다. 소중한 것을 함부로 버리지 말아야 한다는 것을 배웠다."
         },
-        originalMatchRate: {
-            harry: 18
+        attacked_sirius: {
+            title: {
+                harry: "⚔️ 시리우스를 공격한 소년"
+            },
+            originalMatchRate: {
+                harry: 10
+            },
+            harry: "시리우스를 공격한 해리는 큰 실수를 했다. 진실을 확인하기 전에 행동하지 말아야 한다는 것을 깨달았다."
         },
-        harry: "마법 지도를 버린 해리는 호그와트의 비밀을 잃었다. 소중한 것을 함부로 버리지 말아야 한다는 것을 배웠다."
-    },
-    attacked_sirius: {
-        title: {
-            harry: "⚔️ 시리우스를 공격한 소년"
+        did_nothing: {
+            title: {
+                harry: "😐 아무것도 하지 않은 소년"
+            },
+            originalMatchRate: {
+                harry: 12
+            },
+            harry: "혼란스러워서 아무것도 하지 않은 해리는 중요한 순간을 놓쳤다. 행동하는 것이 때로는 필요하다는 것을 배웠다."
         },
-        originalMatchRate: {
-            harry: 10
+        didnt_time_travel: {
+            title: {
+                harry: "⏰ 시간 여행을 하지 않은 소년"
+            },
+            originalMatchRate: {
+                harry: 15
+            },
+            harry: "두려워서 시간 여행을 하지 않은 해리는 시리우스를 구하지 못했다. 용기를 내야 할 때가 있다는 것을 배웠다."
         },
-        harry: "시리우스를 공격한 해리는 큰 실수를 했다. 진실을 확인하기 전에 행동하지 말아야 한다는 것을 깨달았다."
-    },
-    did_nothing: {
-        title: {
-            harry: "😐 아무것도 하지 않은 소년"
+        // 제 3편 - 론
+        fought_hermione: {
+            title: {
+                ron: "😤 헤르미온느와 다툰 소년"
+            },
+            originalMatchRate: {
+                ron: 18
+            },
+            ron: "크룩섕스 때문에 헤르미온느와 다툰 론은 친구의 신뢰를 잃었다. 작은 일로 큰 우정을 잃지 말아야 한다는 것을 배웠다."
         },
-        originalMatchRate: {
-            harry: 12
+        took_map_back: {
+            title: {
+                ron: "🗺️ 지도를 다시 받아온 소년"
+            },
+            originalMatchRate: {
+                ron: 15
+            },
+            ron: "지도를 다시 받아온 론은 해리의 신뢰를 손상시켰다. 친구를 믿는 것이 중요하다는 것을 깨달았다."
         },
-        harry: "혼란스러워서 아무것도 하지 않은 해리는 중요한 순간을 놓쳤다. 행동하는 것이 때로는 필요하다는 것을 배웠다."
-    },
-    didnt_time_travel: {
-        title: {
-            harry: "⏰ 시간 여행을 하지 않은 소년"
+        ran_away: {
+            title: {
+                ron: "🏃 도망친 소년"
+            },
+            originalMatchRate: {
+                ron: 10
+            },
+            ron: "시리우스 앞에서 도망친 론은 해리를 혼자 두었다. 진정한 친구는 함께 위험을 감수한다는 것을 배웠다."
         },
-        originalMatchRate: {
-            harry: 15
+        shocked: {
+            title: {
+                ron: "😱 충격에 빠진 소년"
+            },
+            originalMatchRate: {
+                ron: 12
+            },
+            ron: "스캐버스의 진실에 충격받아 아무것도 하지 못한 론은 기회를 놓쳤다. 하지만 해리는 론을 이해했다."
         },
-        harry: "두려워서 시간 여행을 하지 않은 해리는 시리우스를 구하지 못했다. 용기를 내야 할 때가 있다는 것을 배웠다."
-    },
-    // 제 3편 - 론
-    fought_hermione: {
-        title: {
-            ron: "😤 헤르미온느와 다툰 소년"
+        fled_from_dementors: {
+            title: {
+                ron: "👻 디멘터에게서 도망친 소년"
+            },
+            originalMatchRate: {
+                ron: 15
+            },
+            ron: "디멘터에게서 도망친 론은 시리우스를 구하지 못했다. 하지만 때로는 도망치는 것도 용기일 수 있다."
         },
-        originalMatchRate: {
-            ron: 18
+        // 제 3편 - 헤르미온느
+        no_time_turner: {
+            title: {
+                hermione: "⏰ 시간 변환기를 사용하지 않은 마법사"
+            },
+            originalMatchRate: {
+                hermione: 15
+            },
+            hermione: "시간 변환기를 사용하지 않은 헤르미온느는 모든 수업을 들을 수 없었다. 하지만 때로는 선택이 필요하다는 것을 배웠다."
         },
-        ron: "크룩섕스 때문에 헤르미온느와 다툰 론은 친구의 신뢰를 잃었다. 작은 일로 큰 우정을 잃지 말아야 한다는 것을 배웠다."
-    },
-    took_map_back: {
-        title: {
-            ron: "🗺️ 지도를 다시 받아온 소년"
+        fought_ron: {
+            title: {
+                hermione: "😤 론과 다툰 마법사"
+            },
+            originalMatchRate: {
+                hermione: 18
+            },
+            hermione: "크룩섕스 때문에 론과 다툰 헤르미온느는 친구의 신뢰를 잃었다. 작은 일로 우정을 해치지 말아야 한다는 것을 배웠다."
         },
-        originalMatchRate: {
-            ron: 15
+        feared_lupin: {
+            title: {
+                hermione: "😨 루핀을 두려워한 마법사"
+            },
+            originalMatchRate: {
+                hermione: 20
+            },
+            hermione: "루핀 교수가 늑대인간이라는 것을 알고 두려워한 헤르미온느는 좋은 교수를 잃었다. 진실을 이해하는 것이 중요하다는 것을 배웠다."
         },
-        ron: "지도를 다시 받아온 론은 해리의 신뢰를 손상시켰다. 친구를 믿는 것이 중요하다는 것을 깨달았다."
-    },
-    ran_away: {
-        title: {
-            ron: "🏃 도망친 소년"
-        },
-        originalMatchRate: {
-            ron: 10
-        },
-        ron: "시리우스 앞에서 도망친 론은 해리를 혼자 두었다. 진정한 친구는 함께 위험을 감수한다는 것을 배웠다."
-    },
-    shocked: {
-        title: {
-            ron: "😱 충격에 빠진 소년"
-        },
-        originalMatchRate: {
-            ron: 12
-        },
-        ron: "스캐버스의 진실에 충격받아 아무것도 하지 못한 론은 기회를 놓쳤다. 하지만 해리는 론을 이해했다."
-    },
-    fled_from_dementors: {
-        title: {
-            ron: "👻 디멘터에게서 도망친 소년"
-        },
-        originalMatchRate: {
-            ron: 15
-        },
-        ron: "디멘터에게서 도망친 론은 시리우스를 구하지 못했다. 하지만 때로는 도망치는 것도 용기일 수 있다."
-    },
-    // 제 3편 - 헤르미온느
-    no_time_turner: {
-        title: {
-            hermione: "⏰ 시간 변환기를 사용하지 않은 마법사"
-        },
-        originalMatchRate: {
-            hermione: 15
-        },
-        hermione: "시간 변환기를 사용하지 않은 헤르미온느는 모든 수업을 들을 수 없었다. 하지만 때로는 선택이 필요하다는 것을 배웠다."
-    },
-    fought_ron: {
-        title: {
-            hermione: "😤 론과 다툰 마법사"
-        },
-        originalMatchRate: {
-            hermione: 18
-        },
-        hermione: "크룩섕스 때문에 론과 다툰 헤르미온느는 친구의 신뢰를 잃었다. 작은 일로 우정을 해치지 말아야 한다는 것을 배웠다."
-    },
-    feared_lupin: {
-        title: {
-            hermione: "😨 루핀을 두려워한 마법사"
-        },
-        originalMatchRate: {
-            hermione: 20
-        },
-        hermione: "루핀 교수가 늑대인간이라는 것을 알고 두려워한 헤르미온느는 좋은 교수를 잃었다. 진실을 이해하는 것이 중요하다는 것을 배웠다."
-    },
-    afraid_time_travel: {
-        title: {
-            hermione: "😰 시간 여행을 두려워한 마법사"
-        },
-        originalMatchRate: {
-            hermione: 15
-        },
-        hermione: "두려워서 시간 여행을 하지 않은 헤르미온느는 시리우스를 구하지 못했다. 하지만 때로는 신중함이 필요하다는 것을 배웠다."
+        afraid_time_travel: {
+            title: {
+                hermione: "😰 시간 여행을 두려워한 마법사"
+            },
+            originalMatchRate: {
+                hermione: 15
+            },
+            hermione: "두려워서 시간 여행을 하지 않은 헤르미온느는 시리우스를 구하지 못했다. 하지만 때로는 신중함이 필요하다는 것을 배웠다."
+        }
     }
 };
 
@@ -1753,9 +1851,9 @@ function showOriginalMatchRate(endingType) {
         return;
     }
 
-    // 일치율 값 가져오기
-    const matchRate = endings[endingType] && endings[endingType].originalMatchRate && endings[endingType].originalMatchRate[currentCharacter]
-        ? endings[endingType].originalMatchRate[currentCharacter]
+    // 일치율 값 가져오기 (편별로 구분)
+    const matchRate = endings[currentPart] && endings[currentPart][endingType] && endings[currentPart][endingType].originalMatchRate && endings[currentPart][endingType].originalMatchRate[currentCharacter]
+        ? endings[currentPart][endingType].originalMatchRate[currentCharacter]
         : 0;
 
     // 값 설정
@@ -1840,9 +1938,9 @@ function showEnding(endingType) {
         closeChoiceConfirm();
     }
 
-    // 결말 제목 표시
-    const endingTitleText = endings[endingType] && endings[endingType].title && endings[endingType].title[currentCharacter]
-        ? endings[endingType].title[currentCharacter]
+    // 결말 제목 표시 (편별로 구분)
+    const endingTitleText = endings[currentPart] && endings[currentPart][endingType] && endings[currentPart][endingType].title && endings[currentPart][endingType].title[currentCharacter]
+        ? endings[currentPart][endingType].title[currentCharacter]
         : null;
     
     if (endingTitle) {
@@ -1856,8 +1954,9 @@ function showEnding(endingType) {
         }
     }
 
-    const endingText = endings[endingType] && endings[endingType][currentCharacter] 
-        ? endings[endingType][currentCharacter] 
+    // 결말 텍스트 (편별로 구분)
+    const endingText = endings[currentPart] && endings[currentPart][endingType] && endings[currentPart][endingType][currentCharacter] 
+        ? endings[currentPart][endingType][currentCharacter] 
         : '게임이 끝났습니다.';
 
     // 페이드 인 애니메이션
