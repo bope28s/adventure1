@@ -338,54 +338,67 @@ button.character-card {
     transition: all 0.3s ease;
 }
 
-/* 선택 확인 화면 */
+/* 선택 확인 화면 - 게임 화면 위에 오버레이로 표시 */
 #choice-confirm-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.5s ease;
+    backdrop-filter: blur(3px);
 }
 
 .confirm-container {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     border-radius: 20px;
-    padding: 40px;
-    max-width: 600px;
+    padding: 35px;
+    max-width: 500px;
     width: 90%;
     border: 3px solid #ffd700;
     box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
-    animation: slideUp 0.5s ease;
+    transform: scale(0.95);
+    animation: modalAppear 0.3s ease forwards;
+}
+
+@keyframes modalAppear {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .confirm-container h2 {
     text-align: center;
     color: #ffd700;
-    font-size: 2em;
-    margin-bottom: 30px;
+    font-size: 1.8em;
+    margin-bottom: 25px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .confirm-choice-text {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 30px;
-    font-size: 1.3em;
-    line-height: 1.8;
+    padding: 20px;
+    margin-bottom: 25px;
+    font-size: 1.2em;
+    line-height: 1.6;
     color: #fff;
     text-align: center;
     border: 2px solid rgba(255, 215, 0, 0.3);
-    min-height: 100px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    word-break: keep-all;
 }
 
 .confirm-buttons {
@@ -416,6 +429,31 @@ button.character-card {
 
 .confirm-btn:active {
     transform: translateY(-1px);
+}
+
+/* 선택 확인 모달 반응형 */
+@media (max-width: 768px) {
+    .confirm-container {
+        padding: 25px;
+        max-width: 90%;
+    }
+    
+    .confirm-container h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    
+    .confirm-choice-text {
+        font-size: 1.1em;
+        padding: 15px;
+        min-height: 60px;
+    }
+    
+    .confirm-btn {
+        padding: 12px 30px;
+        font-size: 1.1em;
+        min-width: 100px;
+    }
 }
 
 /* 애니메이션 */

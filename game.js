@@ -1569,28 +1569,34 @@ function showChoiceConfirm(choice) {
     pendingChoice = choice;
     const confirmScreen = document.getElementById('choice-confirm-screen');
     const confirmText = document.getElementById('confirm-choice-text');
-    const gameScreen = document.getElementById('game-screen');
     
-    if (confirmScreen && confirmText && gameScreen) {
-        confirmText.textContent = '선택한 내용: ' + choice.text;
-        gameScreen.style.display = 'none';
-        gameScreen.classList.remove('active');
-        confirmScreen.style.display = 'block';
-        confirmScreen.classList.add('active');
+    if (confirmScreen && confirmText) {
+        // 선택한 내용을 표시 (예: "기다리기만 한다를 선택하시겠습니까?")
+        confirmText.textContent = '"' + choice.text + '"를 선택하시겠습니까?';
+        confirmScreen.style.display = 'flex';
+        confirmScreen.style.opacity = '0';
         playSound('clickSound');
+        
+        // 페이드 인 애니메이션
+        setTimeout(function() {
+            confirmScreen.style.transition = 'opacity 0.3s ease';
+            confirmScreen.style.opacity = '1';
+        }, 10);
     }
 }
 
 // 선택 확인 화면 닫기
 function closeChoiceConfirm() {
     const confirmScreen = document.getElementById('choice-confirm-screen');
-    const gameScreen = document.getElementById('game-screen');
     
-    if (confirmScreen && gameScreen) {
-        confirmScreen.style.display = 'none';
-        confirmScreen.classList.remove('active');
-        gameScreen.style.display = 'block';
-        gameScreen.classList.add('active');
+    if (confirmScreen) {
+        // 페이드 아웃 애니메이션
+        confirmScreen.style.transition = 'opacity 0.3s ease';
+        confirmScreen.style.opacity = '0';
+        
+        setTimeout(function() {
+            confirmScreen.style.display = 'none';
+        }, 300);
         playSound('clickSound');
     }
 }
@@ -1830,9 +1836,8 @@ function showEnding(endingType) {
     }
 
     // 선택 확인 화면이 열려있으면 닫기
-    if (confirmScreen && confirmScreen.classList.contains('active')) {
-        confirmScreen.style.display = 'none';
-        confirmScreen.classList.remove('active');
+    if (confirmScreen && confirmScreen.style.display !== 'none') {
+        closeChoiceConfirm();
     }
 
     // 결말 제목 표시
