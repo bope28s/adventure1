@@ -200,11 +200,88 @@
                 }
             }
             
-            // 메인 화면으로 전환
+            // 메인 화면으로 전환 (저장된 상태 복원 포함)
             function transitionToMainScreen() {
                 if (splashScreen) {
                     splashScreen.style.display = 'none';
                 }
+                
+                // 저장된 게임 상태 복원 시도
+                if (typeof loadGameState === 'function' && loadGameState()) {
+                    console.log('저장된 게임 상태 복원:', {
+                        part: currentPart,
+                        character: currentCharacter,
+                        event: currentEvent
+                    });
+                    
+                    // 캐릭터가 선택되어 있고 게임이 진행 중이면 게임 화면으로
+                    if (currentCharacter && typeof showEvent === 'function' && typeof gameData !== 'undefined') {
+                        const gameScreen = document.getElementById('game-screen');
+                        const characterSelection = document.getElementById('character-selection');
+                        
+                        if (gameScreen && gameData[currentPart] && gameData[currentPart][currentCharacter]) {
+                            // 게임 화면 표시
+                            if (partSelection) {
+                                partSelection.style.display = 'none';
+                                partSelection.classList.remove('active');
+                            }
+                            if (characterSelection) {
+                                characterSelection.style.display = 'none';
+                                characterSelection.classList.remove('active');
+                            }
+                            gameScreen.style.display = 'block';
+                            gameScreen.classList.add('active');
+                            
+                            // 편 제목 업데이트
+                            const partTitle = document.getElementById('part-title');
+                            if (partTitle && typeof partTitles !== 'undefined') {
+                                partTitle.textContent = partTitles[currentPart];
+                            }
+                            
+                            // 이벤트 표시
+                            setTimeout(function() {
+                                showEvent();
+                            }, 300);
+                            return;
+                        }
+                    }
+                    
+                    // 캐릭터는 선택되었지만 이벤트가 없는 경우 (캐릭터 선택 화면)
+                    if (currentCharacter && !currentEvent) {
+                        const characterSelection = document.getElementById('character-selection');
+                        const partTitle = document.getElementById('part-title');
+                        
+                        if (characterSelection && partTitle && typeof partTitles !== 'undefined') {
+                            if (partSelection) {
+                                partSelection.style.display = 'none';
+                                partSelection.classList.remove('active');
+                            }
+                            characterSelection.style.display = 'block';
+                            characterSelection.classList.add('active');
+                            partTitle.textContent = partTitles[currentPart];
+                            return;
+                        }
+                    }
+                    
+                    // 편만 선택된 경우 캐릭터 선택 화면으로
+                    if (currentPart && !currentCharacter) {
+                        const characterSelection = document.getElementById('character-selection');
+                        const partTitle = document.getElementById('part-title');
+                        
+                        if (characterSelection && partTitle && typeof partTitles !== 'undefined') {
+                            if (partSelection) {
+                                partSelection.style.display = 'none';
+                                partSelection.classList.remove('active');
+                            }
+                            characterSelection.style.display = 'block';
+                            characterSelection.classList.add('active');
+                            partTitle.textContent = partTitles[currentPart];
+                            return;
+                        }
+                    }
+                }
+                
+                // 저장된 상태가 없거나 복원 실패 시 기본 화면 (편 선택)
                 if (partSelection) {
                     partSelection.style.display = 'block';
                     partSelection.classList.add('active');

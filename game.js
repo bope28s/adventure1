@@ -9,6 +9,56 @@ let gameState = {
 };
 let pendingChoice = null; // 선택 확인을 위한 변수
 
+// 게임 상태 저장 함수
+function saveGameState() {
+    const state = {
+        currentPart: currentPart,
+        currentCharacter: currentCharacter,
+        currentEvent: currentEvent,
+        gameState: gameState,
+        timestamp: Date.now()
+    };
+    try {
+        localStorage.setItem('harryPotterGameState', JSON.stringify(state));
+    } catch (e) {
+        console.error('게임 상태 저장 실패:', e);
+    }
+}
+
+// 게임 상태 복원 함수
+function loadGameState() {
+    try {
+        const saved = localStorage.getItem('harryPotterGameState');
+        if (saved) {
+            const state = JSON.parse(saved);
+            // 24시간 이내의 저장된 상태만 복원
+            if (Date.now() - state.timestamp < 24 * 60 * 60 * 1000) {
+                currentPart = state.currentPart || 1;
+                currentCharacter = state.currentCharacter || null;
+                currentEvent = state.currentEvent || 0;
+                gameState = state.gameState || {
+                    friendship: 50,
+                    courage: 50,
+                    knowledge: 50
+                };
+                return true;
+            }
+        }
+    } catch (e) {
+        console.error('게임 상태 복원 실패:', e);
+    }
+    return false;
+}
+
+// 게임 상태 초기화 함수
+function clearGameState() {
+    try {
+        localStorage.removeItem('harryPotterGameState');
+    } catch (e) {
+        console.error('게임 상태 삭제 실패:', e);
+    }
+}
+
 // 캐릭터 이름 매핑
 const characterNames = {
     harry: '해리 포터',
@@ -102,6 +152,7 @@ function shuffleArray(array) {
 window.selectPart = function(partNumber) {
     createSound('click');
     currentPart = partNumber;
+    saveGameState(); // 상태 저장
     
     const partSelection = document.getElementById('part-selection');
     const characterSelection = document.getElementById('character-selection');
@@ -1766,6 +1817,7 @@ function processChoice(choice) {
             gameState[key] = Math.max(0, Math.min(100, gameState[key] + choice.effects[key]));
         });
     }
+    saveGameState(); // 상태 저장
 
     // 결말인지 확인
     if (choice.ending) {
@@ -1776,11 +1828,13 @@ function processChoice(choice) {
         setTimeout(function() {
             createSound('transition');
             currentEvent = choice.next;
+            saveGameState(); // 상태 저장
             showEvent();
         }, 500);
     } else {
         setTimeout(function() {
             currentEvent++;
+            saveGameState(); // 상태 저장
             if (currentEvent >= gameData[currentPart][currentCharacter].length) {
                 // 기본 결말 (가장 높은 수치에 따라)
                 const maxStat = Object.keys(gameState).reduce(function(a, b) {
@@ -2072,6 +2126,8 @@ function showEnding(endingType) {
     // 다시 시작하기 버튼 이벤트 (기존 이벤트 제거 후 새로 등록)
     restartBtn.onclick = null; // 기존 이벤트 제거
     restartBtn.onclick = function() {
+        // 게임 상태 초기화
+        clearGameState();
         createSound('click');
         
         // 선택 확인 화면 닫기
@@ -2157,6 +2213,7 @@ window.startGame = function(character) {
         courage: 50,
         knowledge: 50
     };
+    saveGameState(); // 상태 저장
 
     const selectionScreen = document.getElementById('character-selection');
     const gameScreen = document.getElementById('game-screen');
