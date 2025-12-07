@@ -1,6 +1,6 @@
 {
-  "name": "해리포터 모험 게임 - 마법사의 돌",
-  "short_name": "해리포터 모험",
+  "name": "해리포터 퀴즈 게임 - 마법사의 돌",
+  "short_name": "해리포터 퀴즈",
   "description": "해리, 론, 헤르미온느 중 한 명을 선택하여 마법사의 돌 모험을 시작하세요!",
   "start_url": "/",
   "display": "standalone",

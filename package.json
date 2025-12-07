@@ -1,7 +1,7 @@
 {
   "name": "harry-potter-adventure-game",
   "version": "1.0.0",
-  "description": "해리포터 모험 게임 - 마법사의 돌",
+  "description": "해리포터 퀴즈 게임 - 마법사의 돌",
   "main": "index.html",
   "scripts": {
     "start": "npx serve ."
