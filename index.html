@@ -6,9 +6,9 @@
     <title>해리포터 모험 게임 - 마법사의 돌</title>
     <meta property="og:title" content="해리포터 모험 게임 - 마법사의 돌">
     <meta property="og:description" content="해리, 론, 헤르미온느 중 한 명을 선택하여 마법사의 돌 모험을 시작하세요!">
-    <meta property="og:image" content="icon.png">
+    <meta property="og:image" content="icon2.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="icon.png">
+    <meta name="twitter:image" content="icon2.png">
     <meta property="og:type" content="website">
     
     <!-- 모바일 홈 화면 아이콘 (귀여운 마법사) -->
@@ -25,8 +25,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="splash-screen" class="splash-screen" style="display: flex !important;">
+        <img src="icon2.png" alt="해리포터 모험 게임" class="splash-image">
+    </div>
     <div class="container">
-        <div id="part-selection" class="screen active" style="display: block !important;">
+        <div id="part-selection" class="screen active" style="display: none !important;">
             <h1>해리포터 모험 게임</h1>
             <p class="intro">플레이할 편을 선택하세요!</p>
             <div class="part-cards">
@@ -169,8 +172,24 @@
         console.log('game.js 로드 완료');
         console.log('startGame 함수 존재:', typeof window.startGame);
         
-        // 캐릭터 카드 클릭 테스트
+        // 스플래시 화면 처리
         document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.getElementById('splash-screen');
+            const partSelection = document.getElementById('part-selection');
+            
+            // 2초 후 스플래시 화면 숨기고 첫 화면 표시
+            setTimeout(function() {
+                if (splashScreen) {
+                    splashScreen.style.display = 'none';
+                }
+                if (partSelection) {
+                    partSelection.style.display = 'block';
+                    partSelection.classList.add('active');
+                    createSound('transition');
+                }
+            }, 2500); // 2.5초 (애니메이션 시간 포함)
+            
+            // 캐릭터 카드 클릭 테스트
             const cards = document.querySelectorAll('.character-card');
             console.log('캐릭터 카드 개수:', cards.length);
             cards.forEach(function(card, index) {
