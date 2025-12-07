@@ -799,14 +799,16 @@ function showOriginalMatchRate(endingType) {
         matchContainer.style.opacity = '1';
         matchContainer.style.transform = 'translateY(0)';
         
-        // 클릭 이벤트 추가
+        // 클릭 이벤트 추가 (기존 이벤트 제거 후 새로 등록)
+        matchValue.onclick = null;
         matchValue.onclick = function() {
-            if (matchValue.textContent === '--' || matchValue.classList.contains('animating')) {
-                return; // 이미 애니메이션 중이면 무시
+            // 이미 숫자가 표시되어 있고 애니메이션 중이 아니면 무시
+            if (matchValue.textContent !== '--' && !matchValue.classList.contains('animating')) {
+                return;
             }
             
             // 다이얼 애니메이션 시작
-            matchValue.textContent = '--';
+            matchValue.textContent = '0';
             matchValue.classList.add('animating');
             
             // 숫자를 0부터 목표값까지 증가시키며 표시
@@ -817,7 +819,9 @@ function showOriginalMatchRate(endingType) {
                 if (currentValue >= matchRate) {
                     currentValue = matchRate;
                     clearInterval(interval);
-                    matchValue.classList.remove('animating');
+                    setTimeout(function() {
+                        matchValue.classList.remove('animating');
+                    }, 200);
                 }
                 matchValue.textContent = currentValue;
             }, 30); // 30ms마다 업데이트
